@@ -3,6 +3,34 @@
 #include <vector>
 using namespace std;
 
+struct Node
+{
+	int data;
+	struct Node *next;
+};
+
+Node* Insert(Node *head, int data)
+{
+	Node* curr = new Node();
+	Node* newNode = new Node();
+	newNode->data = data;
+
+	curr = head;
+	if (head != NULL)
+	{
+		while (curr->next != NULL)
+			curr = curr->next;
+
+		curr->next = newNode;
+	}
+	else
+	{
+		head = newNode;
+		newNode->next = NULL;
+	}
+	return head;
+}
+
 int lengthOfLongestSubstring(string s)
 	{
 		if (s.length() < 1)
@@ -131,6 +159,30 @@ int main()
 		vector<int> b = { 2, 3, 5, 9, 11, 17 };
 		double median = findMedianSortedArrays(a, b);
 #pragma endregion
+
+#pragma region Question3: Insert node at tail of linked list
+		/*
+		You are given the pointer to the head node of a linked list and an integer to add to the list.
+		Create a new node with the given integer. 
+		Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node.
+		The given head pointer may be null, meaning that the initial list is empty.
+		*/
+
+		Node* p = new Node();
+		p->data = 1;
+		p->next = nullptr;
+
+		Node* p2 = new Node();
+		p2->data = 2;
+		p2->next = p;
+
+		Node* p3 = new Node();
+		p3->data = 3;
+		p3->next = p2;
+
+		Node* res = Insert(p3, 4);
+#pragma endregion
+		
 		return 0;
 	}
 
