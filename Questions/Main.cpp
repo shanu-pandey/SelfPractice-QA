@@ -9,7 +9,7 @@ struct Node
 	struct Node *next;
 };
 
-Node* Insert(Node *head, int data)
+Node* InsertTail(Node *head, int data)
 {
 	Node* curr = new Node();
 	Node* newNode = new Node();
@@ -29,6 +29,19 @@ Node* Insert(Node *head, int data)
 		newNode->next = NULL;
 	}
 	return head;
+}
+
+Node* InsertHead(Node *head, int data)
+{
+	Node* curr = new Node();
+	Node* newNode = new Node();
+	newNode->data = data;
+
+	curr = newNode;
+	if (head != NULL)
+		curr->next = head;
+
+	return curr;
 }
 
 int lengthOfLongestSubstring(string s)
@@ -180,9 +193,19 @@ int main()
 		p3->data = 3;
 		p3->next = p2;
 
-		Node* res = Insert(p3, 4);
+		Node* res = InsertTail(p3, 4);
 #pragma endregion
 		
+#pragma region Question4: Insert node at head of a linked list
+		/*
+		You are given the pointer to the head node of a linked list and an integer to add to the list.
+		Create a new node with the given integer.
+		Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node.
+		The given head pointer may be null, meaning that the initial list is empty.
+		*/
+		res = InsertHead(p3, 4);
+#pragma endregion
+
 		return 0;
 	}
 
