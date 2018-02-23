@@ -44,6 +44,43 @@ Node* InsertHead(Node *head, int data)
 	return curr;
 }
 
+Node* InsertAtPosition(Node *head, int data, int position)
+{
+	int currentPosition = 0;
+	Node* curr = new Node();
+	Node* prev = new Node();
+	Node* newNode = new Node();
+	newNode->data = data;	
+
+	curr = head;
+	prev = curr;
+	if (head != NULL)
+	{
+		while (curr->next != NULL && currentPosition != position)
+		{
+			prev = curr;
+			curr = curr->next;
+			currentPosition++;
+		}
+		if (position == 0)
+		{
+			head = newNode;
+			head->next = prev;
+		}
+		else
+		{
+			newNode->next = curr;
+			prev->next = newNode;
+		}
+	}
+	else
+	{
+		head = newNode;
+		newNode->next = NULL;
+	}
+	return head;
+}
+
 int lengthOfLongestSubstring(string s)
 	{
 		if (s.length() < 1)
@@ -173,11 +210,11 @@ int main()
 		double median = findMedianSortedArrays(a, b);
 #pragma endregion
 
-#pragma region Question3: Insert node at tail of linked list
+#pragma region Question3: Insert node at TAIL of linked list
 		/*
 		You are given the pointer to the head node of a linked list and an integer to add to the list.
 		Create a new node with the given integer. 
-		Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node.
+		Insert this node at the TAIL of the linked list and return the head node of the linked list formed after inserting this new node.
 		The given head pointer may be null, meaning that the initial list is empty.
 		*/
 
@@ -196,14 +233,24 @@ int main()
 		Node* res = InsertTail(p3, 4);
 #pragma endregion
 		
-#pragma region Question4: Insert node at head of a linked list
+#pragma region Question4: Insert node at HEAD of a linked list
 		/*
 		You are given the pointer to the head node of a linked list and an integer to add to the list.
 		Create a new node with the given integer.
-		Insert this node at the tail of the linked list and return the head node of the linked list formed after inserting this new node.
+		Insert this node at the HEAD of the linked list and return the head node of the linked list formed after inserting this new node.
 		The given head pointer may be null, meaning that the initial list is empty.
 		*/
 		res = InsertHead(p3, 4);
+#pragma endregion
+
+#pragma region Question5: Insert node at specific position in a linked list
+		/*
+		You’re given the pointer to the head node of a linked list, an integer to add to the list and the position at which the integer must be inserted. 
+		Create a new node with the given integer, insert this node at the desired position and return the head node. 
+		A position of 0 indicates head, a position of 1 indicates one node away from the head and so on. 
+		The head pointer given may be null meaning that the initial list is empty.
+		*/
+		res = InsertAtPosition(p3, 12, 2);
 #pragma endregion
 
 		return 0;
