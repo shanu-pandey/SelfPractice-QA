@@ -175,6 +175,51 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
 		return median;
 	}
 
+int KindergardenAdventures()
+{
+	int o_ID = 0;
+	int n;
+	int tempTime;
+	int failed = 0;
+	int pass = 0;
+	vector<int> time;
+	vector<int> fail;
+	cout << "Enter number of students";
+	cin >> n;
+
+	for (int i = 0; i < n;i++)
+	{
+		cout << "Enter time for student-" << i;
+		cin >> tempTime;
+		time.push_back(tempTime);
+	}
+
+	o_ID = 1;
+
+	for (int i = 0; i < n; i++)
+	{ 
+		tempTime = i;
+		fail.push_back(0);
+		for (int j = 0; j < n; j++)
+		{
+			if (time[tempTime++] > j)
+			{
+				fail[i]++;
+			}
+			if (tempTime >= n)
+				tempTime = 0;
+		}			
+	}
+
+	for (int i = 1; i < n; i++)
+	{
+		if (fail[i] < fail[o_ID-1])
+			o_ID = i + 1;
+	}
+
+	return o_ID;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -251,6 +296,37 @@ int main()
 		The head pointer given may be null meaning that the initial list is empty.
 		*/
 		res = InsertAtPosition(p3, 12, 2);
+#pragma endregion
+
+#pragma region Question6: Kindergarden Adventures (Fix Time Complexity)
+		/*
+		Meera teaches a class of  students, and every day in her classroom is an adventure. Today is drawing day!
+		The students are sitting around a round table, and they are numbered from  to  in the clockwise direction. 
+		This means that the students are numbered , and students  and  are sitting next to each other.
+		After letting the students draw for a certain period of time, Meera starts collecting their work to ensure she has time to review all the
+		drawings before the end of the day.
+		However, some of her students aren't finished drawing! Each student  needs  extra minutes to complete their drawing.
+		Meera collects the drawings sequentially in the clockwise direction, starting with student ID , and it takes her exactly minute to review each drawing.
+		This means that student  gets  extra minutes to complete their drawing, student  gets  extra minute, student  gets  extra minutes, and so on.
+		Note that Meera will still spend minute for each student even if the drawing isn't ready.
+		Given the values of , help Meera choose the best possible  to start collecting drawings from, such that the number of students
+		able to complete their drawings is maximal. Then print  on a new line. If there are multiple such IDs, select the smallest one.
+
+		Input Format
+		The first line contains a single positive integer, , denoting the number of students in the class.
+		The second line contains  space-separated integers describing the respective amounts of time that each student needs to finish their drawings (i.e., ).
+		
+		Output Format
+		Print an integer denoting the ID number, , where Meera should start collecting the drawings such that a maximal number of students can complete their drawings.
+		If there are multiple such IDs, select the smallest one.
+
+		Sample Input
+		3
+		1 0 0
+		Output
+		2
+		*/
+		int result = KindergardenAdventures();
 #pragma endregion
 
 		return 0;
