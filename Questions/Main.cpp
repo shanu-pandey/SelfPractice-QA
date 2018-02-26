@@ -232,20 +232,21 @@ bool IsPalindrome(string s)
 
 string longestPalindrome(string s) {
 	string o_palindrome = "";
-
+	string temp = "";
 	for (int i = 0; i < s.length(); i++)
-	{
-		for (int j = i+1; j < s.length(); j++)
+	{		
+		for (int j = 1; j <= s.length(); j++)
 		{
+			temp = s.substr(i, j);
 			if (IsPalindrome(s.substr(i, j)))
 			{
-				o_palindrome = s.substr(i, j);
+				if(s.substr(i,j).length() > o_palindrome.length())
+					o_palindrome = s.substr(i, j);
 			}
 		}
 	}
 	return o_palindrome;
 }
-
 
 
 int main()
@@ -370,7 +371,7 @@ int main()
 		Input: "cbbd"
 		Output: "bb"
 		*/
-		string palindrome = longestPalindrome("ASDFGGFDSA");
+		string palindrome = longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
 #pragma endregion
 
 		return 0;
