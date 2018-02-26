@@ -220,6 +220,34 @@ int KindergardenAdventures()
 	return o_ID;
 }
 
+bool IsPalindrome(string s)
+{
+	for (int i = 0; i < s.length()/2; i++)
+	{
+		if (s[i] != s[s.length() - i - 1])
+			return false;
+	}
+	return true;
+}
+
+string longestPalindrome(string s) {
+	string o_palindrome = "";
+
+	for (int i = 0; i < s.length(); i++)
+	{
+		for (int j = i+1; j < s.length(); j++)
+		{
+			if (IsPalindrome(s.substr(i, j)))
+			{
+				o_palindrome = s.substr(i, j);
+			}
+		}
+	}
+	return o_palindrome;
+}
+
+
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -326,7 +354,23 @@ int main()
 		Output
 		2
 		*/
-		int result = KindergardenAdventures();
+		//int result = KindergardenAdventures();
+#pragma endregion
+
+#pragma region Question7: Longest Palindrome
+		/*
+		Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+
+		Example:
+		Input: "babad"
+		Output: "bab"
+		Note: "aba" is also a valid answer.
+
+		Example:
+		Input: "cbbd"
+		Output: "bb"
+		*/
+		string palindrome = longestPalindrome("ASDFGGFDSA");
 #pragma endregion
 
 		return 0;
