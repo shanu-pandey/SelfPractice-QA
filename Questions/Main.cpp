@@ -3,11 +3,42 @@
 #include <vector>
 using namespace std;
 
+class TreeNode {
+public:
+	int data;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int d) {
+		data = d;
+		left = NULL;
+		right = NULL;
+	}
+};
+
 struct Node
 {
 	int data;
 	struct Node *next;
 };
+
+TreeNode* insert(TreeNode* root, int data)
+{
+	if (root == NULL) {
+		return new TreeNode(data);
+	}
+	else {
+		TreeNode* cur;
+		if (data <= root->data) {
+			cur = insert(root->left, data);
+			root->left = cur;
+		}
+		else {
+			cur = insert(root->right, data);
+			root->right = cur;
+		}
+		return root;
+	}
+}
 
 Node* InsertTail(Node *head, int data)
 {
@@ -247,7 +278,6 @@ string longestPalindrome(string s) {
 	}
 	return o_palindrome;
 }
-
 
 int main()
 	{
