@@ -293,6 +293,39 @@ int TreeHeight(TreeNode* root)
 		return rightHeight + 1;
 }
 
+void BubbleSort(int arr[], int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		if (arr[i] > arr[i + 1])
+			Swap(arr, i, i + 1);
+	}
+	if (n - 1 > 1)
+		BubbleSort(arr, n - 1);
+}
+
+void InsertionSort(int arr[], int n)
+{
+
+}
+
+void MergeSort(int arr[], int n)
+{
+
+}
+
+void HeapSort(int arr[], int n)
+{
+
+}
+
+void Swap(int a[], int i, int j)
+{
+	int temp = a[i];
+	a[i] = a[j];
+	a[j] = temp;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -444,6 +477,22 @@ int main()
 		n->right->right->right = new TreeNode(8);
 
 		int h = TreeHeight(n);
+
+#pragma endregion
+
+#pragma region Question9: Bubble Sort Recursive
+
+#pragma endregion
+
+#pragma region Question10: Insertion Sort Recursive
+
+#pragma endregion
+
+#pragma region Question11: Merge Sort
+
+#pragma endregion
+
+#pragma region Question12: Quick Sort
 
 #pragma endregion
 
