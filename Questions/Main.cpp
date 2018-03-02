@@ -316,6 +316,56 @@ void Swap(int a[], int i, int j)
 	a[j] = temp;
 }
 
+void merge(int arr[], int i_left, int i_right, int i_mid)
+{
+	const int n1 = i_mid - i_left + 1;
+	const int n2 = i_right - i_mid;
+	
+
+	int **left = new int*[n1];
+	int **right = new int*[n2];
+
+	for (int i = 0; i < n1; i++)
+		left[i] = &arr[i_left + i];
+
+	for (int i = 0; i < n2; i++)
+		right[i] = &arr[i_mid + 1 + i];
+
+	int k = 0;
+	int i = 0;
+	int j = 0;
+	while (i < n1 && j < n2)
+	{
+		if (left[i] < right[j])
+		{
+			arr[k] = *right[j];			
+			j++;
+		}
+		else
+		{
+			arr[k] = *left[i];
+			i++;
+		}
+		k++;
+	}
+
+	while (i < n1)
+	{
+		arr[k] = *left[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2)
+	{
+		arr[k] = *right[j];
+		j++;
+		k++;
+	}
+	delete left;
+	delete right;
+}
+
 void BubbleSort(int arr[], int n)
 {
 	for (int i = 0; i < n - 1; i++)
@@ -329,12 +379,34 @@ void BubbleSort(int arr[], int n)
 
 void InsertionSort(int arr[], int n)
 {
+	if (n <= 1)
+		return;
 
+	InsertionSort(arr, n - 1);
+
+	int last = arr[n-1];
+	int j = n - 2;
+
+	while (j >= 0 && arr[j] > last)
+	{
+		arr[j + 1] = arr[j];
+		j--;
+	}
+
+	arr[j + 1] = last;
 }
 
-void MergeSort(int arr[], int n)
+void MergeSort(int arr[], int left, int right)
 {
+	if (left < right)
+	{
+		int mid = left + (right - left) / 2;	//prevents overflow for large
 
+		MergeSort(arr, left, mid);
+		MergeSort(arr, mid + 1, right);
+
+		merge(arr, left, right, mid);
+	}
 }
 
 void HeapSort(int arr[], int n)
@@ -353,7 +425,7 @@ int main()
 		Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 		*/
 		string s = "pwwkew";
-		int i = lengthOfLongestSubstring(s);
+		//int i = lengthOfLongestSubstring(s);
 
 #pragma endregion
 
@@ -374,7 +446,7 @@ int main()
 		*/
 		vector<int> a = { 1, 8, 16, 40 };
 		vector<int> b = { 2, 3, 5, 9, 11, 17 };
-		double median = findMedianSortedArrays(a, b);
+		//double median = findMedianSortedArrays(a, b);
 #pragma endregion
 
 #pragma region Question3: Insert node at TAIL of linked list
@@ -397,7 +469,7 @@ int main()
 		p3->data = 3;
 		p3->next = p2;
 
-		Node* res = InsertTail(p3, 4);
+		//Node* res = InsertTail(p3, 4);
 #pragma endregion
 		
 #pragma region Question4: Insert node at HEAD of a linked list
@@ -407,7 +479,7 @@ int main()
 		Insert this node at the HEAD of the linked list and return the head node of the linked list formed after inserting this new node.
 		The given head pointer may be null, meaning that the initial list is empty.
 		*/
-		res = InsertHead(p3, 4);
+		//res = InsertHead(p3, 4);
 #pragma endregion
 
 #pragma region Question5: Insert node at specific position in a linked list
@@ -417,7 +489,7 @@ int main()
 		A position of 0 indicates head, a position of 1 indicates one node away from the head and so on. 
 		The head pointer given may be null meaning that the initial list is empty.
 		*/
-		res = InsertAtPosition(p3, 12, 2);
+		//res = InsertAtPosition(p3, 12, 2);
 #pragma endregion
 
 #pragma region Question6: Kindergarden Adventures (Fix Time Complexity)
@@ -451,7 +523,7 @@ int main()
 		//int result = KindergardenAdventures();
 #pragma endregion
 
-#pragma region Question7: Longest Palindrome
+#pragma region Question7: Longest Palindrome(Fix Time Complexity)
 		/*
 		Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
 
@@ -464,7 +536,7 @@ int main()
 		Input: "cbbd"
 		Output: "bb"
 		*/
-		string palindrome = longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
+		//string palindrome = longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
 #pragma endregion
 
 #pragma region Question8: Height of Binary Tree
@@ -492,11 +564,11 @@ int main()
 
 		n->right->right->right = new TreeNode(8);
 
-		int h = TreeHeight(n);
+		//int h = TreeHeight(n);
 
 #pragma endregion
 
-#pragma region Question9: Insert Interval
+#pragma region Question9: Insert Interval (..not complete)
 		/*
 		Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
 		You may assume that the intervals were initially sorted according to their start times.
@@ -520,6 +592,11 @@ int main()
 #pragma endregion
 
 #pragma region Question12: Merge Sort
+		int arr[] = {12, 324, 64, 45, 88, 31, 11};
+		MergeSort(arr, 0, 6);
+
+		for (int i = 0; i < 7; i++)
+			printf("%d, ", arr[i]);
 
 #pragma endregion
 
