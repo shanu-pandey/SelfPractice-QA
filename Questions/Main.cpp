@@ -44,12 +44,14 @@ void Pathfinding::Graph::Dijkstra(int i_start)
 	/*
 	1. Create a priority queue acting as Min Heap (priority_queue(<type, vector<type, comparison<type>))
 	2. Create a vector for distance of each node, initialize its value max
-	3. Push start to priority queue with its distance as 0.
-	4. Get the first element from priority queue and iterate through all its adjacent vertices and update the distance if not shortest path
-	5. Repeat previous step until priority queue is empty or all distance have been set
+	3. Create visited vector to avoid redundant iterations to adjacent vertices list.
+	4. Push start to priority queue with its distance as 0.
+	5. Get the first element from priority queue and iterate through all its adjacent vertices and update the distance if not shortest path
+	6. Repeat previous step until priority queue is empty or all distance have been set
 	*/
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> myQueue;
 	vector<int> distance(vertices, 99999);
+	vector<bool> visited(vertices, false);
 
 	distance[i_start] = 0;
 	myQueue.push(make_pair(i_start, 0));
@@ -59,18 +61,22 @@ void Pathfinding::Graph::Dijkstra(int i_start)
 		int x = myQueue.top().second;
 		myQueue.pop();
 
-		list<pair<int, int>>::iterator i;
-		for (i = p_AdjacentVertices[x].begin(); i != p_AdjacentVertices[x].end(); ++i)
+		if (!visited[x])
 		{
-			int vertex = i->first;
-			int weight = i->second;
-
-			if (distance[vertex] > distance[x] + weight)
+			list<pair<int, int>>::iterator i;
+			for (i = p_AdjacentVertices[x].begin(); i != p_AdjacentVertices[x].end(); ++i)
 			{
-				distance[vertex] = distance[x] + weight;
-				myQueue.push(make_pair(distance[vertex], vertex));
+				int vertex = i->first;
+				int weight = i->second;
+
+				if (distance[vertex] > distance[x] + weight)
+				{
+					distance[vertex] = distance[x] + weight;
+					myQueue.push(make_pair(distance[vertex], vertex));
+				}
 			}
 		}
+		visited[x] = true;
 	}
 
 	printf("Vertex   Distance from Source\n");
