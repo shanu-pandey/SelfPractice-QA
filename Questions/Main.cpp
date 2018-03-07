@@ -371,7 +371,7 @@ void BubbleSort(int arr[], int n)
 	for (int i = 0; i < n - 1; i++)
 	{
 		if (arr[i] > arr[i + 1])
-			Swap(arr, i, i + 1);
+			Swap(arr, i, 1+1);
 	}
 	if (n - 1 > 1)
 		BubbleSort(arr, n - 1);
@@ -409,9 +409,35 @@ void MergeSort(int arr[], int left, int right)
 	}
 }
 
-void HeapSort(int arr[], int n)
+int Partition(int arr[], int low, int high)
 {
+	int pivot = arr[high];
+	int i = low - 1;
 
+	for (int j = low; j < high; j++)
+	{
+		if (arr[j] <= pivot)
+		{
+			i++;
+			if (i!=j)
+				Swap(arr, i, j);
+		}
+	}
+
+	Swap(arr, i+1 ,high);
+	return i+1;
+}
+
+void QuickSort(int arr[], int low, int high)
+{
+	// Use a pivot and arrange elements around that pivot
+	//int pivot = arr[high];
+	if (low < high)
+	{
+		int pivot = Partition(arr, low, high);
+		QuickSort(arr, low, pivot-1);
+		QuickSort(arr, pivot + 1, high);
+	}
 }
 
 int main()
@@ -601,7 +627,15 @@ int main()
 #pragma endregion
 
 #pragma region Question13: Quick Sort
+		//Get a pivot, place pivot properly during first execution
+		//Smaller element on left, higher on right
+		//Sort left and right separately
 
+		int myArray[] = { 10, 45, 115, 20, 28, 40, 50 };
+		QuickSort(myArray, 0, 6);
+
+		for (int i = 0; i < 7; i++)
+			printf("%d ", myArray[i]);
 #pragma endregion
 
 		return 0;
