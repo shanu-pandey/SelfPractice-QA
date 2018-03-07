@@ -30,4 +30,14 @@ Pathfinding::Graph::Graph(int i_value)
 	nodes = new list<pair<int, int>>[V];
 }
 
+void Pathfinding::Graph::addEdge(int i_start, int i_end, int i_weight)
+{
+	nodes[i_start].push_back(make_pair(i_end, i_weight));
+	nodes[i_end].push_back(make_pair(i_start, i_weight));
+}
+
+void Pathfinding::Graph::Dijkstra(int i_start)
+{
+
+}
 
