@@ -321,29 +321,31 @@ void merge(int arr[], int i_left, int i_right, int i_mid)
 	const int n1 = i_mid - i_left + 1;
 	const int n2 = i_right - i_mid;
 	
+	vector<int> left(n1);
+	vector<int> right(n2);
 
-	int **left = new int*[n1];
-	int **right = new int*[n2];
+	//int **left = new int*[n1];
+	//int **right = new int*[n2];
 
 	for (int i = 0; i < n1; i++)
-		left[i] = &arr[i_left + i];
+		left[i] = arr[i_left + i];
 
 	for (int i = 0; i < n2; i++)
-		right[i] = &arr[i_mid + 1 + i];
+		right[i] = arr[i_mid + 1 + i];
 
-	int k = 0;
+	int k = i_left;
 	int i = 0;
 	int j = 0;
 	while (i < n1 && j < n2)
 	{
 		if (left[i] < right[j])
 		{
-			arr[k] = *right[j];			
+			arr[k] = right[j];			
 			j++;
 		}
 		else
 		{
-			arr[k] = *left[i];
+			arr[k] = left[i];
 			i++;
 		}
 		k++;
@@ -351,19 +353,19 @@ void merge(int arr[], int i_left, int i_right, int i_mid)
 
 	while (i < n1)
 	{
-		arr[k] = *left[i];
+		arr[k] = left[i];
 		i++;
 		k++;
 	}
 
 	while (j < n2)
 	{
-		arr[k] = *right[j];
+		arr[k] = right[j];
 		j++;
 		k++;
 	}
-	delete left;
-	delete right;
+	//delete &left;
+	//delete &right;
 }
 
 void BubbleSort(int arr[], int n)
@@ -400,7 +402,7 @@ void MergeSort(int arr[], int left, int right)
 {
 	if (left < right)
 	{
-		int mid = left + (right - left) / 2;	//prevents overflow for large
+		int mid = (left + right) / 2;	//prevents overflow for large
 
 		MergeSort(arr, left, mid);
 		MergeSort(arr, mid + 1, right);
