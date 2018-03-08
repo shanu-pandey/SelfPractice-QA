@@ -368,7 +368,6 @@ int MyAtoi(string str)
 			{
 				if (sign == 1)
 					return 2147483647;
-
 				else
 					return sign * 2147483648;
 			}
@@ -377,6 +376,24 @@ int MyAtoi(string str)
 	}
 	return sign*result;
 }
+
+Node* MergeKLists(vector<Node*>& lists) 
+{
+	
+	for (int i = 0; i < lists.size()-1; i++)
+	{
+		Node* temp = lists[i];
+		while (temp->next)
+		{
+			temp = temp->next;
+		}
+
+		temp->next = lists[i + 1];
+	}
+
+	return lists[0];
+}
+
 
 int main()
 	{
@@ -582,10 +599,6 @@ int main()
 
 		string input = "      -11919730356x";
 		int r = MyAtoi(input);
-#pragma endregion
-
-#pragma region MyRegion
-
 #pragma endregion
 
 		return 0;
