@@ -339,7 +339,29 @@ int MyAtoi(string str)
 {
 	int result = 0;
 
-	return 0;
+	if (str.length() < 1)
+		return result;
+	
+	int sign = 1;
+	int i = 0;
+	while (str[i] == ' ')
+		i++;
+
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+
+	for (; i < str.length(); i++)
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			result = result * 10 + str[i] - '0';
+		else return result*sign;
+	}
+	return sign*result;
 }
 
 int main()
@@ -544,8 +566,8 @@ int main()
 		Implement atoi to convert a string to an integer.
 		*/
 
-		string input = "";
-		int r = MyAtoi(s);
+		string input;
+		int r = MyAtoi(input);
 #pragma endregion
 
 		return 0;
