@@ -335,6 +335,13 @@ vector<Interval> insert(vector<Interval>& intervals, Interval newInterval)
 	return intervals;
 }
 
+int MyAtoi(string str) 
+{
+	int result = 0;
+
+	return 0;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -530,6 +537,15 @@ int main()
 		i.end = 9;
 		insert(intervals, i);
 
+#pragma endregion
+
+#pragma region Question10: Atoi
+		/*
+		Implement atoi to convert a string to an integer.
+		*/
+
+		string input = "";
+		int r = MyAtoi(s);
 #pragma endregion
 
 		return 0;
