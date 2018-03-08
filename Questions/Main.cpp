@@ -364,23 +364,11 @@ int MyAtoi(string str)
 			range = range * 10 + str[i] - '0';
 			digits++;
 
-			if (digits == 10)
+			if (range > 2147483647)
 			{
 				if (sign == 1)
-				{
-					if (range > 2147483647)
-						return 2147483647;
-				}
-				else
-				{
-					if (range > 2147483648)
-						return sign * 2147483648;
-				}
-			}
-			else if (digits == 11)
-			{
-				if (sign == 1)
-						return 2147483647;
+					return 2147483647;
+
 				else
 					return sign * 2147483648;
 			}
