@@ -300,13 +300,39 @@ int TreeHeight(TreeNode* root)
 		return rightHeight + 1;
 }
 
-vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
-	vector<Interval> result;
+void MergeIntervals(vector<Interval>& i_intervals)
+{
+	int i = 0;
+
+	while (i < i_intervals.size()-1)
+	{
+		if (i_intervals[i + 1].start <= i_intervals[i].end)
+		{
+			if (i_intervals[i+1].end > i_intervals[i].end)
+				i_intervals[i].end = i_intervals[i + 1].end;
+
+			i_intervals.erase(i_intervals.begin() + i + 1);
+		}
+		else
+			i++;
+	}
+}
+
+vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) 
+{
+	//vector<Interval> result;
 	for (int i = 0; i < intervals.size(); i++)
 	{
-		
+		if (newInterval.start < intervals[i].start)
+		{
+			vector<Interval>::iterator ite = intervals.begin();
+			intervals.insert(ite + i, newInterval);
+			break;
+		}
 	}
-	return result;
+
+	MergeIntervals(intervals);
+	return intervals;
 }
 
 int main()
@@ -463,7 +489,7 @@ int main()
 
 #pragma endregion
 
-#pragma region Question9: Insert Interval (..not complete)
+#pragma region Question9: Insert Interval
 		/*
 		Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
 		You may assume that the intervals were initially sorted according to their start times.
@@ -476,6 +502,34 @@ int main()
 
 		This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
 		*/
+
+		Interval i;
+		i.start = 1;
+		i.end = 2;
+
+		vector<Interval> intervals;
+		intervals.push_back(i);
+
+		i.start = 3;
+		i.end = 5;
+		intervals.push_back(i);
+		i.start = 6;
+		i.end = 7;
+		intervals.push_back(i);
+		i.start = 8;
+		i.end = 10;
+		intervals.push_back(i);
+		i.start = 12;
+		i.end = 16;
+		intervals.push_back(i);
+		i.start = 25;
+		i.end = 28;
+		intervals.push_back(i);
+		
+		i.start = 4;
+		i.end = 9;
+		insert(intervals, i);
+
 #pragma endregion
 
 		return 0;
