@@ -394,7 +394,6 @@ Node* MergeKLists(vector<Node*>& lists)
 	return lists[0];
 }
 
-
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
