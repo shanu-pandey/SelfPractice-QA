@@ -162,8 +162,8 @@ int main()
 	g.addEdge(7, 8, 7);
 
 	//g.Dijkstra(0);
-	//g.BFS(0);
-	g.DFS(0);
+	g.BFS(0);
+	//g.DFS(0);
 
 	return 0;
 }
