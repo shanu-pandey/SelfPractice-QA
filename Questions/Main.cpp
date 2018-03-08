@@ -394,6 +394,72 @@ Node* MergeKLists(vector<Node*>& lists)
 	return lists[0];
 }
 
+vector<vector<char>> Minesweeper(vector<vector<char>> grid) 
+{
+	vector<vector<char>> result;
+	vector<char> r;
+	int num = 0;
+	for (int i = 0; i < grid.size(); i++)
+	{
+		r.clear();
+		for (int j = 0; j < grid[i].size(); j++)
+		{
+			num = 0;
+			if (grid[i][j] == 'X')
+				r.push_back('X');			
+			else
+			{
+				if (j - 1 >= 0)
+				{
+					if (grid[i][j - 1] == 'X')
+						num++;
+				}
+				if (j + 1 < grid[i].size())
+				{
+					if (grid[i][j + 1] == 'X')
+						num++;
+				}
+				if (i - 1 >= 0)
+				{
+					if (grid[i - 1][j] == 'X')
+						num++;
+
+					if (j - 1 >= 0)
+					{
+						if (grid[i - 1][j - 1] == 'X')
+							num++;
+					}
+					if (j + 1 < grid[i].size())
+					{
+						if (grid[i - 1][j + 1] == 'X')
+							num++;
+					}
+				}
+				if (i + 1 < grid[i].size())
+				{
+					if (grid[i + 1][j] == 'X')
+						num++;
+
+					if (j - 1 >= 0)
+					{
+						if (grid[i + 1][j - 1] == 'X')
+							num++;
+					}
+					if (j + 1 < grid[i].size())
+					{
+						if (grid[i + 1][j + 1] == 'X')
+							num++;
+					}
+				}
+				r.push_back(num);
+			}
+		}
+		result.push_back(r);
+
+	}
+	return result;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -404,7 +470,9 @@ int main()
 		Given "bbbbb", the answer is "b", with the length of 1.
 		Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 		*/
-		string s = "pwwkew";
+	
+
+		//string s = "pwwkew";
 		//int i = lengthOfLongestSubstring(s);
 
 #pragma endregion
@@ -424,8 +492,8 @@ int main()
 		nums2 = [3, 4]
 		The median is (2 + 3)/2 = 2.5
 		*/
-		vector<int> a = { 1, 8, 16, 40 };
-		vector<int> b = { 2, 3, 5, 9, 11, 17 };
+		//vector<int> a = { 1, 8, 16, 40 };
+		//vector<int> b = { 2, 3, 5, 9, 11, 17 };
 		//double median = findMedianSortedArrays(a, b);
 #pragma endregion
 
@@ -596,8 +664,40 @@ int main()
 		Implement atoi to convert a string to an integer.
 		*/
 
-		string input = "      -11919730356x";
-		int r = MyAtoi(input);
+		//string input = "      -11919730356x";
+		//int r = MyAtoi(input);
+#pragma endregion
+
+#pragma region Question11: Minesweeper
+		/*
+		Given a minesweeping problem where you have to find out how many mines are adjacent to a given cell in a grid.
+		Cells with mines are denoted by 'X' in the grid.
+		*/
+		vector<vector<char>> input;
+		vector <char> temp;
+		
+		temp.push_back('?');
+		temp.push_back('?');
+		temp.push_back('?');
+
+		input.push_back(temp);
+		temp.clear();
+
+		temp.push_back('?');
+		temp.push_back('X');
+		temp.push_back('?');
+		input.push_back(temp);
+		temp.clear();
+
+		temp.push_back('?');
+		temp.push_back('?');
+		temp.push_back('X');
+		input.push_back(temp);
+		temp.clear();
+
+		Minesweeper(input);
+
+
 #pragma endregion
 
 		return 0;
