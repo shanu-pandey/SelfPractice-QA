@@ -18,6 +18,9 @@ namespace Pathfinding
 		Graph(int i_v);
 		void addEdge(int i_start, int i_end, int i_weight);
 		void Dijkstra(int s);
+		void DFS(int i_vertex);
+		void BFS(int i_vertex);
+		void DFSHelper(int i_vertex, bool i_visited[]);
 	};
 }
 
@@ -84,6 +87,64 @@ void Pathfinding::Graph::Dijkstra(int i_start)
 		printf("%d \t\t %d\n", i, distance[i]);
 }
 
+void Pathfinding::Graph::BFS(int i_vertex)
+{
+	bool *visited = new bool[vertices];
+
+	for (int i = 0; i < vertices; i++)
+		visited[i] = false;
+
+	list<int> BFS_Queue;
+
+	BFS_Queue.push_back(i_vertex);
+	visited[i_vertex] = true;
+
+	while (!BFS_Queue.empty())
+	{
+		int x = BFS_Queue.front();
+		printf("%d....", x);
+		BFS_Queue.pop_front();
+		list<pair<int, int>>::iterator ite;
+		for (ite = p_AdjacentVertices[x].begin(); ite != p_AdjacentVertices[x].end(); ++ite)
+		{
+			if (!visited[ite->first])
+			{
+				visited[ite->first] = true;
+				BFS_Queue.push_back(ite->first);
+			}
+		}
+	}
+}
+
+void Pathfinding::Graph::DFSHelper(int i_vertex, bool i_visited[])
+{
+	i_visited[i_vertex] = true;
+
+	list<pair<int, int>>::iterator ite;
+	for (ite = p_AdjacentVertices[i_vertex].begin(); ite != p_AdjacentVertices[i_vertex].end(); ++ite)
+	{
+		if (!i_visited[ite->first])
+			DFSHelper(i_visited[ite->first], i_visited);
+	}
+}
+
+void Pathfinding::Graph::DFS(int i_vertex)
+{
+	bool *visited = new bool[vertices];
+
+	for (int i = 0; i < vertices; i++)
+		visited[i] = false;
+
+	DFSHelper(i_vertex, visited);
+
+	list<int> DFS_Queue;
+	DFS_Queue.push_back(i_vertex);
+	
+
+	
+
+}
+
 int main()
 {
 	int vertices = 9;
@@ -105,7 +166,9 @@ int main()
 	g.addEdge(6, 8, 6);
 	g.addEdge(7, 8, 7);
 
-	g.Dijkstra(0);
+	//g.Dijkstra(0);
+	//g.BFS(0);
+	g.DFS(0);
 
 	return 0;
 }
