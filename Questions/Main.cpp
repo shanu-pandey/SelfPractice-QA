@@ -102,7 +102,7 @@ void Pathfinding::Graph::BFS(int i_vertex)
 	while (!BFS_Queue.empty())
 	{
 		int x = BFS_Queue.front();
-		printf("%d....", x);
+		printf("%d ", x);
 		BFS_Queue.pop_front();
 		list<pair<int, int>>::iterator ite;
 		for (ite = p_AdjacentVertices[x].begin(); ite != p_AdjacentVertices[x].end(); ++ite)
@@ -119,12 +119,13 @@ void Pathfinding::Graph::BFS(int i_vertex)
 void Pathfinding::Graph::DFSHelper(int i_vertex, bool i_visited[])
 {
 	i_visited[i_vertex] = true;
+	printf("%d ", i_vertex);
 
 	list<pair<int, int>>::iterator ite;
 	for (ite = p_AdjacentVertices[i_vertex].begin(); ite != p_AdjacentVertices[i_vertex].end(); ++ite)
 	{
 		if (!i_visited[ite->first])
-			DFSHelper(i_visited[ite->first], i_visited);
+			DFSHelper(ite->first, i_visited);
 	}
 }
 
@@ -136,12 +137,6 @@ void Pathfinding::Graph::DFS(int i_vertex)
 		visited[i] = false;
 
 	DFSHelper(i_vertex, visited);
-
-	list<int> DFS_Queue;
-	DFS_Queue.push_back(i_vertex);
-	
-
-	
 
 }
 
