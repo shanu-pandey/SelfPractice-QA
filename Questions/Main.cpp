@@ -3,6 +3,12 @@
 #include <vector>
 using namespace std;
 
+namespace Graphs
+{
+	class Graph
+}
+
+
 struct Interval {
 	int start;
 	int end;
