@@ -338,7 +338,7 @@ vector<Interval> insert(vector<Interval>& intervals, Interval newInterval)
 int MyAtoi(string str) 
 {
 	int result = 0;
-
+	double range = 0;
 	if (str.length() < 1)
 		return result;
 	
@@ -360,15 +360,30 @@ int MyAtoi(string str)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			if (digits == 9)
+			result = result * 10 + str[i] - '0';
+			range = range * 10 + str[i] - '0';
+			digits++;
+
+			if (digits == 10)
 			{
 				if (sign == 1)
-					return 2147483647;
+				{
+					if (range > 2147483647)
+						return 2147483647;
+				}
+				else
+				{
+					if (range > 2147483648)
+						return sign * 2147483648;
+				}
+			}
+			else if (digits == 11)
+			{
+				if (sign == 1)
+						return 2147483647;
 				else
 					return sign * 2147483648;
 			}
-			result = result * 10 + str[i] - '0';
-			digits++;
 		}			
 		else return result*sign;
 	}
@@ -577,8 +592,12 @@ int main()
 		Implement atoi to convert a string to an integer.
 		*/
 
-		string input = "-214748234243236481";
+		string input = "      -11919730356x";
 		int r = MyAtoi(input);
+#pragma endregion
+
+#pragma region MyRegion
+
 #pragma endregion
 
 		return 0;
