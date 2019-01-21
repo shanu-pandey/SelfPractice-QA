@@ -275,22 +275,62 @@ bool IsPalindrome(string s)
 	return true;
 }
 
+int ExpandAroundCenter(string s, int i_left, int i_right)
+{
+	int o_l = i_left;
+	int o_r = i_right;
+	while (o_l >= 0 && o_r < s.length() - 1 && s[o_l] == s[o_r])
+	{
+		o_l--;
+		o_r++;
+	}
+	return o_r - o_l - 1;
+}
+
 string longestPalindrome(string s) {
-	string o_palindrome = "";
+	/*string o_palindrome = "";
 	string temp = "";
 	for (int i = 0; i < s.length(); i++)
-	{		
-		for (int j = 1; j <= s.length(); j++)
+	{
+		for (int j = s.length(); j >= 1; j--)
 		{
+			if (j < o_palindrome.length())
+			{
+				break;
+			}
 			temp = s.substr(i, j);
 			if (IsPalindrome(s.substr(i, j)))
-			{
-				if(s.substr(i,j).length() > o_palindrome.length())
+			{		
+				if (s.substr(i, j).length() > o_palindrome.length())
+				{
 					o_palindrome = s.substr(i, j);
+					break;
+				}
 			}
 		}
+	}*/
+
+	int start = 0;
+	int end = 0;
+	for (int i = 0; i < s.length(); i++)
+	{
+		int len1 = ExpandAroundCenter(s, i,i);
+		int len2 = ExpandAroundCenter(s, i, i + 1);
+		int len = 0;
+		if (len1 > len2)
+			len = len1;
+		else
+			len = len2;
+
+		if (len > end - start)
+		{
+			start = i - (len - 1) / 2;
+			end = i + len / 2;
+		}
 	}
-	return o_palindrome;
+	return s.substr(start, end - start + 1);
+
+	//return o_palindrome;
 }
 
 int TreeHeight(TreeNode* root) 
@@ -780,7 +820,7 @@ int main()
 		Input: "cbbd"
 		Output: "bb"
 		*/
-		//string palindrome = longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
+		string palindrome = longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
 #pragma endregion
 
 #pragma region Question8: Height of Binary Tree
