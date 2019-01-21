@@ -28,6 +28,13 @@ struct Node
 	struct Node *next;
 };
 
+struct LinkedList {
+	int val;
+	LinkedList *next;
+	LinkedList() : val(0), next(NULL) {}
+	LinkedList(int x) : val(x), next(NULL) {}
+};
+
 TreeNode* insert(TreeNode* root, int data)
 {
 	if (root == NULL) {
@@ -460,6 +467,195 @@ vector<vector<char>> Minesweeper(vector<vector<char>> grid)
 	return result;
 }
 
+LinkedList* AddTwoNumbers(LinkedList* i_first, LinkedList* i_second)
+{
+	LinkedList *result;
+	result = nullptr;
+	int carry = 0;
+	while (i_first != nullptr && i_second != nullptr)
+	{
+		LinkedList *current = new LinkedList();
+		int temp = i_first->val + i_second->val + carry;
+		if (temp > 9)
+		{		
+			temp %= 10;
+			current->val = temp;// +carry;
+			carry = 1;
+		}
+		else
+		{
+			current->val = temp;// +carry;
+			carry = 0;
+		}
+
+		if (result == nullptr)
+		{
+			result = new LinkedList(current->val);
+		}
+		else
+		{
+			LinkedList* temp = new LinkedList();
+			temp = result;
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+			}
+			temp->next = current;
+		}
+		i_first = i_first->next;
+		i_second = i_second->next;
+	}
+
+	if (i_first != nullptr)
+	{
+		while (i_first != nullptr)
+		{
+			LinkedList *current = new LinkedList();
+			int temp = i_first->val + carry;
+			if (temp > 9)
+			{
+				temp %= 10;
+				current->val = temp;
+				carry = 1;
+			}
+			else
+			{
+				current->val = i_first->val + carry;
+				carry = 0;
+			}
+
+			LinkedList* tempList = new LinkedList();
+			tempList = result;
+			while (tempList->next != nullptr)
+			{
+				tempList = tempList->next;
+			}
+			tempList->next = current;
+			i_first = i_first->next;
+		}
+	}
+	else if (i_second != nullptr)
+	{
+		while (i_second != nullptr)
+		{
+			LinkedList *current = new LinkedList();
+			int temp = i_second->val + carry;
+			if (temp > 9)
+			{
+				temp %= 10;
+				current->val = temp;
+				carry = 1;
+			}
+			else
+			{
+				current->val = i_second->val + carry;
+				carry = 0;
+			}
+
+			LinkedList* tempList = new LinkedList();
+			tempList = result;
+			while (tempList->next != nullptr)
+			{
+				tempList = tempList->next;
+			}
+			tempList->next = current;
+			i_second = i_second->next;
+		}
+	}
+
+	if (carry != 0)
+	{
+		LinkedList* temp = new LinkedList();
+		temp = result;
+		while (temp->next != nullptr)
+		{
+			temp = temp->next;
+		}
+		temp->next = new LinkedList(carry);
+	}
+
+
+
+
+
+	/*if (i_first != nullptr)
+	{
+		LinkedList* temp = new LinkedList();
+		temp = result;
+		while (temp->next != nullptr)
+		{
+			temp = temp->next;
+		}
+		temp->next = i_first;
+		if (carry != 0)
+		{
+			if (temp->next->val + carry > 9)
+			{
+				while(i_first != nullptr)
+				{
+				}
+				temp->next->val = 0;
+				temp->next->next = new LinkedList(1);
+			}
+			else
+			{
+				temp->next->val += carry;
+			}
+		}
+	}
+	else if (i_second != nullptr)
+	{
+		LinkedList* temp = new LinkedList();
+		temp = result;
+		while (temp->next != nullptr)
+		{
+			temp = temp->next;
+		}
+		temp->next = i_second;
+		if (carry != 0)
+		{
+			if (temp->next->val + carry > 9)
+			{
+				temp->next->val = 0;
+				temp->next->next = new LinkedList(1);
+			}
+			else
+			{
+				temp->next->val += carry;
+			}
+		}
+	}
+	else if (carry != 0)
+	{
+		LinkedList* temp = new LinkedList();
+		temp = result;
+		while (temp->next != nullptr)
+		{
+			temp = temp->next;
+		}
+		temp->next = new LinkedList(carry);		
+	}*/
+	return result;
+}
+
+LinkedList* Reverse(LinkedList* i_list)
+{
+	LinkedList *current = new LinkedList();
+	LinkedList *prev = new LinkedList();
+	LinkedList *next = new LinkedList();
+	current = i_list;
+	prev = nullptr;
+	next = nullptr;	
+	while (current != nullptr)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	return prev;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -696,6 +892,44 @@ int main()
 		temp.clear();
 
 		Minesweeper(input);
+
+
+#pragma endregion
+
+#pragma region Question12: Add two numbers as linked list
+		/*
+		You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. 
+		Add the two numbers and return it as a linked list.
+		You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+		Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+		Output: 7 -> 0 -> 8
+		Explanation: 342 + 465 = 807.
+		*/
+
+		LinkedList *first_1 = new LinkedList(3);
+		LinkedList *first_2 = new LinkedList(7);
+		//LinkedList *first_3 = new LinkedList(9);
+		first_1->next = first_2;
+		//first_2->next = first_3;
+		/*LinkedList *first_3 = new LinkedList(3);		
+		LinkedList *first_4 = new LinkedList(1);
+		LinkedList *first_5 = new LinkedList(6);		
+		first_2->next = first_3;
+		first_3->next = first_4;
+		first_4->next = first_5;*/
+
+		LinkedList *second_1 = new LinkedList(9);
+		LinkedList *second_2 = new LinkedList(2);
+		second_1->next = second_2;
+		/*LinkedList *second_3 = new LinkedList(4);
+		
+		second_2->next = second_3;*/
+
+		LinkedList *result = new LinkedList();		
+		//first_1 = Reverse(first_1);
+		//second_1 = Reverse(second_1);
+		result = AddTwoNumbers(first_1, second_1);
 
 
 #pragma endregion
