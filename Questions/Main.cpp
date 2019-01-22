@@ -696,6 +696,103 @@ LinkedList* Reverse(LinkedList* i_list)
 	return prev;
 }
 
+string ZigZagPattern(string s, int numRows)
+{	
+	std::vector<string> rowStrings(numRows);
+	for (int i = 0; i < numRows; i++)
+	{
+		rowStrings[i] = s;
+		for (int j = 0; j < rowStrings[i].length(); j++)
+		{
+			rowStrings[i][j] = ' ';
+		}
+	}
+	//string output = s;
+	int sign = 1;
+	int index2 = 0;
+	int individualIndex = 0;
+	int currentRow = 0;
+	while (index2 < s.length())
+	{	
+		/*if (individualIndex == 0)
+		{
+			rowStrings[currentRow] = new char();
+		}*/
+		rowStrings[currentRow][individualIndex] = s[index2];
+		index2++;		
+		currentRow = currentRow + sign;
+		if (currentRow == numRows || currentRow < 0)
+		{
+			sign *= -1;	
+			currentRow += sign;
+			currentRow += sign;
+			individualIndex++;
+		}		
+	}
+	string output = s;
+	//int index = 0;
+	//int x = 0;
+	//int y = 0;
+	//if (numRows == 1)
+	//	return s;
+	//else if (s.length() <= numRows)
+	//	return s;
+
+	//for (int i = 0; i < numRows; i++)
+	//{
+	//	if (i >= numRows / 2)
+	//	{
+	//		x = numRows - i - 1;
+	//	}
+	//	else
+	//	{
+	//		x = i;
+	//	}
+	//	y = 0;
+	//	for (int j = i; j < s.length(); )
+	//	{			
+	//		output[index] = s[j];
+	//		index++;
+	//		y++;
+	//		if (numRows > 3 && i == 1 && y % 2 == 0)
+	//		{
+	//			j += 2;
+	//			if (j < s.length())
+	//			{
+	//				output[index] = s[j];
+	//				index++;
+	//				y++;
+	//			}
+	//		}
+	//		else if (numRows > 3 && i == numRows - 2 && y % 2 != 0)
+	//		{
+	//			j += 2;
+	//			if (j < s.length())
+	//			{
+	//				output[index] = s[j];
+	//				index++;
+	//				y++;
+	//			}
+	//		}
+	//		j += numRows - x - 1 + numRows - x - 2 + 1;// +i + i;		
+	//	}
+	//}
+
+
+	output = "";
+	for (int i = 0; i < numRows; i++)
+	{
+		for (int j = 0; j < rowStrings[i].length(); j++)
+		{
+			if (rowStrings[i][j] !=' ')
+				output += rowStrings[i][j];
+		}
+		
+	}
+
+	return output;
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -807,7 +904,7 @@ int main()
 		//int result = KindergardenAdventures();
 #pragma endregion
 
-#pragma region Question7: Longest Palindrome(Fix Time Complexity)
+#pragma region Question7: Longest Palindrome
 		/*
 		Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
 
@@ -969,9 +1066,30 @@ int main()
 		LinkedList *result = new LinkedList();		
 		//first_1 = Reverse(first_1);
 		//second_1 = Reverse(second_1);
-		result = AddTwoNumbers(first_1, second_1);
+		//result = AddTwoNumbers(first_1, second_1);
 
 
+#pragma endregion
+
+#pragma region Question13: ZigZag String Pattern (Improve Time complexity)
+		/*
+		The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
+		P   A   H   N
+		A P L S I I G
+		Y   I   R
+		And then read line by line: "PAHNAPLSIIGYIR"
+
+		Example:
+		Input: s = "PAYPALISHIRING", numRows = 4
+		Output: "PINALSIGYAHRPI"
+		Explanation:
+		P     I    N
+		A   L S  I G
+		Y A   H R
+		P     I
+		*/
+
+		string s = ZigZagPattern("PAYPALISHIRING",6);
 #pragma endregion
 
 		return 0;
