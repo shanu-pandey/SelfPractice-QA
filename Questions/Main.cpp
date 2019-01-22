@@ -793,6 +793,25 @@ string ZigZagPattern(string s, int numRows)
 	return output;
 }
 
+int Reverse(int x)
+{
+
+	int result = 0;
+
+	while (x != 0)
+	{
+		int t = x % 10;
+		x /= 10;
+		if (result > INT_MAX / 10 || (result == INT_MAX / 10 && t > 7))
+			return 0;
+		else if (result < INT_MIN / 10 || (result == INT_MIN / 10 && t < -8))
+			return 0;
+		result = result * 10 + t;
+	}
+	return result;
+
+}
+
 int main()
 	{
 #pragma region Question1: Longest substring without repeating characters
@@ -1089,9 +1108,20 @@ int main()
 		P     I
 		*/
 
-		string s = ZigZagPattern("PAYPALISHIRING",6);
+		//string s = ZigZagPattern("PAYPALISHIRING",6);
 #pragma endregion
 
+#pragma region Question13:Reverse integer
+		/*
+		Given a 32-bit signed integer, reverse digits of an integer.
+
+		Example 1:
+		Input: -123
+		Output: -321
+		*/
+
+		int s = Reverse(123);
+#pragma endregion
 		return 0;
 	}
 
