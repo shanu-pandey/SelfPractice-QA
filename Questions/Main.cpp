@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <Windows.h>
+
 using namespace std;
 
 struct Interval {
@@ -812,8 +814,230 @@ int Reverse(int x)
 
 }
 
+bool HorizontalMatching(int i_tilesCompleted, char** o_result, char** i_currentTile)
+{
+	bool res = false;
+
+	return res;
+}
+
+bool VerticalMatching(int i_tilesCompleted, char** o_result, char* i_currentTile)
+{
+	bool res = false;
+
+	return res;
+}
+
+bool RotateAndMatch(int i_tilesCompleted, int i_rotation, char **o_result, char **i_currentTile)
+{
+	bool res = false;
+	
+	//No Rotation
+	if (i_rotation == 0)
+	{
+			
+	}
+	//anti-clockwise
+	if (i_rotation < 0)
+	{
+
+	}
+	//clockwise
+	else
+	{
+
+	}
+
+	return res;
+}
+
+void link(char **tiles)
+{
+	int tileeCompleted = 0;
+	char **o_result = tiles;
+	int i = 0;
+	char* currentTile[] = { "", "", };
+	while (*tiles)
+	{			
+		if (*tiles == "")
+		{
+			if (!tileeCompleted == 0)
+			{
+				int rotation = 0;
+				while (!RotateAndMatch(tileeCompleted, rotation, o_result, currentTile))
+				{
+					if (rotation >= 0)
+					{
+						rotation += 90;
+						if (rotation == 360)
+							rotation = -90;
+					}
+					else
+					{
+						rotation -= 90;
+					}
+				}
+			}
+
+			i = 0;
+			printf(*tiles);
+			*tiles++;
+			tileeCompleted++;
+		}		
+	
+		currentTile[i] = *tiles;		
+		i++;
+		*tiles++;
+	}	
+}
+
+char const *get_previous_word(char const *pTargetWord, char const * const *ppUnsortedDictionary, size_t const unsortedDictionaryLength)
+{
+	const char* o_previousWord =  nullptr;	
+	char o_previousWord2[100];// = nullptr;
+	string currentWord;
+	string previousWord;
+	currentWord = "";
+	size_t currentLength = 0;
+	int difference = 0;
+	int min = 100;
+
+	for (size_t i = 0; i < unsortedDictionaryLength; i++)
+	{			
+		if (ppUnsortedDictionary[0][i] != ' ')
+		{			
+			currentWord += (ppUnsortedDictionary[0][i]);
+			if (pTargetWord[currentLength])
+				difference += pTargetWord[currentLength] - (ppUnsortedDictionary[0][i]);
+
+			currentLength++;
+		}
+		else
+		{
+			if (difference < min && difference > 0)
+			{
+				min = difference;
+				o_previousWord = const_cast<char*>(ppUnsortedDictionary[0]) + i-currentLength;
+			}
+			currentWord = "";
+			difference = 0;
+			currentLength = 0;
+		}
+	}
+	return o_previousWord;
+}
+
 int main()
 	{
+#pragma region
+	/*Problem 1:
+	You are working on a C program that defines and uses these types.
+
+
+		typedef unsigned int U32;
+
+	typedef struct HatPart
+	{
+		U32 iPartCode;
+		U32 iCost;
+		U32 iColor;
+	}
+	HatPart;
+
+	typedef struct Hat
+	{
+		char hatName[64]; //null-terminated ascii string, might be empty
+		U32 iHatSize;
+		U32 iHatModel;
+		char manufacturerName[64]; //null-terminated ascii string, might be empty
+		U32 iNumParts; //the number of parts in this hat, min = 0, max = 16
+		HatPart parts[16];
+	}
+	Hat;
+
+	Note that the Hat struct is inefficient in terms of memory usage. If the hatName is "bowler", then 57 bytes are wasted in the fixed-size string buffer.
+	If a Hat only has 3 parts, then 13 entire HatPart substructs are wasted. However, for architectural reasons, the Hat struct must remain unchanged.
+
+	We would like to be able to store Hats in less memory when they are not being used. So, we'd like you to write two functions.
+	// returns the packed buffer, and the output size
+	void *PackHat(const Hat *pHat, int *piOutSize);
+
+	// returns false on failure
+	bool UnpackHat(const void *pPackedBuffer, int iPackedBufferSize,
+
+	PackHat takes a Hat struct and returns a buffer, allocated via malloc(), with all the data from the Hat struct packed as tightly as possible.
+	That is, if a string is 6 bytes long, it only occupies 7 bytes in the packed buffer (6 bytes for string characters, one byte for the null terminator).
+	If the hat only has 4 parts, then the parts will only take up 48 bytes in the packed buffer (4 parts times 3 U32s times 4 bytes).
+
+	UnpackHat takes a buffer packed by PackHat and reverses the process into an existing Hat struct.
+	Notes:
+	There are many clever approaches that could be used to pack or compress data far more effectively and ambitiously than simple byte packing. Please do not attempt any of them. You should use 4 bytes of buffer space for every U32, even if its value is 0 and more efficient approaches could be used. Do not attempt to re-create zipping.
+	Do not worry about the fact that we’re using 32 bits to store iNumParts even though the maximum legal value is only 16.
+	UnpackHat returns a bool, and can fail. It should check the legality of the data it is unpacking, and fail if,
+	for any reason, the data cannot be unpacked into a legal Hat struct, or if the size of the data passed in is not precisely correct.
+
+	Here are three sample inputs, and the precise byte size the packed buffer should be.
+	// expected size: 84 bytes
+	Hat hat1 =
+	{
+		"Bowler",
+		 17,
+		 1000000,
+		 "United Hats of San Francisco",
+		3,
+	{
+		 {
+			  20,30,40,
+		 },
+		 {
+			 50,60,70,
+		 },
+		 {
+			 80,90,100,
+		 },
+	}
+	};
+
+
+	Problem 2:
+
+	Write a function "void link(char **tiles)" that accepts a list of 'tiles' in the provided format below.
+	It should link the tiles together sequentially in the order they are given,
+	and print out the current count and arrangement of tiles at each step exactly as shown in the example output below,
+	including the note about how far the tile had to be rotated.
+
+	A tile is a 2-by-2 square split into quadrants, where each quadrant has a number from 0 to 9.
+	After the first tile, a tile can be legally placed if at least two of its quadrants match quadrants on adjacent tiles horizontally or vertically.
+	A tile cannot be legally placed in a location if it would have fewer than two matching quadrants or has any quadrants that do not match horizontally or vertically.
+	Tiles can be rotated, and tiles can be placed in offset positions as demonstrated with tile 9 in the third example.
+	The inputs are always designed so there is only one place a tile will fit.
+
+	*/
+
+	char *tiles1[] = {
+	"11",     // 1
+	"23",
+	"",
+	"44",     // 2
+	"11",
+	"",
+	"16",     // 3
+	"36",
+	"",
+	"51",     // 4
+	"71",
+	"",
+	"46",     // 5
+	"26",
+	"",
+	"14",     // 6
+	"68",
+	0 };
+
+	//link(tiles1);
+
+#pragma endregion
+
 #pragma region Question1: Longest substring without repeating characters
 		/*
 		Given a string, find the length of the longest substring without repeating characters.
@@ -1120,8 +1344,22 @@ int main()
 		Output: -321
 		*/
 
-		int s = Reverse(123);
+		//int s = Reverse(123);
 #pragma endregion
+
+#pragma region Question14:Get Previous word
+	/*
+		Finds the word that comes just before targetWord in alphabetical order in an unsorted dictionary. 
+		For example, get_previous_word("interview", ppDictionary, dictionaryLength) might return "interventions".
+	*/
+		char const * target = "intere";
+		char const * const * unsortedDictionary = new char*{ ("interaasad intere interd dictionary") };// , "asdsadas"
+
+		const char* p43 = get_previous_word(target, unsortedDictionary, 32);
+		
+
+#pragma endregion
+
 		return 0;
 	}
 
