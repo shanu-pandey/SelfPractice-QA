@@ -37,6 +37,92 @@ struct LinkedList {
 	LinkedList(int x) : val(x), next(NULL) {}
 };
 
+struct SNode
+{
+	SNode() {}
+	SNode *mpNext = nullptr;
+	SNode *mpPrev = nullptr;
+};
+
+struct SGraphData
+{
+	SGraphData() {}
+	int mSubGraphCount = 0;
+	int mLoopCount = 0;
+
+	void IncrementLoopCount() { mLoopCount++; }
+	void DecrementLoopCount() { mLoopCount--; }
+
+	void IncrementGraphCount() { mSubGraphCount++; }
+	void DecrementGraphCount() { mSubGraphCount--; }
+};
+
+void PostLoadNode(SGraphData * const pGraphData, SNode * const pNode)
+{
+	std::vector<SNode*> closedList;					//closed list to keep track of the nodes visited from the subgraph
+	SNode *pNodeCopy = pNode;
+
+	//Increment the sub-graph count if previous pointer is null
+	if (pNode->mpPrev == nullptr)
+		pGraphData->IncrementGraphCount();
+	
+	while (pNodeCopy->mpNext != nullptr)
+	{
+		//if next is source, loop found
+		if (pNodeCopy->mpNext == pNode)
+		{
+			pGraphData->IncrementLoopCount();
+			return;
+		}
+		closedList.emplace_back(pNodeCopy);
+		pNodeCopy = pNodeCopy->mpNext;
+
+		//check if something is already on closed list, retun if true
+		for (auto i : closedList)
+		{
+			//if current is already in closed list, we are looping and break
+			if (i == pNodeCopy)
+			{
+				return;
+			}
+		}
+	}
+}
+
+void DeleteNode(Node* nodeToDelete, Node* root)
+{
+	//use a prev pointer which will help in linking the correct object when something is deleted
+	Node *pPtr = root;
+	Node *pPrevPtr = root;
+
+	//do will run at least once
+	//to avoid first time erros, we use while instead of do while
+	while (pPtr != nullptr)
+	{
+		if (pPtr == nodeToDelete)
+		{
+			if (pPtr == pPrevPtr)
+			{
+				pPtr = pPtr->next;
+				delete(pPrevPtr);
+			}
+			else
+			{
+				pPrevPtr->next = pPtr->next;
+				//deleting objects may still faile the nullptr check based on the implementation
+				pPtr = nullptr;
+				delete(pPtr);
+			}			
+		}
+		//sanity check, pPtr might be deleted previously
+		if (pPtr != nullptr)		
+		{
+			pPrevPtr = pPtr;
+			pPtr = pPtr->next;
+		}
+	} 
+}
+
 TreeNode* insert(TreeNode* root, int data)
 {
 	if (root == NULL) {
@@ -893,36 +979,54 @@ void link(char **tiles)
 
 char const *get_previous_word(char const *pTargetWord, char const * const *ppUnsortedDictionary, size_t const unsortedDictionaryLength)
 {
-	const char* o_previousWord =  nullptr;	
-	char o_previousWord2[100];// = nullptr;
+	char* o_previousWord =  nullptr;	
 	string currentWord;
-	string previousWord;
 	currentWord = "";
-	size_t currentLength = 0;
 	int difference = 0;
 	int min = 100;
+	int currentIndex;
+	int currentLength;
+	int minLength =0;
 
 	for (size_t i = 0; i < unsortedDictionaryLength; i++)
-	{			
-		if (ppUnsortedDictionary[0][i] != ' ')
-		{			
-			currentWord += (ppUnsortedDictionary[0][i]);
-			if (pTargetWord[currentLength])
-				difference += pTargetWord[currentLength] - (ppUnsortedDictionary[0][i]);
-
-			currentLength++;
-		}
-		else
+	{
+		currentIndex = 0;
+		currentLength = 0;
+		while (ppUnsortedDictionary[i][currentIndex] != NULL)
 		{
-			if (difference < min && difference > 0)
+			if (ppUnsortedDictionary[i][currentIndex] != ' ')
 			{
-				min = difference;
-				o_previousWord = const_cast<char*>(ppUnsortedDictionary[0]) + i-currentLength;
+				currentWord += (ppUnsortedDictionary[i][currentIndex]);
+				if (pTargetWord[currentLength] && difference >= 0)
+				{
+					difference += pTargetWord[currentLength] - (ppUnsortedDictionary[i][currentIndex]);
+					currentLength++;
+				}				
 			}
-			currentWord = "";
-			difference = 0;
-			currentLength = 0;
+			else
+			{				
+				if (difference < min && difference > 0)
+				{
+					min = difference;
+					minLength = currentWord.size();
+					o_previousWord = const_cast<char*>(ppUnsortedDictionary[i]) + currentIndex - currentWord.size();					
+				}
+				currentWord = "";
+				difference = 0;		
+				currentLength = 0;
+			}
+			currentIndex++;
 		}
+
+		//For the last word in the sentence
+		if (difference < min && difference > 0)
+		{
+			min = difference;
+			minLength = currentWord.size();
+			o_previousWord = const_cast<char*>(ppUnsortedDictionary[i]) + currentIndex - currentWord.size();			
+		}
+		currentWord = "";
+		difference = 0;
 	}
 	return o_previousWord;
 }
@@ -1353,13 +1457,33 @@ int main()
 		For example, get_previous_word("interview", ppDictionary, dictionaryLength) might return "interventions".
 	*/
 		char const * target = "intere";
-		char const * const * unsortedDictionary = new char*{ ("interaasad intere interd dictionary") };// , "asdsadas"
-
-		const char* p43 = get_previous_word(target, unsortedDictionary, 32);
-		
+		//char const * const * unsortedDictionary = { new char*("interaasad intere interd dictionary"), new char* ("asdads") };
+		char ** unsortedDictionary;
+		unsortedDictionary = new char*[5];
+		unsortedDictionary[0] = "intervcfds interfsdge sdfagdsfd";
+		unsortedDictionary[1] = "intererterteaasad intersve interd dicsdfasdfry";
+		unsortedDictionary[2] = "interaertetasad interterere dictionary";
+		unsortedDictionary[3] = "inteerterraasad inteertetere insdafterd dictionary";
+		unsortedDictionary[4] = "r5teter internb bfe erte dictionary";		
+		//const char* p43 = get_previous_word(target, unsortedDictionary, 5);
+		//printf(p43);
 
 #pragma endregion
 
+
+		Node* nd = new Node();
+		nd->data = 1;
+		nd->next = nullptr;
+
+		Node* nd2 = new Node();
+		nd2->data = 2;
+		nd2->next = nd;
+
+		Node* nd3 = new Node();
+		nd3->data = 3;
+		nd3->next = nd2;
+
+		DeleteNode(nd2, nd3);
 		return 0;
 	}
 
