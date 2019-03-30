@@ -1031,6 +1031,125 @@ char const *get_previous_word(char const *pTargetWord, char const * const *ppUns
 	return o_previousWord;
 }
 
+int maxArea(vector<int>& height) {
+	int o_max = 0;
+
+	int end = height.size() - 1;
+	int start = 0;
+	while (start < end)
+	{
+		int x = end - start;
+		int y = height[start] > height[end] ? height[end] : height[start];
+		o_max = (x*y) > o_max ? (x*y) : o_max;
+		height[start] > height[end] ? end-- : start++;
+	}
+
+	return o_max;
+}
+
+bool isMatch(string s, string p) 
+{
+	if (s.length() < 1)
+		return false;
+
+	bool o_result = true;
+	int expIndex = 0;
+	int strIndex = 0;
+	while (expIndex < p.length())// && strIndex < s.length())
+	{
+		if (strIndex == s.length())
+		{
+			//o_result = false;
+			break;
+		}
+		else if (p[expIndex] == '.')
+		{
+			expIndex++;
+			strIndex++;
+		}
+		else if (p[expIndex] == '*')
+		{
+			expIndex++;
+			strIndex++;
+		}
+		else if (p[expIndex] != s[strIndex])
+		{
+			expIndex++;
+			if (expIndex >= p.length())
+			{
+				o_result = false;
+				return o_result;
+			}
+			if (p[expIndex] == '*')
+				expIndex++;
+			else
+			{
+				o_result = false;
+				break;
+			}
+		}
+		else if (p[expIndex] == s[strIndex])
+		{
+			strIndex++;
+			if (expIndex + 1 < p.length())
+			{
+				if (p[expIndex + 1] == '*')
+				{
+					while (p[expIndex] == s[strIndex])
+					{
+						strIndex++;
+					}
+					expIndex++;
+				}				
+			}
+			expIndex++;
+		}
+	}
+	if (strIndex != s.length())
+	{
+		if (expIndex != p.length())
+		{
+			if (p[expIndex] != '*')
+				o_result = false;
+		}
+		else
+			o_result = false;
+	}
+	return o_result;
+}
+
+
+vector<int> IDsOfPackages(int truckSpace, vector<int> packagesSpace)
+{
+	// WRITE YOUR CODE HERE
+	std::vector<int> o_package;
+	o_package.reserve(2);
+
+	if (truckSpace <= 30)
+	{
+		//not enough truck space, return empty list
+		return o_package;
+	}
+	int size = packagesSpace.size();
+
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (truckSpace - (packagesSpace[i] + packagesSpace[j]) == 30)
+			{
+				//30 truck space left, return elements
+				o_package.emplace_back(i);
+				o_package.emplace_back(j);
+				return o_package;
+			}
+		}
+	}
+	//no two packages found
+	return o_package;
+}
+
 int main()
 	{
 #pragma region
@@ -1470,20 +1589,32 @@ int main()
 
 #pragma endregion
 
+#pragma region Question15:Get Previous word
+/*
+	Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn 
+	such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, 
+	such that the container contains the most water.
 
-		Node* nd = new Node();
-		nd->data = 1;
-		nd->next = nullptr;
+	Note: You may not slant the container and n is at least 2.
+	Ex:
+	The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+*/
 
-		Node* nd2 = new Node();
-		nd2->data = 2;
-		nd2->next = nd;
+#pragma endregion
 
-		Node* nd3 = new Node();
-		nd3->data = 3;
-		nd3->next = nd2;
-
-		DeleteNode(nd2, nd3);
+		string s = "aaa";
+		string exp = "a*a";
+		bool res = isMatch(s, exp);
+		std::vector<int> a = { 20,70,90,30,60,110 };
+		std::vector<int> b;
+		b.reserve(2);
+		b[0] = 1;
+		b[1] = 1;
+		
+		int l = 110;
+		vector<int> resl = IDsOfPackages(110, a);
 		return 0;
+
+		
 	}
 
