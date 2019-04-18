@@ -1118,6 +1118,35 @@ bool isMatch(string s, string p)
 	return o_result;
 }
 
+bool isValidBishopMove(const char* pMove)
+{
+	//if move contains a number less than 1 or greate than  8, its invalid.
+	//this is under the assumption that chess board is marked from 1-8 cell numbers.
+	if (pMove[1] < '1' || pMove[1] > '8' || pMove[3] < '1' || pMove[3] > '8')
+		return false;
+	//if move contains a numbre any character less than 'a' or greater than 'h', its invalid.
+	//this is under the assumption that chess board is marked from a-h cell numbers.
+	//As nothing is specified in the question, this should be checked for both upper and lower case characters
+	else if (pMove[0] > 'h' || pMove[2] > 'h' || pMove[0] < 'A' || pMove[2] < 'A')
+		return false;
+	else if ((pMove[0] > 'H' && pMove[0] < 'a') || (pMove[2] > 'H' && pMove[2] < 'a'))
+		return false;
+	//for a valid move differennce between characters and number should be same (diagonal move)
+	//check for both upper case and lower case
+	// 32 = ACSII difference between upper case and lower case (when one char is upper and one is lower)
+
+	//difference of characters with same sign, both cases check
+	if ((pMove[1] - pMove[3]) == (pMove[0] - pMove[2]) || (pMove[1] - pMove[3]) == ((pMove[0] +32) - pMove[2]) ||
+		(pMove[1] - pMove[3]) == (pMove[0] - (pMove[2]+32)))
+		return true;
+	//difference of characters with opposite sign, both cases check
+	else if (((pMove[1] - pMove[3]) + (pMove[0] - pMove[2]) == 0) || ((pMove[1] - pMove[3]) + ((pMove[0]+32) - pMove[2]) == 0) ||
+		((pMove[1] - pMove[3]) + (pMove[0] - (pMove[2]+32)) == 0))
+		return true;
+	
+	//if none of the other checks are fulfilled, move is invalid
+	return false;
+}
 
 vector<int> IDsOfPackages(int truckSpace, vector<int> packagesSpace)
 {
@@ -1150,6 +1179,56 @@ vector<int> IDsOfPackages(int truckSpace, vector<int> packagesSpace)
 	return o_package;
 }
 
+int BinaryGap(int N) {
+	// write your code in C++14 (g++ 6.2.0)
+std:vector<int> binary;
+
+	while (N > 0)
+	{
+		int r = N % 2;
+		binary.emplace_back(r);
+		N = N / 2;
+	}
+	int o_binaryGap = 0;
+	int currentGap = 0;
+	for (std::vector<int>::reverse_iterator it = binary.rbegin(); it!= binary.rend(); ++it)
+	{
+		if (*it == 0)
+		{
+			currentGap++;
+		}
+		else
+		{
+			if (currentGap > o_binaryGap)
+			{
+				o_binaryGap = currentGap;
+			}
+			currentGap = 0;
+		}
+	}
+	return o_binaryGap;
+}
+
+int solution(int A, int B) {
+	// write your code in C99 (gcc 6.2.0)
+	int o_result = 0;
+
+	if (A < 0 || B < 0)
+		return o_result;
+
+	int num = A * B;
+
+	while (num > 0)
+	{
+		int r = num % 2;
+		if (r == 1)
+		{
+			o_result++;
+		}
+		num /= 2;
+	}
+	return o_result;
+}
 int main()
 	{
 #pragma region
@@ -1597,24 +1676,14 @@ int main()
 
 	Note: You may not slant the container and n is at least 2.
 	Ex:
-	The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+	The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, 
+	the max area of water (blue section) the container can contain is 49.
 */
 
 #pragma endregion
-
-		string s = "aaa";
-		string exp = "a*a";
-		bool res = isMatch(s, exp);
-		std::vector<int> a = { 20,70,90,30,60,110 };
-		std::vector<int> b;
-		b.reserve(2);
-		b[0] = 1;
-		b[1] = 1;
 		
-		int l = 110;
-		vector<int> resl = IDsOfPackages(110, a);
+		bool b = isValidBishopMove("C4G8");
+
 		return 0;
-
-		
 	}
 
