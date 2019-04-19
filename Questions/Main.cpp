@@ -1120,30 +1120,24 @@ bool isMatch(string s, string p)
 
 bool isValidBishopMove(const char* pMove)
 {
+	//as bishop cannot be promomted, move should not contain more than 4 characters
+	if (pMove[4])
+		return false;
 	//if move contains a number less than 1 or greate than  8, its invalid.
 	//this is under the assumption that chess board is marked from 1-8 cell numbers.
 	if (pMove[1] < '1' || pMove[1] > '8' || pMove[3] < '1' || pMove[3] > '8')
 		return false;
 	//if move contains a numbre any character less than 'a' or greater than 'h', its invalid.
 	//this is under the assumption that chess board is marked from a-h cell numbers.
-	//As nothing is specified in the question, this should be checked for both upper and lower case characters
-	else if (pMove[0] > 'h' || pMove[2] > 'h' || pMove[0] < 'A' || pMove[2] < 'A')
-		return false;
-	else if ((pMove[0] > 'H' && pMove[0] < 'a') || (pMove[2] > 'H' && pMove[2] < 'a'))
+	else if (pMove[0] > 'h' || pMove[2] > 'h' || pMove[0] < 'a' || pMove[2] < 'a')
 		return false;
 	//for a valid move differennce between characters and number should be same (diagonal move)
-	//check for both upper case and lower case
-	// 32 = ACSII difference between upper case and lower case (when one char is upper and one is lower)
-
-	//difference of characters with same sign, both cases check
-	if ((pMove[1] - pMove[3]) == (pMove[0] - pMove[2]) || (pMove[1] - pMove[3]) == ((pMove[0] +32) - pMove[2]) ||
-		(pMove[1] - pMove[3]) == (pMove[0] - (pMove[2]+32)))
+	//difference of characters with same sign
+	if ((pMove[1] - pMove[3]) == (pMove[0] - pMove[2]))
 		return true;
 	//difference of characters with opposite sign, both cases check
-	else if (((pMove[1] - pMove[3]) + (pMove[0] - pMove[2]) == 0) || ((pMove[1] - pMove[3]) + ((pMove[0]+32) - pMove[2]) == 0) ||
-		((pMove[1] - pMove[3]) + (pMove[0] - (pMove[2]+32)) == 0))
+	else if (((pMove[1] - pMove[3]) + (pMove[0] - pMove[2]) == 0))
 		return true;
-	
 	//if none of the other checks are fulfilled, move is invalid
 	return false;
 }
@@ -1682,7 +1676,7 @@ int main()
 
 #pragma endregion
 		
-		bool b = isValidBishopMove("C4G8");
+		bool b = isValidBishopMove("a0f4");
 
 		return 0;
 	}
