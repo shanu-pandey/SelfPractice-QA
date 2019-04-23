@@ -2,8 +2,11 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
+#include <algorithm>
 
 using namespace std;
+
+
 
 struct Interval {
 	int start;
@@ -56,6 +59,14 @@ struct SGraphData
 	void IncrementGraphCount() { mSubGraphCount++; }
 	void DecrementGraphCount() { mSubGraphCount--; }
 };
+
+class comparator {
+public:
+	bool operator()(const LinkedList* a, const LinkedList* b) const {
+		return a->val > b->val;
+	}
+};
+
 
 void PostLoadNode(SGraphData * const pGraphData, SNode * const pNode)
 {
@@ -701,68 +712,6 @@ LinkedList* AddTwoNumbers(LinkedList* i_first, LinkedList* i_second)
 		}
 		temp->next = new LinkedList(carry);
 	}
-
-
-
-
-
-	/*if (i_first != nullptr)
-	{
-		LinkedList* temp = new LinkedList();
-		temp = result;
-		while (temp->next != nullptr)
-		{
-			temp = temp->next;
-		}
-		temp->next = i_first;
-		if (carry != 0)
-		{
-			if (temp->next->val + carry > 9)
-			{
-				while(i_first != nullptr)
-				{
-				}
-				temp->next->val = 0;
-				temp->next->next = new LinkedList(1);
-			}
-			else
-			{
-				temp->next->val += carry;
-			}
-		}
-	}
-	else if (i_second != nullptr)
-	{
-		LinkedList* temp = new LinkedList();
-		temp = result;
-		while (temp->next != nullptr)
-		{
-			temp = temp->next;
-		}
-		temp->next = i_second;
-		if (carry != 0)
-		{
-			if (temp->next->val + carry > 9)
-			{
-				temp->next->val = 0;
-				temp->next->next = new LinkedList(1);
-			}
-			else
-			{
-				temp->next->val += carry;
-			}
-		}
-	}
-	else if (carry != 0)
-	{
-		LinkedList* temp = new LinkedList();
-		temp = result;
-		while (temp->next != nullptr)
-		{
-			temp = temp->next;
-		}
-		temp->next = new LinkedList(carry);		
-	}*/
 	return result;
 }
 
@@ -1203,6 +1152,81 @@ std:vector<int> binary;
 	return o_binaryGap;
 }
 
+
+void sortedInsert(LinkedList** head_ref, LinkedList* new_node)
+{
+	LinkedList* current;
+	/* Special case for the head end */
+	if (*head_ref == NULL || (*head_ref)->val >= new_node->val)
+	{
+		new_node->next = *head_ref;
+		*head_ref = new_node;
+	}
+	else
+	{
+		/* Locate the node before the point of insertion */
+		current = *head_ref;
+		while (current->next != NULL &&
+			current->next->val < new_node->val)
+		{
+			current = current->next;
+		}
+		new_node->next = current->next;
+		current->next = new_node;
+	}
+}
+
+void insertionSort(LinkedList **head_ref)
+{
+	// Initialize sorted linked list 
+	LinkedList *sorted = NULL;
+
+	// Traverse the given linked list and insert every 
+	// node to sorted 
+	LinkedList *current = *head_ref;
+	while (current != NULL)
+	{
+		// Store next for next iteration 
+		LinkedList *next = current->next;
+
+		// insert current in sorted linked list 
+		sortedInsert(&sorted, current);
+
+		// Update current 
+		current = next;
+	}
+
+	// Update head_ref to point to sorted linked list 
+	*head_ref = sorted;
+}
+
+
+LinkedList* mergeKLists(vector<LinkedList*>& lists)
+{
+	LinkedList* head = lists[0];
+	LinkedList* next = new LinkedList();
+	next = head->next;
+
+	for (std::vector<LinkedList*>::iterator it = lists.begin() +1; it != lists.end(); ++it)
+	{
+		while (next->next)
+			next = next->next;
+
+		next->next = *it;
+	}	
+
+	LinkedList* temp = head;
+
+	insertionSort(&head);
+
+	return head;
+}
+
+
+
+
+
+
 int solution(int A, int B) {
 	// write your code in C99 (gcc 6.2.0)
 	int o_result = 0;
@@ -1583,27 +1607,27 @@ int main()
 		Explanation: 342 + 465 = 807.
 		*/
 
-		LinkedList *first_1 = new LinkedList(3);
-		LinkedList *first_2 = new LinkedList(7);
-		//LinkedList *first_3 = new LinkedList(9);
-		first_1->next = first_2;
+		//LinkedList *first_1 = new LinkedList(3);
+		//LinkedList *first_2 = new LinkedList(7);
+		////LinkedList *first_3 = new LinkedList(9);
+		//first_1->next = first_2;
+		////first_2->next = first_3;
+		///*LinkedList *first_3 = new LinkedList(3);		
+		//LinkedList *first_4 = new LinkedList(1);
+		//LinkedList *first_5 = new LinkedList(6);		
 		//first_2->next = first_3;
-		/*LinkedList *first_3 = new LinkedList(3);		
-		LinkedList *first_4 = new LinkedList(1);
-		LinkedList *first_5 = new LinkedList(6);		
-		first_2->next = first_3;
-		first_3->next = first_4;
-		first_4->next = first_5;*/
+		//first_3->next = first_4;
+		//first_4->next = first_5;*/
 
-		LinkedList *second_1 = new LinkedList(9);
-		LinkedList *second_2 = new LinkedList(2);
-		second_1->next = second_2;
-		/*LinkedList *second_3 = new LinkedList(4);
-		
-		second_2->next = second_3;*/
+		//LinkedList *second_1 = new LinkedList(9);
+		//LinkedList *second_2 = new LinkedList(2);
+		//second_1->next = second_2;
+		///*LinkedList *second_3 = new LinkedList(4);
+		//
+		//second_2->next = second_3;*/
 
-		LinkedList *result = new LinkedList();		
-		//first_1 = Reverse(first_1);
+		//LinkedList *result = new LinkedList();		
+		////first_1 = Reverse(first_1);
 		//second_1 = Reverse(second_1);
 		//result = AddTwoNumbers(first_1, second_1);
 
@@ -1676,8 +1700,45 @@ int main()
 
 #pragma endregion
 		
-		bool b = isValidBishopMove("a0f4");
 
+		std::vector<LinkedList*> m_list;
+		LinkedList *first_1 = new LinkedList(1);
+		LinkedList *first_2 = new LinkedList(4);
+		LinkedList *first_3 = new LinkedList(5);
+		/*LinkedList *first_4 = new LinkedList(4);
+		LinkedList *first_5 = new LinkedList(5);*/
+		first_1->next = first_2;
+		first_2->next = first_3;				
+		/*first_3->next = first_4;
+		first_4->next = first_5;*/
+		m_list.push_back(first_1);
+
+		LinkedList *second_1 = new LinkedList(1);
+		LinkedList *second_2 = new LinkedList(3);
+		LinkedList *second_3 = new LinkedList(4);
+		/*LinkedList *second_4 = new LinkedList(7);
+		LinkedList *second_5 = new LinkedList(8);*/
+		second_1->next = second_2;
+		/*second_2->next = second_3;
+		second_3->next = second_4;
+		second_4->next = second_5;*/
+		m_list.push_back(second_1);
+
+		LinkedList *third_1 = new LinkedList(2);
+		LinkedList *third_2 = new LinkedList(6);
+		/*LinkedList *third_3 = new LinkedList(6);
+		LinkedList *third_4 = new LinkedList(7);
+		LinkedList *third_5 = new LinkedList(8);*/
+		third_1->next = third_2;
+		//third_2->next = third_3;
+		/*third_3->next = third_4;
+		third_4->next = third_5;*/
+		m_list.push_back(third_1);
+
+
+		LinkedList* ans = mergeKLists(m_list);
+
+		
 		return 0;
 	}
 
