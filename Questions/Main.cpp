@@ -1223,9 +1223,30 @@ LinkedList* mergeKLists(vector<LinkedList*>& lists)
 }
 
 
+int Partition(int A[], int start, int end) {
+	int i = start + 1;
+	int piv = A[start];            //make the first element as pivot element.
+	for (int j = start + 1; j <= end; j++) {
+		/*rearrange the array by putting elements which are less than pivot
+		   on one side and which are greater that on other. */
 
+		if (A[j] < piv) {
+			swap(A[i], A[j]);
+			i += 1;
+		}
+	}
+	swap(A[start], A[i - 1]);  //put the pivot element in its proper place.
+	return i - 1;                      //return the position of the pivot
+}
 
-
+void Quick_Sort(int A[], int start, int end) {
+	if (start < end) {
+		//stores the position of pivot element
+		int piv_pos = Partition(A, start, end);
+		Quick_Sort(A, start, piv_pos - 1);    //sorts the left side of pivot.
+		Quick_Sort(A, piv_pos + 1, end); //sorts the right side of pivot.
+	}
+}
 
 int solution(int A, int B) {
 	// write your code in C99 (gcc 6.2.0)
@@ -1247,6 +1268,7 @@ int solution(int A, int B) {
 	}
 	return o_result;
 }
+
 int main()
 	{
 #pragma region
@@ -1736,7 +1758,8 @@ int main()
 		m_list.push_back(third_1);
 
 
-		LinkedList* ans = mergeKLists(m_list);
+		int a[] = { 12,3,432,1,542,2,354,9,322,13 };
+		Quick_Sort(a, 0, 9);
 
 		
 		return 0;
