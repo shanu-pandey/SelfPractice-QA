@@ -3,6 +3,7 @@
 #include <vector>
 #include <Windows.h>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -64,7 +65,6 @@ public:
 		return a->val > b->val;
 	}
 };
-
 
 void PostLoadNode(SGraphData * const pGraphData, SNode * const pNode)
 {
@@ -1150,7 +1150,6 @@ std:vector<int> binary;
 	return o_binaryGap;
 }
 
-
 void sortedInsert(LinkedList** head_ref, LinkedList* new_node)
 {
 	LinkedList* current;
@@ -1198,7 +1197,6 @@ void insertionSort(LinkedList **head_ref)
 	*head_ref = sorted;
 }
 
-
 LinkedList* mergeKLists(vector<LinkedList*>& lists)
 {
 	LinkedList* head = lists[0];
@@ -1219,7 +1217,6 @@ LinkedList* mergeKLists(vector<LinkedList*>& lists)
 
 	return head;
 }
-
 
 int Partition(int A[], int start, int end) {
 	int i = start + 1;
@@ -1297,13 +1294,10 @@ vector<int> solution(vector<int> &T) {
 	return o_result;
 }
 
-
-
 long long factorial(long long n)
 {
 	return (n == 1 || n == 0) ? 1 : factorial(n - 1) * n;
 }
-
 
 int solution2(vector<int> &A) {
 	// write your code in C++14 (g++ 6.2.0)
@@ -1342,6 +1336,96 @@ int solution2(vector<int> &A) {
 		}
 	}
 	return result;
+}
+
+bool dfs(vector<vector<char>>& board, string word, int ind, int r, int c)
+{
+	if (ind == word.size())
+		return true;
+	bool res = false;
+	if (r >= 0 && r < board.size() && c >= 0 && c < board[0].size() && board[r][c] == word[ind])
+	{
+		char ch = board[r][c];
+		board[r][c] = '0';
+		res = dfs(board, word, ind + 1, r - 1, c) ||
+			dfs(board, word, ind + 1, r + 1, c) ||
+			dfs(board, word, ind + 1, r, c + 1) ||
+			dfs(board, word, ind + 1, r, c - 1);
+
+		board[r][c] = ch;
+	}
+	/*else if (r >= 0 && r < board.size() && c >= 0 && c < board[0].size())
+	{
+		res = dfs(board, word, ind, r - 1, c) ||
+			dfs(board, word, ind, r + 1, c) ||
+			dfs(board, word, ind, r, c + 1) ||
+			dfs(board, word, ind, r, c - 1);
+	}*/
+	return res;
+}
+
+string countAndSay(int n) {
+
+	if (n == 1)
+		return "1";
+	else if (n < 1)
+		return "0";
+	string prevResult = "";
+	string newResult = "";
+	for (int i = 1; i <= n; i++)
+	{
+		int count = 1;
+		int val = 0;
+		if (i == 1)
+			newResult = "1";
+		/*else if (i == 2)
+			newResult = "11";*/
+		else
+		{
+			prevResult = newResult;
+			newResult = "";
+			//int prev = std::stoi(string(1, prevResult[0]));
+			int prev = prevResult[0] -48;
+			int curr = 1;
+			val = curr;
+			int length = prevResult.length();
+			for (int j = 1; j < length; j++)
+			{
+				//curr = std::stoi(string(1, prevResult[j]));
+				curr = prevResult[j] - 48;
+				if (curr == prev)
+				{
+					count++;
+				}
+				else
+				{
+					
+					newResult = newResult + std::to_string(count) + std::to_string(prev);
+					count = 1;
+					prev = curr;
+				}
+			}
+			newResult = newResult+ std::to_string(count) + std::to_string(curr);
+		}
+	}
+
+	return newResult;
+}
+
+bool exist(vector<vector<char>>& board, string word) {
+	int row = board.size();
+	int column = board[0].size();
+	int l = 0;
+
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < column; j++)
+		{
+			if (dfs(board, word, l, i, j))
+				return true;
+		}
+	}
+	return false;
 }
 
 int main()
@@ -1835,10 +1919,27 @@ int main()
 
 		/*int a[] = { 12,3,432,1,542,2,354,9,322,13 };
 		Quick_Sort(a, 0, 9);*/
-		int f = factorial(12);
+		/*int f = factorial(12);
 		vector<int> T = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 };
-		int o_result = solution2(T);
+		int o_result = solution2(T);*/
+
+		vector<vector<char>> board = 
+		{
+			{'A', 'B', 'C', 'E'},
+			{'S', 'F', 'C', 'S'},
+			{'A', 'D', 'E', 'E'}
+		};
+		string word = "ABCCED";
+
+		vector<vector<char>> board2 =
+		{
+			{'A', 'B'}
+		};
+		string word2 = "BA";
 		
+		//bool res = exist(board2, word2);
+
+		string s = countAndSay(6);
 		return 0;
 	}
 
