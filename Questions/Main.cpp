@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include <algorithm>
 #include <string>
+#include <map>
+#include <unordered_map>
+#include <queue>
 
 using namespace std;
 
@@ -1523,6 +1526,29 @@ string Multiply(string num1, string num2)
 	return result;
 }
 
+vector<int> TopKFrequent(vector<int>& nums, int k)
+{
+	unordered_map<int, int> map;
+	//map<int, int, std::greater<int>> map;
+	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+	
+	for (int n : nums) map[n]++;
+
+	for(auto &it : map) {
+		pq.push({it.second, it.first});
+		if(pq.size() > k) pq.pop();
+	}
+
+	vector<int> res;
+	res.reserve(k);
+	while (!pq.empty()) {
+		res.push_back(pq.top().second);
+		pq.pop();
+	}
+	return res;
+}
+
 int main()
 	{
 #pragma region
@@ -2034,9 +2060,9 @@ int main()
 		
 		//bool res = exist(board2, word2);
 
-		vector<int> a = { -4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6 };
+		vector<int> a = { 1,2,3,4,5,6,1,1,2,2,3,4,5,6,3,3,3,2,2,3 };
 		string s = "ABCDEWXYZ";
-		ReverseString(s);
+		vector<int> res = TopKFrequent(a, 2);
 		return 0;
 	}
 
