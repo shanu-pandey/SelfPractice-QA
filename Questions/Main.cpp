@@ -828,6 +828,22 @@ string ZigZagPattern(string s, int numRows)
 	return output;
 }
 
+void ReverseString(string& s)
+{
+	string result = "";
+	int end = s.length();
+	end--;
+	int start = 0;
+
+	for (int i = 0; i < s.length()/2; i++)
+	{
+		char temp = s[i];
+		s[i] = s[end];
+		s[end] = temp;
+		end--;
+	}
+}
+
 int Reverse(int x)
 {
 
@@ -1428,6 +1444,85 @@ bool exist(vector<vector<char>>& board, string word) {
 	return false;
 }
 
+vector<vector<int>> ThreeSum(vector<int>& nums)
+{
+	vector<vector<int>> o_result;
+	int size = nums.size();
+	sort(nums.begin(), nums.end());
+	if (size < 3)
+		return o_result;
+	else if (size == 3)
+	{
+		if (nums[0] + nums[1] + nums[2] == 0)
+		{
+			vector<int>a = { nums[0], nums[1], nums[2] };
+			o_result.push_back(a);
+		}
+		return o_result;
+	}
+
+	for (int i = size - 1; i > 1; i--)
+	{
+		int third = nums[i];
+		int l = 0; 
+		int r = i - 1;
+
+		while (l < r)
+		{
+			if (nums[l] + nums[r] == -third)
+			{
+				vector<int> a = { nums[l], nums[r], third };
+				o_result.push_back(a);
+			}
+
+			if (nums[l] + nums[r] < -third)
+				l++;
+			else
+				r--;
+		}
+	}
+	
+	o_result.erase(unique(o_result.begin(), o_result.end()), o_result.end());
+	o_result.erase(unique(o_result.begin(), o_result.end()), o_result.begin());
+	return o_result;
+}
+
+string Multiply(string num1, string num2)
+{
+	string result = "";
+	int l1 = num1.length();
+	int l2 = num2.length();
+	l1--;
+	l2--;
+
+	while (l1 >= 0 && l2 >= 0)
+	{
+		char a1 = num1[l1];
+		char a2 = num2[l2];
+		int n1 = a1 - '0';
+		int n2 = a2 - '0';
+		int p = n1 * n2;
+		int r = p / 10;
+		int l = p % 10;
+
+		char c = l + '0';
+		result = c + result;
+		l1--;
+		l2--;
+	}
+
+	if (l1 >= 0)
+	{
+
+	}
+	else if (l2 >= 0)
+	{
+
+	}
+
+	return result;
+}
+
 int main()
 	{
 #pragma region
@@ -1939,7 +2034,9 @@ int main()
 		
 		//bool res = exist(board2, word2);
 
-		string s = countAndSay(6);
+		vector<int> a = { -4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6 };
+		string s = "ABCDEWXYZ";
+		ReverseString(s);
 		return 0;
 	}
 
