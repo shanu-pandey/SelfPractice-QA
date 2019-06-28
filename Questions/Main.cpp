@@ -1549,6 +1549,33 @@ vector<int> TopKFrequent(vector<int>& nums, int k)
 	return res;
 }
 
+void RecHelper(vector<vector<int>>& res, vector<int>& set, int i_index)
+{
+	if (i_index == set.size())
+		res.push_back(set);
+
+	for (int i = i_index; i < set.size(); i++)
+	{
+		swap(set[i], set[i_index]);
+		RecHelper(res, set, i_index + 1);
+		swap(set[i], set[i_index]);
+	}
+}
+
+vector<vector<int>> Permute(vector<int>& nums)
+{
+	int size = nums.size();
+	vector<vector<int>> res;
+
+	if (size < 2)
+		res.push_back(nums);
+	else
+		RecHelper(res, nums, 0);
+
+	return res;
+
+}
+
 int main()
 	{
 #pragma region
@@ -1998,6 +2025,22 @@ int main()
 	Ex:
 	The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, 
 	the max area of water (blue section) the container can contain is 49.
+*/
+
+#pragma endregion
+
+#pragma region Question16:Get All Possible Permutations
+/*
+	Given a collection of distinct integers, return all possible permutations.
+Example:
+Input: [1,2,3]
+Output:
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
 */
 
 #pragma endregion
