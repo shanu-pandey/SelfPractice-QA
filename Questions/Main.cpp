@@ -73,7 +73,20 @@ bool CheckPermutataion(string i_str1, string i_str2)
 
 bool PalindromePermutataion(string i_str)
 {
-	int l1 = i_str.length();
+	int length = i_str.length();
+	if (length < 2)
+		return true;
+
+	int bitSet = 0;
+	for (int i = 0; i < length; i++)
+	{
+		int bitVal = i_str[i] - 'a';
+		bitSet ^= (1 << bitVal);
+	}
+
+	if (bitSet != 0)
+		return false;
+
 	return true;
 }
 
@@ -97,7 +110,7 @@ int main()
 #pragma region String: Palindrom Permutation
 	//Given a string, write a function to check if it is a permutation of a palindrome.
 
-	string input = "ASDFGA";
+	string input = "ASDFGSDGFAA";
 	bool palindromePermutation = PalindromePermutataion(input);
 #pragma endregion
 
