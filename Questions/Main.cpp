@@ -45,7 +45,6 @@ bool HasUnique_NoDS(string i_str)
 	return true;
 }
 
-
 bool CheckPermutataion(string i_str1, string i_str2)
 {
 	int l1 = i_str1.length();
@@ -90,6 +89,50 @@ bool PalindromePermutataion(string i_str)
 	return true;
 }
 
+bool OneAway(string i_str1, string i_str2)
+{
+	int l1 = i_str1.length();
+	int l2 = i_str2.length();
+
+	if (l1 - l2 < -1 || l1 - l2>1)
+		return false;
+
+	int edits = 0;
+	int i = 0;
+	int j = 0;
+
+	while (i < l1 && j < l2)
+	{
+		if (i_str1[i] != i_str2[j])
+		{
+			if (edits == 1)
+				return false;
+
+			if (l1 > l2)
+				i++;
+			else if (l1 < l2)
+				j++;
+			else
+			{
+				i++;
+				j++;
+			}
+			edits++;
+		}
+		else
+		{
+			i++;
+			j++;
+		}
+	}
+
+	if (i < l1 || j < l2)
+		edits++;
+
+	return (edits == 1);
+	
+}
+
 int main()
 	{
 #pragma region String: IsUnique
@@ -109,9 +152,15 @@ int main()
 
 #pragma region String: Palindrom Permutation
 	//Given a string, write a function to check if it is a permutation of a palindrome.
+	//string input = "ASDFGSDGFAA";
+	//bool palindromePermutation = PalindromePermutataion(input);
+#pragma endregion
 
-	string input = "ASDFGSDGFAA";
-	bool palindromePermutation = PalindromePermutataion(input);
+#pragma region String: Palindrom Permutation
+	//Given two strings, write a function to check if they are one edit(or zero edits) away
+	string input1 = "strange";
+	string input2 = "strage";
+	bool oneAway = OneAway(input1, input2);
 #pragma endregion
 
 		return 0;
