@@ -133,6 +133,21 @@ bool OneAway(string i_str1, string i_str2)
 	
 }
 
+void RotateMatrix(int** i_matrix, int i_size)
+{
+	for (int i = 0; i < i_size/2; i++)
+	{
+		for (int j = i; j < i_size-1-i; j++)
+		{
+			int temp = i_matrix[i][j];
+			i_matrix[i][j] = i_matrix[j][i_size - 1 - i];
+			i_matrix[j][i_size - 1 - i] = i_matrix[i_size - 1 - i][i_size-1-j];
+			i_matrix[i_size - 1 - i][i_size - 1 - j] = i_matrix[i_size - 1 - j][i];
+			i_matrix[i_size - 1 - j][i] = temp;
+		}
+	}
+}
+
 int main()
 	{
 #pragma region String: IsUnique
@@ -162,6 +177,29 @@ int main()
 	string input2 = "strage";
 	bool oneAway = OneAway(input1, input2);
 #pragma endregion
+
+#pragma region Rotate Matrix
+	/*Given an image represented by an NxN matrix, where each pixel in the image is 4
+	bytes, write a method to rotate the image by 90 degrees.Can you do this in place ?*/
+	
+
+	int **matrix;
+	matrix = new int*[5];
+	for (int i = 0; i < 5; i++)
+	{
+		matrix[i] = new int[5];
+	}
+
+	matrix[0][0] = 1;	matrix[0][1] = 2;	matrix[0][2] = 3;	matrix[0][3] = 4;	matrix[0][4] = 5;
+	matrix[1][0] = 11;	matrix[1][1] = 12;	matrix[1][2] = 13;	matrix[1][3] = 14;	matrix[1][4] = 15;
+	matrix[2][0] = 21;	matrix[2][1] = 22;	matrix[2][2] = 23;	matrix[2][3] = 24;	matrix[2][4] = 25;
+	matrix[3][0] = 31;	matrix[3][1] = 32;	matrix[3][2] = 33;	matrix[3][3] = 34;	matrix[3][4] = 35;
+	matrix[4][0] = 41;	matrix[4][1] = 42;	matrix[4][2] = 43;	matrix[4][3] = 44;	matrix[4][4] = 45;
+
+	RotateMatrix(matrix, 5);
+
+#pragma endregion
+
 
 		return 0;
 	}
