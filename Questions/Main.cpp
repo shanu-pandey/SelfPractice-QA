@@ -45,6 +45,12 @@ bool HasUnique_NoDS(string i_str)
 	return true;
 }
 
+
+bool CheckPermutataion(string i_str1, string i_str2)
+{
+	return true;
+}
+
 int main()
 	{
 #pragma region String: IsUnique
@@ -55,12 +61,12 @@ int main()
 	res = HasUnique_NoDS(input);
 #pragma endregion
 
-#pragma region String: IsUnique
-	/*Implement an algorithm to determine if a string has all unique characters.
-	What if you cannot use additional data structures?*/
-	string input = "qawsedrftgy";
-	bool res = HasUnique_ArrayDS(input);
-	res = HasUnique_NoDS(input);
+#pragma region String: Check Permutation
+	//Given two strings, write a method to decide if one is a permutation of the other.
+	
+	string input1 = "qawsedrftgy";
+	string input2 = "qawsedrftgy";
+	bool permutation = CheckPermutataion(input1, input2);
 #pragma endregion
 
 
