@@ -10,6 +10,19 @@
 
 using namespace std;
 
+struct Node
+{
+	int value;
+	Node* next;
+	Node()
+	{
+		value = 0;
+		next = nullptr;
+	}
+	Node(int val) : value(val), next(nullptr){}
+};
+
+
 bool HasUnique_ArrayDS(string i_str)
 {
 	bool temp[26] = { false };
@@ -148,6 +161,31 @@ void RotateMatrix(int** i_matrix, int i_size)
 	}
 }
 
+Node KthToLast(Node* i_head, int k)
+{
+	int size = 0;
+	Node result;
+	std::list<Node*> list;
+	while (i_head != NULL)
+	{
+		list.push_front(i_head);
+		i_head = i_head->next;
+		size++;
+	}
+	int index = 0;
+	for (auto& it : list)
+	{
+		if (index == k-1)
+		{
+			result = *it;
+			break;
+		}
+		else
+			index++;
+	}
+	return result;
+}
+
 int main()
 	{
 #pragma region String: IsUnique
@@ -180,8 +218,7 @@ int main()
 
 #pragma region Rotate Matrix
 	/*Given an image represented by an NxN matrix, where each pixel in the image is 4
-	bytes, write a method to rotate the image by 90 degrees.Can you do this in place ?*/
-	
+	bytes, write a method to rotate the image by 90 degrees.Can you do this in place ?
 
 	int **matrix;
 	matrix = new int*[5];
@@ -189,17 +226,31 @@ int main()
 	{
 		matrix[i] = new int[5];
 	}
-
 	matrix[0][0] = 1;	matrix[0][1] = 2;	matrix[0][2] = 3;	matrix[0][3] = 4;	matrix[0][4] = 5;
 	matrix[1][0] = 11;	matrix[1][1] = 12;	matrix[1][2] = 13;	matrix[1][3] = 14;	matrix[1][4] = 15;
 	matrix[2][0] = 21;	matrix[2][1] = 22;	matrix[2][2] = 23;	matrix[2][3] = 24;	matrix[2][4] = 25;
 	matrix[3][0] = 31;	matrix[3][1] = 32;	matrix[3][2] = 33;	matrix[3][3] = 34;	matrix[3][4] = 35;
 	matrix[4][0] = 41;	matrix[4][1] = 42;	matrix[4][2] = 43;	matrix[4][3] = 44;	matrix[4][4] = 45;
 
-	RotateMatrix(matrix, 5);
+	RotateMatrix(matrix, 5); */
 
 #pragma endregion
 
+#pragma region Linked List: Kth to last
+	/*Implement an algorithm to find the kth to last element of a singly linked list.
+	
+	Node* start = new Node(10);
+	start->next = new Node(11);
+	start->next->next = new Node(12);
+	start->next->next->next = new Node(13);
+	start->next->next->next->next = new Node(14);
+	start->next->next->next->next->next = new Node(15);
+	start->next->next->next->next->next->next =	new Node(1);
+
+
+	Node result = KthToLast(start, 2);
+	*/
+#pragma endregion
 
 		return 0;
 	}
