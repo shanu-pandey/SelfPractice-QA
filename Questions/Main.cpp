@@ -71,6 +71,12 @@ bool CheckPermutataion(string i_str1, string i_str2)
 	return true;
 }
 
+bool PalindromePermutataion(string i_str)
+{
+	int l1 = i_str.length();
+	return true;
+}
+
 int main()
 	{
 #pragma region String: IsUnique
@@ -82,13 +88,18 @@ int main()
 #pragma endregion
 
 #pragma region String: Check Permutation
-	//Given two strings, write a method to decide if one is a permutation of the other.
-	
-	string input1 = "ASDFGA";
-	string input2 = "AGSFSDA";
-	bool permutation = CheckPermutataion(input1, input2);
+	//Given two strings, write a method to decide if one is a permutation of the other.	
+	//string input1 = "ASDFGA";
+	//string input2 = "AGSFSDA";
+	//bool permutation = CheckPermutataion(input1, input2);
 #pragma endregion
 
+#pragma region String: Palindrom Permutation
+	//Given a string, write a function to check if it is a permutation of a palindrome.
+
+	string input = "ASDFGA";
+	bool palindromePermutation = PalindromePermutataion(input);
+#pragma endregion
 
 		return 0;
 	}
