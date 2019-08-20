@@ -8,6 +8,154 @@
 #include <unordered_map>
 #include <queue>
 
+//#include <iostream>
+//#include <unordered_map>
+//#include <string>
+//
+//class Archive
+//{
+//	class Record
+//	{
+//	public:
+//		Record(std::string title, std::string content)
+//		{
+//			this->title = title;
+//			this->content = content;
+//		}
+//
+//		std::string title;
+//		std::string content;
+//	};
+//
+//public:
+//	void add(int id, std::string title, std::string content)
+//	{
+//		//records.insert(std::make_pair(id, new Record(title, content)));
+//			//records[id] = new Record(title, content);
+//		std::unordered_map<int, Record*>::iterator it = records.find(id);
+//
+//		if (it != records.end())
+//		{
+//			records[id]->content = content;
+//			records[id]->title = title;
+//		}
+//		else
+//		{
+//			records.insert(std::make_pair(id, new Record(title, content)));
+//		}
+//	}
+//
+//	void remove(int id, std::string& title, std::string& content)
+//	{
+//		for (auto& it = records.begin(); it != records.end();)
+//		{
+//			if (it->first == id)
+//			{
+//				title = it->second->title;
+//				content = it->second->content;
+//				delete(it->second);
+//				records.erase(it++);
+//			}
+//
+//			else
+//				++it;
+//		}
+//	}
+//
+//	void clear()
+//	{
+//		for (auto& itr = records.begin(); itr != records.end();)
+//		{
+//			delete itr->second;
+//			itr = records.erase(itr);
+//		}
+//		records.clear();
+//	}
+//
+//private:
+//	std::unordered_map<int, Record*> records;
+//};
+//
+//#ifndef RunTests
+//int main()
+//{
+//	Archive archive;
+//	archive.add(123456, "Hamlet", "Hamlet, Prince of Denmark.");
+//	archive.add(123457, "Othello", "Othello, the Moore of Venice.");
+//
+//	std::string title, content;
+//	archive.remove(123456, title, content);
+//
+//	std::cout << title << '\n';
+//	std::cout << content;
+//
+//	archive.clear();
+//}
+//#endif
+
+
+#include <vector>
+#include <stdexcept>
+#include <iostream>
+
+class MovingTotal
+{
+public:
+
+	void append(const std::vector<int>& list)
+	{
+		for (auto& it : list)
+		{
+			values.emplace_back(it);
+			size++;
+		}
+	}
+
+	bool contains(int total)
+	{
+		if (size < 3)
+			return false;
+		int sum = values[0] + values[1];
+		for (int i = 2; i < size; i++)
+		{
+			if (sum + values[i] == total)
+				return true;
+			else
+			{
+				sum -= values[i - 2];
+				sum += values[i];
+			}
+		}
+		return false;
+	}
+	int size;
+	std::vector<int> values;
+};
+
+#ifndef RunTests
+int main()
+{
+	MovingTotal movingTotal;
+
+	std::vector<int> first;
+	first.push_back(1);
+	first.push_back(2);
+	first.push_back(3);
+
+	movingTotal.append(first);
+
+	std::cout << movingTotal.contains(6) << std::endl;
+	std::cout << movingTotal.contains(9) << std::endl;
+
+	std::vector<int> second;
+	second.push_back(4);
+	movingTotal.append(second);
+
+	std::cout << movingTotal.contains(9) << std::endl;
+}
+#endif
+
+
 using namespace std;
 
 struct Node
@@ -21,7 +169,6 @@ struct Node
 	}
 	Node(int val) : value(val), next(nullptr){}
 };
-
 
 bool HasUnique_ArrayDS(string i_str)
 {
@@ -39,6 +186,7 @@ bool HasUnique_ArrayDS(string i_str)
 	}
 	return true;
 }
+
 bool HasUnique_NoDS(string i_str)
 {
 	int length = i_str.length();
@@ -186,72 +334,72 @@ Node KthToLast(Node* i_head, int k)
 	return result;
 }
 
-int main()
-	{
-#pragma region String: IsUnique
-	/*Implement an algorithm to determine if a string has all unique characters. 
-	What if you cannot use additional data structures?
-	string input = "qawsedrftgy";
-	bool res = HasUnique_ArrayDS(input);
-	res = HasUnique_NoDS(input);*/
-#pragma endregion
-
-#pragma region String: Check Permutation
-	//Given two strings, write a method to decide if one is a permutation of the other.	
-	//string input1 = "ASDFGA";
-	//string input2 = "AGSFSDA";
-	//bool permutation = CheckPermutataion(input1, input2);
-#pragma endregion
-
-#pragma region String: Palindrom Permutation
-	//Given a string, write a function to check if it is a permutation of a palindrome.
-	//string input = "ASDFGSDGFAA";
-	//bool palindromePermutation = PalindromePermutataion(input);
-#pragma endregion
-
-#pragma region String: Palindrom Permutation
-	//Given two strings, write a function to check if they are one edit(or zero edits) away
-	string input1 = "strange";
-	string input2 = "strage";
-	bool oneAway = OneAway(input1, input2);
-#pragma endregion
-
-#pragma region Rotate Matrix
-	/*Given an image represented by an NxN matrix, where each pixel in the image is 4
-	bytes, write a method to rotate the image by 90 degrees.Can you do this in place ?
-
-	int **matrix;
-	matrix = new int*[5];
-	for (int i = 0; i < 5; i++)
-	{
-		matrix[i] = new int[5];
-	}
-	matrix[0][0] = 1;	matrix[0][1] = 2;	matrix[0][2] = 3;	matrix[0][3] = 4;	matrix[0][4] = 5;
-	matrix[1][0] = 11;	matrix[1][1] = 12;	matrix[1][2] = 13;	matrix[1][3] = 14;	matrix[1][4] = 15;
-	matrix[2][0] = 21;	matrix[2][1] = 22;	matrix[2][2] = 23;	matrix[2][3] = 24;	matrix[2][4] = 25;
-	matrix[3][0] = 31;	matrix[3][1] = 32;	matrix[3][2] = 33;	matrix[3][3] = 34;	matrix[3][4] = 35;
-	matrix[4][0] = 41;	matrix[4][1] = 42;	matrix[4][2] = 43;	matrix[4][3] = 44;	matrix[4][4] = 45;
-
-	RotateMatrix(matrix, 5); */
-
-#pragma endregion
-
-#pragma region Linked List: Kth to last
-	/*Implement an algorithm to find the kth to last element of a singly linked list.
-	
-	Node* start = new Node(10);
-	start->next = new Node(11);
-	start->next->next = new Node(12);
-	start->next->next->next = new Node(13);
-	start->next->next->next->next = new Node(14);
-	start->next->next->next->next->next = new Node(15);
-	start->next->next->next->next->next->next =	new Node(1);
-
-
-	Node result = KthToLast(start, 2);
-	*/
-#pragma endregion
-
-		return 0;
-	}
+//int main()
+//	{
+//#pragma region String: IsUnique
+//	/*Implement an algorithm to determine if a string has all unique characters. 
+//	What if you cannot use additional data structures?
+//	string input = "qawsedrftgy";
+//	bool res = HasUnique_ArrayDS(input);
+//	res = HasUnique_NoDS(input);*/
+//#pragma endregion
+//
+//#pragma region String: Check Permutation
+//	//Given two strings, write a method to decide if one is a permutation of the other.	
+//	//string input1 = "ASDFGA";
+//	//string input2 = "AGSFSDA";
+//	//bool permutation = CheckPermutataion(input1, input2);
+//#pragma endregion
+//
+//#pragma region String: Palindrom Permutation
+//	//Given a string, write a function to check if it is a permutation of a palindrome.
+//	//string input = "ASDFGSDGFAA";
+//	//bool palindromePermutation = PalindromePermutataion(input);
+//#pragma endregion
+//
+//#pragma region String: Palindrom Permutation
+//	//Given two strings, write a function to check if they are one edit(or zero edits) away
+//	string input1 = "strange";
+//	string input2 = "strage";
+//	bool oneAway = OneAway(input1, input2);
+//#pragma endregion
+//
+//#pragma region Rotate Matrix
+//	/*Given an image represented by an NxN matrix, where each pixel in the image is 4
+//	bytes, write a method to rotate the image by 90 degrees.Can you do this in place ?
+//
+//	int **matrix;
+//	matrix = new int*[5];
+//	for (int i = 0; i < 5; i++)
+//	{
+//		matrix[i] = new int[5];
+//	}
+//	matrix[0][0] = 1;	matrix[0][1] = 2;	matrix[0][2] = 3;	matrix[0][3] = 4;	matrix[0][4] = 5;
+//	matrix[1][0] = 11;	matrix[1][1] = 12;	matrix[1][2] = 13;	matrix[1][3] = 14;	matrix[1][4] = 15;
+//	matrix[2][0] = 21;	matrix[2][1] = 22;	matrix[2][2] = 23;	matrix[2][3] = 24;	matrix[2][4] = 25;
+//	matrix[3][0] = 31;	matrix[3][1] = 32;	matrix[3][2] = 33;	matrix[3][3] = 34;	matrix[3][4] = 35;
+//	matrix[4][0] = 41;	matrix[4][1] = 42;	matrix[4][2] = 43;	matrix[4][3] = 44;	matrix[4][4] = 45;
+//
+//	RotateMatrix(matrix, 5); */
+//
+//#pragma endregion
+//
+//#pragma region Linked List: Kth to last
+//	/*Implement an algorithm to find the kth to last element of a singly linked list.
+//	
+//	Node* start = new Node(10);
+//	start->next = new Node(11);
+//	start->next->next = new Node(12);
+//	start->next->next->next = new Node(13);
+//	start->next->next->next->next = new Node(14);
+//	start->next->next->next->next->next = new Node(15);
+//	start->next->next->next->next->next->next =	new Node(1);
+//
+//
+//	Node result = KthToLast(start, 2);
+//	*/
+//#pragma endregion
+//
+//		return 0;
+//	}
 
