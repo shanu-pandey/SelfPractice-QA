@@ -70,6 +70,67 @@ std::vector<std::vector<int>> PairEqualSum(int i_array[], int i_size)
 }
 
 
+int Factorial(int n)
+{
+	if (n > 1)
+		return n * factorial(n - 1);
+	else
+		return 1;
+}
+
+vector<vector<int>> Combine(int n, int k) 
+{
+	vector<vector<int>> result;
+	if (k > n)
+		return result;
+
+	int total = Factorial(n) / (Factorial(k)*Factorial(n - k));
+	result.reserve(total);
+	for (int i = 1; i <= total; i++)
+	{
+
+	}
+
+	for (int i = 1; i <= k; i++)
+	{
+		vector<int> temp;
+		temp.push_back(i);
+		for (int j = 0; j < n; j++)
+		{
+			temp.push_back(i + j);
+		}
+	}
+}
+
+Node* reverseBetween(Node* head, int m, int n)
+{
+	Node* prev = nullptr;
+	Node* curr = head;
+	Node* next = nullptr;
+	int i = 1;
+	while (curr != nullptr)
+	{
+		if (i > m && i <= n)
+		{
+			next = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = next;
+			i++;
+		}
+		else if (i > n)
+			break;
+		else
+		{
+			prev = curr;
+			curr = curr->next;
+			i++;
+		}
+	}
+	return head;
+}
+
+
 int main()
 	{
 #pragma region How do you find the missing number in a given integer array of 1 to 100 ?
@@ -87,7 +148,21 @@ int main()
 	std::vector<int> res = DuplicateNumbers(a,18);
 #pragma endregion
 
+#pragma region Reverse a linked list from position m to n in one - pass.
+	Node* n1 = new Node(1);
+	Node* n2 = new Node(2);
+	Node* n3 = new Node(3);
+	Node* n4 = new Node(4);
+	Node* n5 = new Node(5);
+	Node* n6 = new Node(6);
 
+	n1->next = n2;
+	n2->next = n3;
+	n3->next = n4;
+	n4->next = n5;
+	
+	Node* rev = reverseBetween(n1, 2, 4);
+#pragma endregion
 		return 0;
 	}
 
