@@ -102,7 +102,7 @@ vector<vector<int>> Combine(int n, int k)
 	}
 }
 
-Node* reverseBetween(Node* head, int m, int n)
+Node* ReverseBetween(Node* head, int m, int n)
 {
 	Node* prev = nullptr;
 	Node* curr = head;
