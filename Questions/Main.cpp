@@ -1576,6 +1576,25 @@ vector<vector<int>> Permute(vector<int>& nums)
 
 }
 
+class A {
+public:
+	virtual void show()
+	{
+		cout << "Hello from A \n";
+	}
+};
+
+class B : public virtual A {
+
+};
+
+class C : public virtual A {
+
+
+class D : public B, public C {
+};
+
+
 int main()
 	{
 #pragma region
@@ -2045,7 +2064,7 @@ Output:
 
 #pragma endregion
 		
-
+#pragma region Question17:Top K Frequent
 		std::vector<LinkedList*> m_list;
 		LinkedList *first_1 = new LinkedList(1);
 		LinkedList *first_2 = new LinkedList(4);
@@ -2105,7 +2124,23 @@ Output:
 
 		vector<int> a = { 1,2,3,4,5,6,1,1,2,2,3,4,5,6,3,3,3,2,2,3 };
 		string s = "ABCDEWXYZ";
-		vector<int> res = TopKFrequent(a, 2);
+		//vector<int> res = TopKFrequent(a, 2);
+#pragma endregion
+
+		char *aaqz = "India";
+		char baqz[] = "India";
+		aaqz = aaqz + 1;//line 5
+		strcpy_s(baqz, baqz +1);//line 6
+
+		
+
+		D object;
+		object.show();
+
+
 		return 0;
+
+
+
 	}
 
