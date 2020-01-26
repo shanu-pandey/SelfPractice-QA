@@ -7,7 +7,7 @@
 #include <map>
 #include <unordered_map>
 #include <queue>
-
+#include <array>
 using namespace std;
 
 struct Interval {
@@ -1588,12 +1588,203 @@ class B : public virtual A {
 
 };
 
-class C : public virtual A {
+class C : public virtual A { 
+};
 
 
 class D : public B, public C {
 };
 
+
+class Vector3D
+{
+public: 
+	Vector3D();
+	Vector3D(const Vector3D& i_vec);
+	Vector3D(float i_x, float i_y, float i_z);
+
+	Vector3D operator-(const Vector3D &vec)
+	{
+		return Vector3D(m_x - vec.m_x, m_y - vec.m_y, m_z - vec.m_z);
+	}
+
+	Vector3D CrossProduct(const Vector3D & i_vec)
+	{
+		float x = m_y * i_vec.m_z - m_z * i_vec.m_y;
+		float y = m_z * i_vec.m_x - m_x * i_vec.m_z;
+		float z = m_x * i_vec.m_y - m_y * i_vec.m_x;
+
+		return Vector3D(x, y, z);
+	}
+
+	float DotProduct(const Vector3D & i_vec)
+	{
+		return m_x * i_vec.m_x + m_y * i_vec.m_y + m_z * i_vec.m_z;
+	}
+
+	static float DotProduct(const Vector3D & i_vec1, const Vector3D & i_vec2)
+	{
+		return i_vec1.m_x * i_vec2.m_x + i_vec1.m_y * i_vec2.m_y + i_vec1.m_z * i_vec2.m_z;
+	}
+
+private:
+	float m_x;
+	float m_y;
+	float m_z;
+};
+
+//class Player
+//{
+//public:
+//	Vector3D Location; //Assume the Z component is always zero.
+//	float Rotation;
+//	float CollisionRadius;
+//
+//	Vector3D AimVector()
+//	{
+//		float x = std::cos(Rotation);
+//		float y = std::sin(Rotation);
+//
+//		return Vector3D(x, y, 0);
+//	}
+//
+//	bool IsBehindMe(Player other)
+//	{
+//		Vector3D toOther = other - Location;
+//		return (Vector3D.DotProduct(toOther, AimVector()) < 0);	//Aim Vector is from last question
+//	}
+//
+//
+//	bool IsTargating(Player other)
+//	{
+//		//Setting random values for sight angle and distance
+//		const float maxDistance = 10.f;
+//		const float visionConeAngle = 10.f;
+//
+//		Vector3D direction = AimVector();
+//		Vector3D playerToEnemy = other.Location - Location;
+//		float len = std::sqrtf(Vector3D.DotProduct(playerToEnemy, playerToEnemy));    //Dot with itself is the square of magnitude
+//		Vector3D unitV = playerToEnemy / len;
+//		if (Vector3D.DotProduct(unitV, direction) > std::cos(visionConeAngle))
+//			return false;
+//		if (len > maxDistance)
+//			return false;
+//
+//		return true;
+//	}
+//};
+
+
+
+
+int GetMaxValue(const vector<int>& HighScores)
+{
+	int size = HighScores.size();
+	if (size == 0)
+		return 0;
+	else if (size == 1)
+		return HighScores[0];
+
+	int includingPrev = HighScores[0];
+	int excludingPrev = 0;
+	int excl_new;
+
+	for (int i = 1; i < size; i++)
+	{
+		
+		if ((includingPrev > excludingPrev))
+			excl_new = includingPrev;
+		else
+			excl_new = excludingPrev;
+
+		// current max including i
+		includingPrev = excludingPrev + HighScores[i];
+		excludingPrev = excl_new;
+	}
+
+	return ((includingPrev > excludingPrev) ? includingPrev : excludingPrev);
+}
+
+int FindMaxSum(int arr[], int n)
+{
+	int includingPrev = arr[0];
+	int excludingPrev = 0;
+	int excl_new;
+
+	for (int i = 1; i < n; i++)
+	{
+		/* current max excluding i */
+		if ((includingPrev > excludingPrev))
+			excl_new = includingPrev;
+		else
+			excl_new = excludingPrev;
+
+		/* current max including i */
+		includingPrev = excludingPrev + arr[i];
+		excludingPrev = excl_new;
+	}
+
+	/* return max of incl and excl */
+	return ((includingPrev > excludingPrev) ? includingPrev : excludingPrev);
+}
+
+
+//Recursive helper function
+int GetPeak(int* i_array, int size)
+{
+	//I'm passing size as the argument since function definition is not clearly define in the question
+	//Alternatively, we can use std::vector<> or std::array<> and use their size() function
+	
+	if (size == 0)
+		return -1;
+	else if (size == 1)
+		return *i_array;
+	
+	int middle = size / 2;
+	
+	if (*(i_array + middle) > *(i_array + middle - 1) &&
+		*(i_array + middle) > *(i_array + middle + 1))
+	{
+		return *(i_array + middle);
+	}
+	else if (*(i_array + middle) <= *(i_array + middle - 1) &&
+		*(i_array + middle) <= *(i_array + middle + 1))
+	{
+		return -1;
+	}
+	else if (*(i_array + middle) < *(i_array + middle - 1) &&
+		*(i_array + middle) >= *(i_array + middle + 1))
+	{
+		GetPeak(i_array, middle);
+	}
+	else if (*(i_array + middle) >= *(i_array + middle - 1) &&
+		*(i_array + middle) < *(i_array + middle + 1))
+	{
+		GetPeak((i_array + middle), middle);
+	}
+}
+
+//Function Used to find the peak element index
+int IndexOfPeak(int* i_array, int size)
+{
+	int a = GetPeak(i_array, size);
+
+	for (int i = 0; i < size; i++)
+	{
+		if (*(i_array + i) == a)
+		{
+			if (*(i_array + i) == *(i_array + i + 1) ||
+				*(i_array + i) == *(i_array + i - 1))
+			{
+				return -1;
+			}
+			else
+				return i;
+		}
+			
+	}
+	return -1;
+}
 
 int main()
 	{
@@ -2137,10 +2328,21 @@ Output:
 		D object;
 		object.show();
 
+		int* x = new int[9];
+		x[0] = 1;
+		x[1] = 10;
+		x[2] = 50;
+		x[3] = 50;
+		x[4] = 10;
+		x[5] = 1;
+		x[6] = -2;
+		x[7] = -5;
+		x[8] = -7;
+		int re12s = IndexOfPeak(x, 6);
+
+		std::vector<int> test = { 5, 5, 10, 100, 10, 5 };
+		int rewssd = GetMaxValue(test);
 
 		return 0;
-
-
-
 	}
 
