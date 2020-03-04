@@ -1786,6 +1786,155 @@ int IndexOfPeak(int* i_array, int size)
 	return -1;
 }
 
+
+
+
+struct Node_R
+{
+	int key;
+	vector<Node_R *> child;
+};
+
+// Utility function to create a new tree node 
+Node_R *newNode(int key)
+{
+	Node_R *temp = new Node_R;
+	temp->key = key;
+	return temp;
+}
+
+int depthOfTree(struct Node_R *ptr, bool i_bHasTicket)
+{
+	// Base case 
+	if (!ptr)
+		return 0;
+
+	// Check for all children and find 
+	// the maximum depth 
+	int maxdepth = 0;
+	for (vector<Node_R*>::iterator it = ptr->child.begin(); it != ptr->child.end(); it++)
+	{		
+		bool bTicket = i_bHasTicket;
+		if ((*it)->key % 2 != 0)
+		{
+			if (!i_bHasTicket)
+				return maxdepth + 1;
+
+			bTicket = false;
+		}		
+
+		maxdepth = max(maxdepth, depthOfTree((*it), bTicket));
+	}
+	return maxdepth + 1;
+}
+
+vector<int> GetAllConnected(vector<int> &T, int i_size, int i_source)
+{
+	vector<int> result;
+	for (int i = 1; i < i_size; i++)
+	{
+		if (T[i] == i_source)
+			result.emplace_back(i);
+	}
+	return result;
+}
+
+
+void CreateTree(Node_R* root, vector<int> &A)
+{
+	vector<int> connected = GetAllConnected(A, A.size(), root->key);
+	for (int i = 0; i < connected.size(); i++)
+	{
+		Node_R* n = newNode(connected[i]);
+		root->child.push_back(n);
+		CreateTree(n, A);
+	}
+}
+
+int Solution_Path_R(vector<int> &T)
+{
+	// write your code in C++14 (g++ 6.2.0)
+	int size = T.size();
+	int count = 0;
+
+	if (size == 0)
+		return 0;
+	else if (size < 3)
+		return 1;
+
+	Node_R* rooted = newNode(0);
+	CreateTree(rooted, T);
+	int d = depthOfTree(rooted, true);
+
+	return d;
+}
+
+int modulus(int num, int n)
+{
+	if (num < 0) 
+	{
+		do 
+		{
+			num += n;
+		} while (num < 0);
+	}
+	return num % n;
+}
+
+int Solution_freq_R(vector<int> &A, int M)
+{
+	// write your code in C++14 (g++ 6.2.0)
+	if (A.size() == 0)
+		return 0;
+
+	//add a frequency array - frequency of all reminders of dividing by M
+	int frequency[3] = { 0 };
+
+	for (auto it : A)
+	{
+		//calculate the frequency of all reminders
+		int i = it % M;
+		frequency[modulus(it, 3)]++;		
+		//++frequency[i];
+	}
+
+	std::sort(frequency, frequency+3);
+	return frequency[2];
+}
+
+
+int IntegerMod(int i_num, int n)
+{
+	if (i_num < 0)
+	{
+		do
+		{
+			i_num += n;
+		} while (i_num < 0);
+	}
+	return i_num % n;
+}
+
+int solution(vector<int> &A, int M)
+{
+	// write your code in C++14 (g++ 6.2.0)
+	if (A.size() == 0)
+		return 0;
+
+	//add a frequency array - frequency of all reminders of dividing by M
+	int frequency[3] = { 0 };
+
+	for (auto it : A)
+	{
+		//calculate the frequency of all reminders
+		frequency[IntegerMod(it, M)]++;
+	}
+	//the maximum frequency will
+	std::sort(frequency, frequency + M, std::greater<>());
+	return frequency[0];
+}
+
+
 int main()
 	{
 #pragma region
@@ -2318,31 +2467,46 @@ Output:
 		//vector<int> res = TopKFrequent(a, 2);
 #pragma endregion
 
-		char *aaqz = "India";
-		char baqz[] = "India";
-		aaqz = aaqz + 1;//line 5
-		strcpy_s(baqz, baqz +1);//line 6
+		//char *aaqz = "India";
+		//char baqz[] = "India";
+		//aaqz = aaqz + 1;//line 5
+		//strcpy_s(baqz, baqz +1);//line 6
+
+		//
+
+		//D object;
+		//object.show();
+
+		//int* x = new int[9];
+		//x[0] = 1;
+		//x[1] = 10;
+		//x[2] = 50;
+		//x[3] = 50;
+		//x[4] = 10;
+		//x[5] = 1;
+		//x[6] = -2;
+		//x[7] = -5;
+		//x[8] = -7;
+		//int re12s = IndexOfPeak(x, 6);
+
+		std::vector<int> test = { -3, -2, 1, 0, 8, 7, 1 };
+		int rewssd = solution(test, 3);
+
+		Node_R *root = newNode(0);
+		(root->child).push_back(newNode(1));
+		(root->child[0]->child).push_back(newNode(3));
+		(root->child[0]->child).push_back(newNode(5));
+		(root->child).push_back(newNode(7));
+		(root->child).push_back(newNode(2));
+		(root->child).push_back(newNode(6));
+		(root->child[3]->child).push_back(newNode(4));
+
+		Node_R* rooted = newNode(0);
+		CreateTree(rooted, test);
+		int d = Solution_Path_R(test);// (root, true);
+
 
 		
-
-		D object;
-		object.show();
-
-		int* x = new int[9];
-		x[0] = 1;
-		x[1] = 10;
-		x[2] = 50;
-		x[3] = 50;
-		x[4] = 10;
-		x[5] = 1;
-		x[6] = -2;
-		x[7] = -5;
-		x[8] = -7;
-		int re12s = IndexOfPeak(x, 6);
-
-		std::vector<int> test = { 5, 5, 10, 100, 10, 5 };
-		int rewssd = GetMaxValue(test);
-
 		return 0;
 	}
 
