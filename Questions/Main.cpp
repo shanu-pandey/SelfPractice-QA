@@ -29,6 +29,9 @@ public:
 	}
 };
 
+
+
+
 struct Node
 {
 	int data;
@@ -2013,6 +2016,44 @@ int GetLevel(deque<pair<string, int>>& wordList, string word)
 	return -1;
 }
 
+bool OneRepeated(string i_str)
+{
+	bool charTraverse[26] = { false };
+	bool bOneFound = false;
+	for (int i = 0; i < i_str.length(); i++)
+	{
+		if (charTraverse[i_str[i] - 97])
+		{
+			if (bOneFound)
+				return false;
+			else
+				bOneFound = true;
+
+		}
+		else
+			charTraverse[i_str[i] - 97] = true;
+	}
+
+	return bOneFound;
+}
+vector<string> subStringsLessKDist(string inputString, int num)
+{
+	vector<string> result;
+	// WRITE YOUR CODE HERE
+	int length = inputString.length();
+
+	if (length < num)
+		return result;
+
+	for (int i = 0; i <= length - num; i++)
+	{
+		string subStr = inputString.substr(i, num);
+		if (OneRepeated(subStr))
+			result.push_back(subStr);
+	}
+
+	return result;
+}
 
 int WordLadder(string beginWord, string endWord, vector<string>& wordList)
 {
@@ -2063,9 +2104,89 @@ int WordLadder(string beginWord, string endWord, vector<string>& wordList)
 	return 0;
 }
 
+bool VectorContains_INT(vector<int>& i_Vec, int i_Num)
+{
+	for (auto& it : i_Vec)
+	{
+		if (it == i_Num)
+			return true;
+	}
+	return false;
+}
+int bstDistance(int num, vector<int> values, int node1, int node2)
+{
+	if (!VectorContains_INT(values, node1))
+		return -1;
+	if (!VectorContains_INT(values, node2))
+		return -1;
+
+	int low1 = INT_MIN;
+	int low2 = INT_MIN;
+	int high1 = INT_MAX;
+	int high2 = INT_MAX;
+
+	int distance = 0;
+	bool inside = false;
+
+	for (auto it : values)
+	{
+		if (!inside)
+		{
+			if (it >= node1 && it <= node2)
+			{
+				inside = true;
+				high1 = it;
+				low2 = it;
+			}
+			else
+			{
+				if (it > node2 && it < high2)
+					high2 = it;
+				if (it < node1 && it > low1)
+					low1 = it;
+
+				continue;
+			}
+		}
+
+		if (it > low2 && it < high2)
+		{
+			distance++;
+			if (it < node2)
+				low2 = it;
+			else if (it > node2)
+				high2 = it;
+			else
+			{
+				low2 = it;
+				high2 = it;
+			}
+		}
+
+		if (it > low1 && it < high1)
+		{
+			distance++;
+			if (it < node1)
+				low1 = it;
+			else if (it > node1)
+				high1 = it;
+			else
+			{
+				low1 = it;
+				high1 = it;
+			}
+		}
+	}
+	return distance;
+}
+
+
+
 int main()
 	{
-
+	vector<string> res = subStringsLessKDist("democracy", 5);
+	std::vector<int> t = { 5,6,3,1,2,4 };
+	int dis = bstDistance(6, t, 2, 4);
 	string beginWord = "cet";
 	string endWord = "ism";
 	//vector<string> wordList = { "hot", "dot", "dog", "lot", "log", "cog" };
@@ -2076,8 +2197,9 @@ int main()
 	string endWord = "place";
 	vector<string> wordList = { "peale", "wilts", "place", "fetch", "purer", "pooch", "peace", "poach", "berra", "teach", "rheum", "peach" };
 	*/
-	int count = WordLadder(beginWord, endWord, wordList);
-	count++;
+	
+	//int count = WordLadder(beginWord, endWord, wordList);
+	//count++;
 #pragma region
 	/*Problem 1:
 	You are working on a C program that defines and uses these types.
