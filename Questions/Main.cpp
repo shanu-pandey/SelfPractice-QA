@@ -29,9 +29,6 @@ public:
 	}
 };
 
-
-
-
 struct Node
 {
 	int data;
@@ -2036,6 +2033,7 @@ bool OneRepeated(string i_str)
 
 	return bOneFound;
 }
+
 vector<string> subStringsLessKDist(string inputString, int num)
 {
 	vector<string> result;
@@ -2113,6 +2111,7 @@ bool VectorContains_INT(vector<int>& i_Vec, int i_Num)
 	}
 	return false;
 }
+
 int bstDistance(int num, vector<int> values, int node1, int node2)
 {
 	if (!VectorContains_INT(values, node1))
@@ -2179,8 +2178,6 @@ int bstDistance(int num, vector<int> values, int node1, int node2)
 	}
 	return distance;
 }
-
-
 
 int main()
 	{
