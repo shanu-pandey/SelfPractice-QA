@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include <queue>
 #include <array>
+#include <math.h>
+
 using namespace std;
 
 struct Interval {
@@ -2213,6 +2215,70 @@ int numIslands(vector<vector<char>>& grid) {
 	return result;
 }
 
+vector<string> LetterCombinationPhoneNumber(string digits)
+{
+	vector<string> result;
+
+	int len = digits.length();
+	if (len == 0)
+		return result;
+
+	result.reserve(pow(3, len));	
+	for (int i = 0; i < digits.length(); i++)
+	{
+		if (digits[i] == '2')
+		{
+			result[0] += 'a';
+			result[1] += 'b';
+			result[2] += 'c';
+		}
+		else if (digits[i] == '3')
+		{
+			result[0] += 'd';
+			result[1] += 'e';
+			result[2] += 'f';
+		}
+		else if (digits[i] == '4')
+		{
+			result[0] += 'g';
+			result[1] += 'h';
+			result[2] += 'i';
+		}
+		else if (digits[i] == '5')
+		{
+			result[0] += 'j';
+			result[1] += 'k';
+			result[2] += 'l';
+		}
+		else if (digits[i] == '6')
+		{
+			result[0] += 'm';
+			result[1] += 'n';
+			result[2] += 'o';
+		}
+		else if (digits[i] == '7')
+		{
+			result[0] += 'p';
+			result[1] += 'q';
+			result[2] += 'r';
+		}
+		else if (digits[i] == '8')
+		{
+			result[0] += 's';
+			result[1] += 't';
+			result[2] += 'u';
+		}
+		else if (digits[i] == '9')
+		{
+			result[0] += 'v';
+			result[1] += 'w';
+			result[2] += 'x';
+		}	
+	}
+	return result;
+
+}
+
 int main()
 	{
 	vector<string> res = subStringsLessKDist("democracy", 5);
@@ -2830,6 +2896,16 @@ Output:
 		*/
 #pragma endregion
 		
+#pragma region Letter Combinations of a Phone Number
+		/*
+		Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+		A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+		Input: "23"
+		Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+
+		*/
+#pragma endregion
 		return 0;
 	}
 
