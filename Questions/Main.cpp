@@ -1,10 +1,11 @@
+#pragma once
+#include "EncodeInPlace.h"
 
-#include <string>
-
-using namespace std;
 
 int main()
 {
-	std::string str = "";
-
+	std::string str = "aaabbcdddd";
+	std::string result = StringManipulation::EncodeInPlace::Encode(str);
+	std::cout << result;
+	return 0;
 }
