@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <queue>
 #include <array>
 #include <math.h>
@@ -2279,8 +2280,38 @@ vector<string> LetterCombinationPhoneNumber(string digits)
 
 }
 
-int main()
+bool wordBreak(string s, vector<string>& wordDict) {
+	std::unordered_set<string> dict(wordDict.begin(), wordDict.end());
+	if (dict.size() == 0) return false;
+
+	vector<bool> dp(s.size() + 1, false);
+	dp[0] = true;
+
+	for (int i = 1; i <= s.size(); i++)
 	{
+		for (int j = i - 1; j >= 0; j--)
+		{
+			if (dp[j])
+			{
+				string word = s.substr(j, i - j);
+				if (dict.find(word) != dict.end())
+				{
+					dp[i] = true;
+					break; //next i
+				}
+			}
+		}
+	}
+
+	return dp[s.size()];
+}
+
+int main()
+{
+
+	string s1 = "applepenapple";
+	vector<string> vc = { "apple", "pen" };
+	bool r = wordBreak(s1, vc);
 	vector<string> res = subStringsLessKDist("democracy", 5);
 	std::vector<int> t = { 5,6,3,1,2,4 };
 	int dis = bstDistance(6, t, 2, 4);
