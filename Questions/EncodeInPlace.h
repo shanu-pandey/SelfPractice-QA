@@ -41,3 +41,4 @@ std::string StringManipulation::EncodeInPlace::Encode(std::string i_str)
 	return result;
 }
 
+ 
