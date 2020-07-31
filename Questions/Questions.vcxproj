@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="EncodeInPlace.h" />
     <ClInclude Include="KLargestBST.h" />
+    <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="PairEqualSum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

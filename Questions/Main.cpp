@@ -2,7 +2,7 @@
 #include "EncodeInPlace.h"
 #include "KLargestBST.h"
 #include "PairEqualSum.h"
-
+#include "LargestPairWithSum.h"
 
 int main()
 {
@@ -22,6 +22,13 @@ int main()
 		int a[] = { 1,1,2,3,5,5,6,7,8,9,10,10,11,11,12,12,12,12 };	
 		int sz = sizeof(a) / sizeof(int);
 		std::vector<std::pair<int, int>> pairs = Array::PairEqualSum::GetAllSumPair(a, sz, 17);
+	}
+
+	//Find pair with largest number whose sume is equal to target-30
+	{
+		int a[] = { 20, 50, 40, 25, 30, 10 };
+		int sz = sizeof(a) / sizeof(int);
+		std::pair<int, int> pair = Array::LargestPairWithSum::GetLargestPair(a, sz, 90);
 	}
 	return 0;
 }
