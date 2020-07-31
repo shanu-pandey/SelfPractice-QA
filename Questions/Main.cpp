@@ -20,7 +20,8 @@ int main()
 	//Find all pairs of an integer array whose sum is equal to a given number
 	{
 		int a[] = { 1,1,2,3,5,5,6,7,8,9,10,10,11,11,12,12,12,12 };	
-		std::vector<std::pair<int, int>> pairs = Array::PairEqualSum::GetAllSumPair(a, 17);
+		int sz = sizeof(a) / sizeof(int);
+		std::vector<std::pair<int, int>> pairs = Array::PairEqualSum::GetAllSumPair(a, sz, 17);
 	}
 	return 0;
 }
