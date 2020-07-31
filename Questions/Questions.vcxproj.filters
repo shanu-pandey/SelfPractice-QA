@@ -26,5 +26,8 @@
     <ClInclude Include="KLargestBST.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="PairEqualSum.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

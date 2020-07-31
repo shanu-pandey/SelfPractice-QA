@@ -15,5 +15,10 @@ int main()
 	{
 		int result = Tree::KLargestBST::GetKLarget(Tree::KLargestBST::GetATree(2), 1);
 	}
+
+	//Find all pairs of an integer array whose sum is equal to a given number
+	{
+		int a[] = { 1,1,2,3,5,5,6,7,8,9,10,10,11,11,12,12,12,12 };	
+	}
 	return 0;
 }
