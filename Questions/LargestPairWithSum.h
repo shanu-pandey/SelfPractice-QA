@@ -21,6 +21,9 @@ nums[1] + nums[5] = 50 + 10 = 60 = 90 - 30
 You should return the pair with the largest number.
 */
 #pragma once
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
 
 namespace Array
 {
@@ -35,6 +38,22 @@ namespace Array
 std::pair<int, int> Array::LargestPairWithSum::GetLargestPair(int i_numbers[], int i_size, int i_target)
 {
 	std::pair<int, int> result;
-
+	if (i_target < 0 || i_size == 0) 
+		return result;
+	
+	int largest = INT_MIN;
+	int tempTarget = i_target - 30;
+	
+	//vector vs hash map comes down to searching time complexity vs space complexity
+	//serch time complexity is much less in unordered_map as compared to vector
+	std::unordered_map<int, int> pos;
+	for (int i = 0; i < i_size; i++) {
+		int comp = tempTarget - i_numbers[i];
+		if ((i_numbers[i] > largest || comp > largest) && pos.find(comp) != pos.end()) {
+			result = std::make_pair(comp, i_numbers[i]);
+			largest = std::max(i_numbers[i], comp);
+		}
+		pos[i_numbers[i]] = i;
+	}
 	return result;
 }
