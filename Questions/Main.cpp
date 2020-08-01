@@ -34,7 +34,7 @@ int main()
 
 	//Given a Directed Graph. Find any Topological Sorting of that Graph.
 	{
-		std::list<int> result = Graph::TopologicalSort::GetTopologicalSort(GraphStruct::GetSampleGraph());
+		std::vector<int> result = Graph::TopologicalSort::GetTopologicalSort(GraphStruct::GetSampleGraph());
 	}
 
 	return 0;
