@@ -3,6 +3,7 @@
 #include "KLargestBST.h"
 #include "PairEqualSum.h"
 #include "LargestPairWithSum.h"
+#include "TopologicalSort.h"
 
 int main()
 {
@@ -30,5 +31,11 @@ int main()
 		int sz = sizeof(a) / sizeof(int);
 		std::pair<int, int> pair = Array::LargestPairWithSum::GetLargestPair(a, sz, 90);
 	}
+
+	//Given a Directed Graph. Find any Topological Sorting of that Graph.
+	{
+		std::list<int> result = Graph::TopologicalSort::GetTopologicalSort(GraphStruct::GetSampleGraph());
+	}
+
 	return 0;
 }
