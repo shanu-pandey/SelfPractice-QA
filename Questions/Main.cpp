@@ -43,5 +43,10 @@ int main()
 		std::vector<int> bfs = Graph::DFS_BFS::Get_BFSOrder(GraphStruct::GetSampleGraph(), 2);
 		std::vector<int> dfs = Graph::DFS_BFS::Get_DFSOrder(GraphStruct::GetSampleGraph(), 2);
 	}
+
+	//132 Pattern
+	{
+
+	}
 	return 0;
 }
