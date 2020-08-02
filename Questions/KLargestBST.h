@@ -3,19 +3,8 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include "DataStructures.h"
 
-struct BinaryTree
-{
-	int data;
-	BinaryTree* m_left;
-	BinaryTree* m_right;
-
-	BinaryTree() : data(0), m_left(nullptr), m_right(nullptr)
-	{}
-
-	BinaryTree(int i_data): data(i_data), m_left(nullptr), m_right(nullptr)
-	{}
-};
 
 namespace Tree
 {

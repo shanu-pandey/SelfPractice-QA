@@ -113,6 +113,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataStructures.h" />
+    <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="EncodeInPlace.h" />
     <ClInclude Include="KLargestBST.h" />
     <ClInclude Include="LargestPairWithSum.h" />
