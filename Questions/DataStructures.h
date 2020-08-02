@@ -23,8 +23,8 @@ struct GraphStruct
 
 	static GraphStruct* GetSampleGraph()
 	{
-		GraphStruct* result = new GraphStruct(8);
-		result->AddEdge(0, 6);
+		GraphStruct* result = new GraphStruct(4);
+		/*result->AddEdge(0, 6);
 		result->AddEdge(1, 2);
 		result->AddEdge(1, 4);
 		result->AddEdge(1, 6);
@@ -32,7 +32,14 @@ struct GraphStruct
 		result->AddEdge(3, 4);
 		result->AddEdge(5, 1);
 		result->AddEdge(7, 0);
-		result->AddEdge(7, 1);
+		result->AddEdge(7, 1);*/
+
+		result->AddEdge(0, 1);
+		result->AddEdge(0, 2);
+		result->AddEdge(1, 2);
+		result->AddEdge(2, 0);
+		result->AddEdge(2, 3);
+		result->AddEdge(3, 3);
 		return result;
 	}
 };

@@ -4,6 +4,7 @@
 #include "PairEqualSum.h"
 #include "LargestPairWithSum.h"
 #include "TopologicalSort.h"
+#include "DFS_BFS.h"
 
 int main()
 {
@@ -37,5 +38,10 @@ int main()
 		std::vector<int> result = Graph::TopologicalSort::GetTopologicalSort(GraphStruct::GetSampleGraph());
 	}
 
+	//DFS BFS of Graph
+	{
+		std::vector<int> bfs = Graph::DFS_BFS::Get_BFSOrder(GraphStruct::GetSampleGraph(), 2);
+		std::vector<int> dfs = Graph::DFS_BFS::Get_DFSOrder(GraphStruct::GetSampleGraph(), 2);
+	}
 	return 0;
 }
