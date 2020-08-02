@@ -118,6 +118,7 @@
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="EncodeInPlace.h" />
     <ClInclude Include="KLargestBST.h" />
+    <ClInclude Include="KMostFrequentWords.h" />
     <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="TopologicalSort.h" />
