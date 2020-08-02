@@ -54,7 +54,8 @@ int main()
 
 	//Given a pattern and a string str, find if str follows the same pattern.
 	{
-		bool result = StringManipulation::WordPattern::IfFollowsPattern("abccba", "dog cat mouse mouse cat dog");
+		bool result = StringManipulation::WordPattern::IfFollowsPattern("", "dog cat dog");
 	}
+
 	return 0;
 }
