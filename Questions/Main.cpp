@@ -60,7 +60,7 @@ int main()
 
 	//Given a non-empty list of words, return the k most frequent elements.
 	{
-		std::vector<std::string> words = { "the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is" };
+		std::vector<std::string> words = { "the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is", "day" };
 		std::vector<std::string> result = Array::KMostFrequentWords::TopKFrequentWords(words, 3);
 	}
 

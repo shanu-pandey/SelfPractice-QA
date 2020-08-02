@@ -18,6 +18,8 @@ Explanation: "the", "is", "sunny" and "day" are the four most frequent words,
 #pragma once
 #include <vector>
 #include <map>
+#include <unordered_map>
+#include <algorithm>
 
 namespace Array
 {
@@ -27,10 +29,30 @@ namespace Array
 		static std::vector<std::string> TopKFrequentWords(std::vector<std::string>& i_words, int i_k);
 	};
 }
+\
+static bool cmp(std::pair<std::string, int>& a, std::pair<std::string, int>& b)
+{
+	return a.second > b.second || (a.second == b.second && a.first < b.first);
+}
 
 std::vector<std::string> Array::KMostFrequentWords::TopKFrequentWords(std::vector<std::string>& i_words, int i_k)
 {
 	std::vector<std::string> result;
+	result.reserve(i_k);
+	std::map<std::string, int> frequencyMap;
+	std::vector<std::pair<std::string, int>> sortByFrequencyVector;
+
+	for (auto it : i_words)	
+		frequencyMap[it]++;	
+
+	sortByFrequencyVector.reserve(frequencyMap.size());
+	for (auto it : frequencyMap)
+		sortByFrequencyVector.push_back(std::make_pair(it.first, it.second));
+
+	std::sort(sortByFrequencyVector.begin(), sortByFrequencyVector.end(), cmp);
+
+	for (int i = 0; i < i_k; i++)
+		result.push_back(sortByFrequencyVector[i].first);
 
 	return result;
 }
