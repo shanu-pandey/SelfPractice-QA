@@ -5,6 +5,8 @@
 #include "LargestPairWithSum.h"
 #include "TopologicalSort.h"
 #include "DFS_BFS.h"
+#include "132Pattern.h"
+
 
 int main()
 {
@@ -46,7 +48,8 @@ int main()
 
 	//132 Pattern
 	{
-
+		std::vector<int> nums = { 1,2,3,6,47,96,544 };
+		bool b132Pattern = Array::Pattern132::IfExists_132(nums);
 	}
 	return 0;
 }

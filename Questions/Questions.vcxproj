@@ -113,6 +113,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="132Pattern.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="EncodeInPlace.h" />

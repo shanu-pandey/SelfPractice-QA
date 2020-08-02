@@ -20,6 +20,8 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 
 #pragma once
 #include <vector>
+#include <algorithm>
+#include <stack>
 
 namespace Array
 {
@@ -33,8 +35,28 @@ namespace Array
 
 bool Array::Pattern132::IfExists_132(std::vector<int>& i_numbers)
 {
-	bool result = false;
+	int sz = i_numbers.size();
+	if (sz < 3)
+		return false;
 
+	std::vector<int> minVal(sz);
+	minVal[0] = i_numbers[0];
 
-	return result;
+	for (int i = 1; i < sz; i++)
+		minVal[i] = std::min(minVal[i - 1], i_numbers[i]);
+
+	std::stack<int> numPosStack;
+
+	for (int i = sz - 1; i > 0; i--)
+	{
+		while (!numPosStack.empty() && i_numbers[numPosStack.top()] < i_numbers[i])
+		{
+			if (i_numbers[numPosStack.top()] > minVal[i-1])
+				return true;
+
+			numPosStack.pop();
+		}
+		numPosStack.push(i);
+	}
+	return false;
 }
