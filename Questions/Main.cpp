@@ -6,7 +6,7 @@
 #include "TopologicalSort.h"
 #include "DFS_BFS.h"
 #include "132Pattern.h"
-
+#include "WordPattern.h"
 
 int main()
 {
@@ -50,6 +50,11 @@ int main()
 	{
 		std::vector<int> nums = { 1,2,3,6,47,96,544 };
 		bool b132Pattern = Array::Pattern132::IfExists_132(nums);
+	}
+
+	//Given a pattern and a string str, find if str follows the same pattern.
+	{
+		bool result = StringManipulation::WordPattern::IfFollowsPattern("abccba", "dog cat mouse mouse cat dog");
 	}
 	return 0;
 }

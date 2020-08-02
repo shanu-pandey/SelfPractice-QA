@@ -121,6 +121,7 @@
     <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="TopologicalSort.h" />
+    <ClInclude Include="WordPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -44,5 +44,8 @@
     <ClInclude Include="132Pattern.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="WordPattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
