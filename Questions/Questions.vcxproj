@@ -122,6 +122,7 @@
     <ClInclude Include="KMostFrequentWords.h" />
     <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="PairEqualSum.h" />
+    <ClInclude Include="TextJustification.h" />
     <ClInclude Include="TopologicalSort.h" />
     <ClInclude Include="WordPattern.h" />
   </ItemGroup>

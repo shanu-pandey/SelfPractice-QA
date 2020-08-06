@@ -9,6 +9,7 @@
 #include "WordPattern.h"
 #include "KMostFrequentWords.h"
 #include "BattleshipsInABoard.h"
+#include "TextJustification.h"
 
 int main()
 {
@@ -71,5 +72,11 @@ int main()
 		int count = Array_2D::BattleshipInBoard::CountBattleships(board);
 	}
 
+	//Text Justification
+	{
+		std::vector<std::string> words = { "This", "is", "an", "example", "of", "text", "justification."};
+		int maxWords = 16;
+		std::vector<std::string> result = StringArray::TextJustification::FullJustify(words, maxWords);
+	}
 	return 0;
 }

@@ -56,5 +56,8 @@
     <ClInclude Include="WordPattern.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="TextJustification.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
