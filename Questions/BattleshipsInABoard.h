@@ -28,10 +28,17 @@ namespace Array_2D
 	};
 }
 
-bool BattleshipHelper()
+void BattleshipHelper(std::vector<std::vector<char>>& i_Board, int i, int j, int i_Row, int i_Column)
 {
-	return false;
+	if (i >= i_Row || j >= i_Column || i < 0 || j < 0 || i_Board[i][j] != 'X')
+		return;
 
+	i_Board[i][j] = 'V';
+
+	BattleshipHelper(i_Board, i - 1, j, i_Row, i_Column);
+	BattleshipHelper(i_Board, i + 1, j, i_Row, i_Column);
+	BattleshipHelper(i_Board, i, j - 1, i_Row, i_Column);
+	BattleshipHelper(i_Board, i, j + 1, i_Row, i_Column);
 }
 
 int Array_2D::BattleshipInBoard::CountBattleships(std::vector<std::vector<char>>& i_Board)
@@ -47,10 +54,10 @@ int Array_2D::BattleshipInBoard::CountBattleships(std::vector<std::vector<char>>
 	{
 		for (int j = 0; j!= col; j++)
 		{
-			if (i_Board[i][j] == 'x')
+			if (i_Board[i][j] == 'X')
 			{
-				if (!BattleshipHelper())
-
+				BattleshipHelper(i_Board, i, j, row, col);
+				result++;
 			}
 		}
 	}

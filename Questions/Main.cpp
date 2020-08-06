@@ -67,7 +67,7 @@ int main()
 
 	//Battleships in a board
 	{
-		std::vector<std::vector<char>> board = { {}, {}, {}, {} };
+		std::vector<std::vector<char>> board = { {'X','.','.','X'}, {'.','.','.','X'}, {'.','.','.','X'}, {'.','.','.','X'} };
 		int count = Array_2D::BattleshipInBoard::CountBattleships(board);
 	}
 
