@@ -8,6 +8,7 @@
 #include "132Pattern.h"
 #include "WordPattern.h"
 #include "KMostFrequentWords.h"
+#include "BattleshipsInABoard.h"
 
 int main()
 {
@@ -62,6 +63,12 @@ int main()
 	{
 		std::vector<std::string> words = { "the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is", "day" };
 		std::vector<std::string> result = Array::KMostFrequentWords::TopKFrequentWords(words, 3);
+	}
+
+	//Battleships in a board
+	{
+		std::vector<std::vector<char>> board = { {}, {}, {}, {} };
+		int count = Array_2D::BattleshipInBoard::CountBattleships(board);
 	}
 
 	return 0;

@@ -50,5 +50,8 @@
     <ClInclude Include="KMostFrequentWords.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="BattleshipsInABoard.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,7 +29,7 @@ namespace Array
 		static std::vector<std::string> TopKFrequentWords(std::vector<std::string>& i_words, int i_k);
 	};
 }
-\
+
 static bool cmp(std::pair<std::string, int>& a, std::pair<std::string, int>& b)
 {
 	return a.second > b.second || (a.second == b.second && a.first < b.first);
