@@ -10,6 +10,7 @@
 #include "KMostFrequentWords.h"
 #include "BattleshipsInABoard.h"
 #include "TextJustification.h"
+#include "ReorderData.h"
 
 int main()
 {
@@ -77,6 +78,12 @@ int main()
 		std::vector<std::string> words = { "ask","not","what","your","country","can","do","for","you","ask","what","you","can","do","for","your","country" };
 		int maxWords = 16;
 		std::vector<std::string> result = StringArray::TextJustification::FullJustify(words, maxWords);
+	}
+
+	//Reorder Log Files
+	{
+		std::vector<std::string> log = { "dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero" };
+		std::vector<std::string> result = StringArray::ReorderData::ReorderLogFiles(log);
 	}
 	return 0;
 }
