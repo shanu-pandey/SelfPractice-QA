@@ -53,6 +53,7 @@ Output:
 */
 #pragma once
 #include <vector>
+#include <algorithm>
 
 namespace StringArray
 {
@@ -66,6 +67,77 @@ namespace StringArray
 std::vector<std::string> StringArray::TextJustification::FullJustify(std::vector<std::string>& i_Words, int i_MaxWidth)
 {
 	std::vector<std::string> result;
+	int widthRemaining = i_MaxWidth;
+	std::vector<std::string> current;
+	int totalLength = 0;
+	for (auto it = i_Words.begin(); it != i_Words.end(); ++it)
+	{					
+		if ((*it).length()  <= widthRemaining && widthRemaining >= 0)
+		{
+			widthRemaining -= ((*it).length() + 1);
+			current.push_back((*it));
+			totalLength += (*it).length();
+		}
+		else
+		{
+			it--;
+			if (current.size() == 1)
+			{
+				std::string cu = current[0];
+				for (int i = 0; i < i_MaxWidth - current[0].length(); i++)
+					cu += " ";
+				result.push_back(cu);
+				current.clear();
+				totalLength = 0;
+				widthRemaining = i_MaxWidth;
+			}
+			else
+			{
+				
+				int remainingLength = i_MaxWidth - totalLength;
+				int positionForSpace = (current.size() - 1);
+				std::vector<std::string> currentSpace(positionForSpace, "");
+				while (remainingLength != 0)
+				{
+					for (int i = 0; i < positionForSpace; i++)
+					{
+						currentSpace[i] += " ";
+						remainingLength--;
+						if (remainingLength == 0)
+							break;
+					}
+				}
+				std::string cu = "";
+				for (int i = 0; i < current.size() -1; i++)
+				{
+					cu += current[i];
+					cu += currentSpace[i];
+				}
+				cu += current[current.size() - 1];
+				result.push_back(cu);
+				current.clear();
+				totalLength = 0;
+				widthRemaining = i_MaxWidth;
+			}
+		}	
+	}
 
+	int lengthRemiining = i_MaxWidth;
+	std::string cu = "";
+	for (auto it : current)
+	{
+		cu += it;
+		lengthRemiining -= it.length();
+		if (lengthRemiining > 0)
+		{
+			cu += " ";
+			lengthRemiining--;
+		}
+	}
+
+	for (int i = 0; i < lengthRemiining; i++)
+		cu += " ";
+
+	result.push_back(cu);
 	return result;
 }

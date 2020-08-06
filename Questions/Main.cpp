@@ -74,7 +74,7 @@ int main()
 
 	//Text Justification
 	{
-		std::vector<std::string> words = { "This", "is", "an", "example", "of", "text", "justification."};
+		std::vector<std::string> words = { "ask","not","what","your","country","can","do","for","you","ask","what","you","can","do","for","your","country" };
 		int maxWords = 16;
 		std::vector<std::string> result = StringArray::TextJustification::FullJustify(words, maxWords);
 	}
