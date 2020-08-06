@@ -82,7 +82,7 @@ int main()
 
 	//Reorder Log Files
 	{
-		std::vector<std::string> log = { "dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero" };
+		std::vector<std::string> log = { "dig1 8 1 5 1","let1 zart can","dig2 3 6","let2 own kit dig","let3 art zero" };
 		std::vector<std::string> result = StringArray::ReorderData::ReorderLogFiles(log);
 	}
 	return 0;
