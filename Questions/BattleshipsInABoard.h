@@ -36,7 +36,23 @@ bool BattleshipHelper()
 
 int Array_2D::BattleshipInBoard::CountBattleships(std::vector<std::vector<char>>& i_Board)
 {
-	int result = -1;
+	int result = 0;
+	if (i_Board.size() == 0)
+		return 0;
 
+	int row = i_Board.size();
+	int col = i_Board[0].size();
+
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j!= col; j++)
+		{
+			if (i_Board[i][j] == 'x')
+			{
+				if (!BattleshipHelper())
+
+			}
+		}
+	}
 	return result;
 }

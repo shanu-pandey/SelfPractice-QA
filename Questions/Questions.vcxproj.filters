@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Problems">
+      <UniqueIdentifier>{ea167e2d-4df7-4050-ac69-be2fa3ed6b89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -20,38 +23,38 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EncodeInPlace.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KLargestBST.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PairEqualSum.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LargestPairWithSum.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TopologicalSort.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DFS_BFS.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataStructures.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="132Pattern.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WordPattern.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KMostFrequentWords.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Problems</Filter>
     </ClInclude>
     <ClInclude Include="BattleshipsInABoard.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructures.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="DFS_BFS.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="EncodeInPlace.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="KLargestBST.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="KMostFrequentWords.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="LargestPairWithSum.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="PairEqualSum.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="TopologicalSort.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="WordPattern.h">
+      <Filter>Source Files\Problems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
