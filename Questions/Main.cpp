@@ -132,7 +132,12 @@ int main()
 
 	//Number of Islands
 	{
-
+		std::vector<std::vector<char>> island = { {'1','1','0','1','0'},
+		{'1','1','0','1','0'},
+		{'1','1','0','0','0'},
+		{'0','0','0','0','0'}
+		};
+		int count = Array_2D::NumberOfIslands::GetIslandCount(island);
 	}
 	return 0;
 }

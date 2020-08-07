@@ -32,8 +32,9 @@ namespace Array_2D
 
 void CountHelper(std::vector<std::vector<char>>& i_nums, int i, int j)
 {
-	if (i <0 || j< 0 || i > i_nums.size() || j> i_nums[0].size())
+	if (i <0 || j< 0 || i >= i_nums.size() || j>= i_nums[0].size() || i_nums[i][j] != '1')
 		return;
+	i_nums[i][j] = 'X';
 
 	CountHelper(i_nums, i + 1, j);
 	CountHelper(i_nums, i - 1, j);
