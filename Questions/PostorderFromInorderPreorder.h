@@ -25,15 +25,32 @@ namespace Tree
 	class PostorderFromInorderPreorder
 	{
 	public:
-		static std::vector<int> GetPostorder(std::vector<int>& i_Preorder, std::vector<int>& i_Inorder);
+		static std::vector<int> GetPostorder(std::vector<int>& i_Inorder, std::vector<int>& i_Preorder);
 	};
 }
 
-std::vector<int> Tree::PostorderFromInorderPreorder::GetPostorder(std::vector<int>& i_Preorder, std::vector<int>& i_Inorder)
+int GetRoot(int* i_Inorder, int i_val, int i_sz)
 {
-	if (i_Preorder.size() == 1)
+	for (int i = 0; i < i_sz; i++)
+	{
+		if (i_Inorder[i] == i_val)
+			return i;
+	}
+	return -1;
+}
+
+void PostorderHelper(int i_InStart, int i_InEnd, std::vector<int>& i_Inorder, std::vector<int>& i_Preorder, std::vector<int>& i_Postorder)
+{
+	
+}
+
+std::vector<int> Tree::PostorderFromInorderPreorder::GetPostorder(std::vector<int>& i_Inorder, std::vector<int>& i_Preorder)
+{	
+	if (i_Preorder.size() == 1)	
 		return i_Preorder;
 
-	std::vector<int> postOrder;	
-	return postOrder;
+	std::vector<int> postorder;
+			
+	PostorderHelper(0, i_Inorder.size()-1, i_Inorder, i_Preorder, postorder);
+	return postorder;
 }

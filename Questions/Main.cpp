@@ -118,10 +118,9 @@ int main()
 
 	//Tree from Inorder and Preorder
 	{
-		std::vector<int> preorder = { 1, 2, 20, 15, 7 };
-		std::vector<int> inorder = { 2, 1, 15, 20, 7};
-
-		std::vector<int> postorder = Tree::PostorderFromInorderPreorder::GetPostorder(preorder, inorder);
+		std::vector<int> preorder = { 4, 2, 5, 1, 3, 6 };
+		std::vector<int> inorder = { 1, 2, 4, 5, 3, 6 };		
+		std::vector<int> postorder = Tree::PostorderFromInorderPreorder::GetPostorder(inorder, preorder);
 	}
 	return 0;
 }
