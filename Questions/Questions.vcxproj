@@ -121,6 +121,8 @@
     <ClInclude Include="KLargestBST.h" />
     <ClInclude Include="KMostFrequentWords.h" />
     <ClInclude Include="LargestPairWithSum.h" />
+    <ClInclude Include="LRUCache.h" />
+    <ClInclude Include="MRUCache.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="ReorderData.h" />
     <ClInclude Include="TextJustification.h" />

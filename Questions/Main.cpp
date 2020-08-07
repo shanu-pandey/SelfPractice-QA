@@ -11,6 +11,8 @@
 #include "BattleshipsInABoard.h"
 #include "TextJustification.h"
 #include "ReorderData.h"
+#include "MRUCache.h"
+#include "LRUCache.h"
 
 int main()
 {
@@ -84,6 +86,18 @@ int main()
 	{
 		std::vector<std::string> log = { "dig1 8 1 5 1","let1 zart can","dig2 3 6","let2 own kit dig","let3 art zero" };
 		std::vector<std::string> result = StringArray::ReorderData::ReorderLogFiles(log);
+	}
+
+	//LRU Cache
+	{
+		Cache::LRUCache ca(4);
+		ca.Refer(1);
+		ca.Refer(2);
+		ca.Refer(3);
+		ca.Refer(1);
+		ca.Refer(4);
+		ca.Refer(1);
+		ca.PrintCache();
 	}
 	return 0;
 }

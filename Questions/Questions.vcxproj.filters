@@ -62,5 +62,11 @@
     <ClInclude Include="ReorderData.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="MRUCache.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="LRUCache.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
