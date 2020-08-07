@@ -74,5 +74,8 @@
     <ClInclude Include="TreeFromInorderPreorder.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="PostorderFromInorderPreorder.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

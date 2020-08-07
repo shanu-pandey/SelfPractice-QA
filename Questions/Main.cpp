@@ -15,6 +15,7 @@
 #include "LRUCache.h"
 #include "ValidParentheses.h"
 #include "TreeFromInorderPreorder.h"
+#include "PostorderFromInorderPreorder.h"
 
 int main()
 {
@@ -113,6 +114,14 @@ int main()
 		std::vector<int> inorder = { 2, 1 };// 15, 20, 7};
 
 		BinaryTree* tree = Tree::TreeFromInorderPreorder::BuildTree(preorder, inorder);
+	}
+
+	//Tree from Inorder and Preorder
+	{
+		std::vector<int> preorder = { 1, 2, 20, 15, 7 };
+		std::vector<int> inorder = { 2, 1, 15, 20, 7};
+
+		std::vector<int> postorder = Tree::PostorderFromInorderPreorder::GetPostorder(preorder, inorder);
 	}
 	return 0;
 }
