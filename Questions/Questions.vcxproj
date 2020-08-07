@@ -127,6 +127,7 @@
     <ClInclude Include="ReorderData.h" />
     <ClInclude Include="TextJustification.h" />
     <ClInclude Include="TopologicalSort.h" />
+    <ClInclude Include="TreeFromInorderPreorder.h" />
     <ClInclude Include="ValidParentheses.h" />
     <ClInclude Include="WordPattern.h" />
   </ItemGroup>

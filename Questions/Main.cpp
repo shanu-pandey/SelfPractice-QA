@@ -14,6 +14,7 @@
 #include "MRUCache.h"
 #include "LRUCache.h"
 #include "ValidParentheses.h"
+#include "TreeFromInorderPreorder.h"
 
 int main()
 {
@@ -104,6 +105,14 @@ int main()
 	//Valid parentheses
 	{
 		bool result = Stack::ValidParentheses::IsValid("{[]}");
+	}
+
+	//Tree from Inorder and Preorder
+	{
+		std::vector<int> preorder = { 3, 9, 20, 15, 7 };
+		std::vector<int> inorder = {9, 3, 15, 20, 7};
+
+		BinaryTree* tree = Tree::TreeFromInorderPreorder::BuildTree(preorder, inorder);
 	}
 	return 0;
 }

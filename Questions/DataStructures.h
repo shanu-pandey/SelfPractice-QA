@@ -55,4 +55,7 @@ struct BinaryTree
 
 	BinaryTree(int i_data) : data(i_data), m_left(nullptr), m_right(nullptr)
 	{}
+
+	BinaryTree(int i_data, BinaryTree* i_left, BinaryTree* i_right) : data(i_data), m_left(i_left), m_right(i_right)
+	{}
 };
