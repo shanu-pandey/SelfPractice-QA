@@ -13,6 +13,7 @@
 #include "ReorderData.h"
 #include "MRUCache.h"
 #include "LRUCache.h"
+#include "ValidParentheses.h"
 
 int main()
 {
@@ -98,6 +99,11 @@ int main()
 		ca.Refer(4);
 		ca.Refer(1);
 		ca.PrintCache();
+	}
+
+	//Valid parentheses
+	{
+		bool result = Stack::ValidParentheses::IsValid("{[]}");
 	}
 	return 0;
 }

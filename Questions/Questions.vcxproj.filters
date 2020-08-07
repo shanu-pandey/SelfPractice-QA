@@ -68,5 +68,8 @@
     <ClInclude Include="LRUCache.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="ValidParentheses.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
