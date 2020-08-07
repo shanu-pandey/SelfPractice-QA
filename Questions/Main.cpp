@@ -17,6 +17,7 @@
 #include "TreeFromInorderPreorder.h"
 #include "PostorderFromInorderPreorder.h"
 #include "AutoComplete.h"
+#include "NumberOfIslands.h"
 
 int main()
 {
@@ -127,6 +128,11 @@ int main()
 	//Auto Complete
 	{
 		std::vector<std::string> result = StringArray::AutoComplete::GetAllWord({ "abasdad", "abhsdsadas", "adfasfds", "dfsdgfsf", "ababa", "" }, "ab");
+	}
+
+	//Number of Islands
+	{
+
 	}
 	return 0;
 }

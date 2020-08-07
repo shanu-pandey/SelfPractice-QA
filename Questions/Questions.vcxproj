@@ -124,6 +124,7 @@
     <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="LRUCache.h" />
     <ClInclude Include="MRUCache.h" />
+    <ClInclude Include="NumberOfIslands.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="PostorderFromInorderPreorder.h" />
     <ClInclude Include="ReorderData.h" />
