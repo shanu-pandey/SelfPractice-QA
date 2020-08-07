@@ -13,6 +13,7 @@ Return the following binary tree:
 	/  \
    15   7
 */
+
 #pragma once
 #include <vector>
 #include "DataStructures.h"
@@ -27,8 +28,36 @@ namespace Tree
 }
 
 
+BinaryTree* BuildTreeHelper( int i_InStart, int i_InEnd, std::vector<int>& i_Preorder, std::vector<int>& i_Inorder)
+{
+	static int preStart = 0;
+	if (preStart > i_Preorder.size() - 1 || i_InStart > i_InEnd)
+		return nullptr;
+
+	BinaryTree* root = new BinaryTree(i_Preorder[preStart]);
+	preStart++;
+
+	if (i_InStart == i_InEnd)
+		return root;
+
+	int newRoot = 0;
+	for (int i = i_InStart; i <= i_InEnd; i++)
+	{
+		if (i_Inorder[i] == root->data)
+			newRoot = i;
+	}
+
+	root->m_left = BuildTreeHelper(i_InStart, newRoot - 1, i_Preorder, i_Inorder);
+	root->m_right = BuildTreeHelper(newRoot+1, i_InEnd, i_Preorder, i_Inorder);
+
+	return root;
+}
+
 BinaryTree* Tree::TreeFromInorderPreorder::BuildTree(std::vector<int>& i_Preorder, std::vector<int>& i_Inorder)
 {
-	BinaryTree* root = new BinaryTree(0);
+	if (i_Preorder.size() == 1)
+		return new BinaryTree(i_Preorder[0]);
+
+	BinaryTree* root = BuildTreeHelper(0, i_Inorder.size() - 1, i_Preorder, i_Inorder);
 	return root;
 }
