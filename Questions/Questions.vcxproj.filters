@@ -77,5 +77,8 @@
     <ClInclude Include="PostorderFromInorderPreorder.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="AutoComplete.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

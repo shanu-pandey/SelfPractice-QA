@@ -16,6 +16,7 @@
 #include "ValidParentheses.h"
 #include "TreeFromInorderPreorder.h"
 #include "PostorderFromInorderPreorder.h"
+#include "AutoComplete.h"
 
 int main()
 {
@@ -121,6 +122,11 @@ int main()
 		std::vector<int> preorder = { 4, 2, 5, 1, 3, 6 };
 		std::vector<int> inorder = { 1, 2, 4, 5, 3, 6 };		
 		std::vector<int> postorder = Tree::PostorderFromInorderPreorder::GetPostorder(inorder, preorder);
+	}
+
+	//Auto Complete
+	{
+		std::vector<std::string> result = StringArray::AutoComplete::GetAllWord({ "abasdad", "abhsdsadas", "adfasfds", "dfsdgfsf", "ababa", "" }, "ab");
 	}
 	return 0;
 }
