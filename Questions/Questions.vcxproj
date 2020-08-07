@@ -116,6 +116,7 @@
     <ClInclude Include="132Pattern.h" />
     <ClInclude Include="AutoComplete.h" />
     <ClInclude Include="BattleshipsInABoard.h" />
+    <ClInclude Include="BoundaryOfBinaryTree.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="EncodeInPlace.h" />

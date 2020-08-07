@@ -58,4 +58,17 @@ struct BinaryTree
 
 	BinaryTree(int i_data, BinaryTree* i_left, BinaryTree* i_right) : data(i_data), m_left(i_left), m_right(i_right)
 	{}
+
+	static BinaryTree* GetSampleTree()
+	{
+		BinaryTree* root = new BinaryTree(20);
+		root->m_left = new BinaryTree(8);
+		root->m_left->m_left = new BinaryTree(4);
+		root->m_left->m_right = new BinaryTree(12);
+		root->m_left->m_right->m_left = new BinaryTree(10);
+		root->m_left->m_right->m_right = new BinaryTree(14);
+		root->m_right = new BinaryTree(22);
+		root->m_right->m_right = new BinaryTree(25);
+		return root;
+	}
 };

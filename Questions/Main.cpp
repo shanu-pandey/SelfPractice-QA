@@ -18,6 +18,7 @@
 #include "PostorderFromInorderPreorder.h"
 #include "AutoComplete.h"
 #include "NumberOfIslands.h"
+#include "BoundaryOfBinaryTree.h"
 
 int main()
 {
@@ -138,6 +139,11 @@ int main()
 		{'0','0','0','0','0'}
 		};
 		int count = Array_2D::NumberOfIslands::GetIslandCount(island);
+	}
+
+	//Boundary of Binary Tree
+	{
+		std::vector<int> boundary = Tree::BoundaryOfTree::GetBoundaryElements(BinaryTree::GetSampleTree());
 	}
 	return 0;
 }
