@@ -128,6 +128,7 @@
     <ClInclude Include="NumberOfIslands.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="PostorderFromInorderPreorder.h" />
+    <ClInclude Include="Power.h" />
     <ClInclude Include="ReorderData.h" />
     <ClInclude Include="StrStr.h" />
     <ClInclude Include="TextJustification.h" />

@@ -89,5 +89,8 @@
     <ClInclude Include="StrStr.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="Power.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

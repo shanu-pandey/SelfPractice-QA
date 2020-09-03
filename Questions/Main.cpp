@@ -20,82 +20,83 @@
 #include "NumberOfIslands.h"
 #include "BoundaryOfBinaryTree.h"
 #include "StrStr.h"
+#include "Power.h"
 
 int main()
 {
-	//Encode "aaabbcddddd" to "a3b2cd5" in place, can only use constant extra memory.
+	//1. Encode "aaabbcddddd" to "a3b2cd5" in place, can only use constant extra memory.
 	{
 		std::string str = "aaabbcdddd";
 		std::string result = StringManipulation::EncodeInPlace::Encode(str);
 	}
 
-	//Find the k largest element in a binary search tree.  
+	//2. Find the k largest element in a binary search tree.  
 	{
 		int result = Tree::KLargestBST::GetKLarget(Tree::KLargestBST::GetATree(2), 1);
 	}
 
-	//Find all pairs of an integer array whose sum is equal to a given number
+	//3. Find all pairs of an integer array whose sum is equal to a given number
 	{
 		int a[] = { 1,1,2,3,5,5,6,7,8,9,10,10,11,11,12,12,12,12 };	
 		int sz = sizeof(a) / sizeof(int);
 		std::vector<std::pair<int, int>> pairs = Array::PairEqualSum::GetAllSumPair(a, sz, 17);
 	}
 
-	//Find pair with largest number whose sume is equal to target-30
+	//4. Find pair with largest number whose sume is equal to target-30
 	{
 		int a[] = { 20, 50, 40, 25, 30, 10 };
 		int sz = sizeof(a) / sizeof(int);
 		std::pair<int, int> pair = Array::LargestPairWithSum::GetLargestPair(a, sz, 90);
 	}
 
-	//Given a Directed Graph. Find any Topological Sorting of that Graph.
+	//5. Given a Directed Graph. Find any Topological Sorting of that Graph.
 	{
 		std::vector<int> result = Graph::TopologicalSort::GetTopologicalSort(GraphStruct::GetSampleGraph());
 	}
 
-	//DFS BFS of Graph
+	//6. DFS BFS of Graph
 	{
 		std::vector<int> bfs = Graph::DFS_BFS::Get_BFSOrder(GraphStruct::GetSampleGraph(), 2);
 		std::vector<int> dfs = Graph::DFS_BFS::Get_DFSOrder(GraphStruct::GetSampleGraph(), 2);
 	}
 
-	//132 Pattern
+	//7. 132 Pattern
 	{
 		std::vector<int> nums = { 1,2,3,6,47,96,544 };
 		bool b132Pattern = Array::Pattern132::IfExists_132(nums);
 	}
 
-	//Given a pattern and a string str, find if str follows the same pattern.
+	//8. Given a pattern and a string str, find if str follows the same pattern.
 	{
 		bool result = StringManipulation::WordPattern::IfFollowsPattern("", "dog cat dog");
 	}
 
-	//Given a non-empty list of words, return the k most frequent elements.
+	//9. Given a non-empty list of words, return the k most frequent elements.
 	{
 		std::vector<std::string> words = { "the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is", "day" };
 		std::vector<std::string> result = Array::KMostFrequentWords::TopKFrequentWords(words, 3);
 	}
 
-	//Battleships in a board
+	//10. Battleships in a board
 	{
 		std::vector<std::vector<char>> board = { {'X','.','.','X'}, {'.','.','.','X'}, {'.','.','.','X'}, {'.','.','.','X'} };
 		int count = Array_2D::BattleshipInBoard::CountBattleships(board);
 	}
 
-	//Text Justification
+	//11. Text Justification
 	{
 		std::vector<std::string> words = { "ask","not","what","your","country","can","do","for","you","ask","what","you","can","do","for","your","country" };
 		int maxWords = 16;
 		std::vector<std::string> result = StringArray::TextJustification::FullJustify(words, maxWords);
 	}
 
-	//Reorder Log Files
+	//12. Reorder Log Files
 	{
 		std::vector<std::string> log = { "dig1 8 1 5 1","let1 zart can","dig2 3 6","let2 own kit dig","let3 art zero" };
 		std::vector<std::string> result = StringArray::ReorderData::ReorderLogFiles(log);
 	}
 
-	//LRU Cache
+	//13. LRU Cache
 	{
 		Cache::LRUCache ca(4);
 		ca.Refer(1);
@@ -107,12 +108,12 @@ int main()
 		ca.PrintCache();
 	}
 
-	//Valid parentheses
+	//14. Valid parentheses
 	{
 		bool result = Stack::ValidParentheses::IsValid("{[]}");
 	}
 
-	//Tree from Inorder and Preorder
+	//15. Tree from Inorder and Preorder
 	{
 		std::vector<int> preorder = { 1, 2, };// 20, 15, 7 };
 		std::vector<int> inorder = { 2, 1 };// 15, 20, 7};
@@ -120,19 +121,19 @@ int main()
 		BinaryTree* tree = Tree::TreeFromInorderPreorder::BuildTree(preorder, inorder);
 	}
 
-	//Tree from Inorder and Preorder
+	//16. Tree from Inorder and Preorder
 	{
 		std::vector<int> preorder = { 4, 2, 5, 1, 3, 6 };
 		std::vector<int> inorder = { 1, 2, 4, 5, 3, 6 };		
 		std::vector<int> postorder = Tree::PostorderFromInorderPreorder::GetPostorder(inorder, preorder);
 	}
 
-	//Auto Complete
+	//17. Auto Complete
 	{
 		std::vector<std::string> result = StringArray::AutoComplete::GetAllWord({ "abasdad", "abhsdsadas", "adfasfds", "dfsdgfsf", "ababa", "" }, "ab");
 	}
 
-	//Number of Islands
+	//18. Number of Islands
 	{
 		std::vector<std::vector<char>> island = { {'1','1','0','1','0'},
 		{'1','1','0','1','0'},
@@ -142,17 +143,22 @@ int main()
 		int count = Array_2D::NumberOfIslands::GetIslandCount(island);
 	}
 
-	//Boundary of Binary Tree
+	//19. Boundary of Binary Tree
 	{
 		std::vector<int> boundary = Tree::BoundaryOfTree::GetBoundaryElements(BinaryTree::GetSampleTree());
 	}
 
-	//strstr implementation
+	//20. strstr implementation
 	{
 		const char* str1 = "mississippi";
 		const char* str2 = "issip";
 
 		const char* res = StringManipulation::StrStr::DoStrStr(str1, str2);
+	}
+
+	//21. Implement pow(x, n), which calculates x raised to the power n (i.e. xn).
+	{
+		double res = Recursion::Power::MyPow(2.0, 10);
 	}
 
 	return 0;
