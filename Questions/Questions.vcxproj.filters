@@ -86,5 +86,8 @@
     <ClInclude Include="BoundaryOfBinaryTree.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="StrStr.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

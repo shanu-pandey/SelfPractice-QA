@@ -19,6 +19,7 @@
 #include "AutoComplete.h"
 #include "NumberOfIslands.h"
 #include "BoundaryOfBinaryTree.h"
+#include "StrStr.h"
 
 int main()
 {
@@ -145,5 +146,14 @@ int main()
 	{
 		std::vector<int> boundary = Tree::BoundaryOfTree::GetBoundaryElements(BinaryTree::GetSampleTree());
 	}
+
+	//strstr implementation
+	{
+		const char* str1 = "mississippi";
+		const char* str2 = "issip";
+
+		const char* res = StringManipulation::StrStr::DoStrStr(str1, str2);
+	}
+
 	return 0;
 }

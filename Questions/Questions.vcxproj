@@ -129,6 +129,7 @@
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="PostorderFromInorderPreorder.h" />
     <ClInclude Include="ReorderData.h" />
+    <ClInclude Include="StrStr.h" />
     <ClInclude Include="TextJustification.h" />
     <ClInclude Include="TopologicalSort.h" />
     <ClInclude Include="TreeFromInorderPreorder.h" />
