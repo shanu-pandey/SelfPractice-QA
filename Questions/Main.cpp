@@ -162,10 +162,10 @@ int main()
 		double res = Recursion::Power::MyPow(2.0, 10);
 	}
 
-
 	//22. Celebrity Problem
 	{			
-		int celebrity = Array_2D::CelebrityProblem::FindCelebrity(4);
+		Array_2D::CelebrityProblem* celebrity = new Array_2D::CelebrityProblem;
+		int result = celebrity->FindCelebrity(4);
 	}
 	return 0;
 }

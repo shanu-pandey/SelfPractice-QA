@@ -33,20 +33,40 @@ namespace Array_2D
 	class CelebrityProblem
 	{
 	public:
+		CelebrityProblem(){	}
 		inline bool HaveAcquaintance(int a, int b) { return m_Persons[a][b]; }
-		static int FindCelebrity(int i_size);
+		int FindCelebrity(int i_size);
 
 	private:
 		bool m_Persons[4][4] = { {0, 0, 1, 0},
-							  {0, 0, 1, 0},
-							  {0, 0, 0, 0},
-							  {0, 0, 1, 0} };
+							     {0, 0, 1, 0},
+							     {0, 1, 0, 0},
+							     {0, 0, 1, 0} };
 	};
 }
 
 int Array_2D::CelebrityProblem::FindCelebrity(int i_size)
-{
-	int result = -1;
+{	
+	int a = 0; 
+	int b = i_size - 1;
 
-	return result;
+	while (a < b)
+	{
+		if (HaveAcquaintance(a, b))
+			a++;
+		else
+			b--;
+	}
+
+	for (int i = 0; i < i_size; i++)
+	{
+		if ((i != a))			
+		{
+			if (HaveAcquaintance(i, a) && !HaveAcquaintance(a, i))
+				continue;
+			else
+				return -1;
+		}
+	}
+	return a;
 }
