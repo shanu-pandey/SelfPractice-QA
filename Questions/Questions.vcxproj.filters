@@ -92,5 +92,8 @@
     <ClInclude Include="Power.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="CelebrityProblem.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

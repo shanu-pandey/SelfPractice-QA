@@ -21,6 +21,7 @@
 #include "BoundaryOfBinaryTree.h"
 #include "StrStr.h"
 #include "Power.h"
+#include "CelebrityProblem.h"
 
 int main()
 {
@@ -161,5 +162,10 @@ int main()
 		double res = Recursion::Power::MyPow(2.0, 10);
 	}
 
+
+	//22. Celebrity Problem
+	{			
+		int celebrity = Array_2D::CelebrityProblem::FindCelebrity(4);
+	}
 	return 0;
 }
