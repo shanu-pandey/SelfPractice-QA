@@ -131,6 +131,7 @@
     <ClInclude Include="PostorderFromInorderPreorder.h" />
     <ClInclude Include="Power.h" />
     <ClInclude Include="ReorderData.h" />
+    <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="StrStr.h" />
     <ClInclude Include="TextJustification.h" />
     <ClInclude Include="TopologicalSort.h" />
