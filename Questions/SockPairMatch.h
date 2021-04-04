@@ -14,6 +14,7 @@ namespace Array
 {
 	class SockPairMatch
 	{
+	public:
 		static int SockMerchant(int i_n, std::vector<int> i_array);
 	};
 }

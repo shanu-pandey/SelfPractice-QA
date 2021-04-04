@@ -118,6 +118,7 @@
     <ClInclude Include="BattleshipsInABoard.h" />
     <ClInclude Include="BoundaryOfBinaryTree.h" />
     <ClInclude Include="CelebrityProblem.h" />
+    <ClInclude Include="CountingValley.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="EncodeInPlace.h" />

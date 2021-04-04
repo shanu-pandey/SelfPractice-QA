@@ -22,6 +22,8 @@
 #include "StrStr.h"
 #include "Power.h"
 #include "CelebrityProblem.h"
+#include "SockPairMatch.h"
+#include "CountingValley.h"
 
 int main()
 {
@@ -167,5 +169,22 @@ int main()
 		Array_2D::CelebrityProblem* celebrity = new Array_2D::CelebrityProblem;
 		int result = celebrity->FindCelebrity(4);
 	}
+
+	//23. Count Sock Pair Probelm
+	{
+		int n =7;
+		std::vector<int>socks = { 1,2,1,2,1,2,3 };
+
+		int pairs = Array::SockPairMatch::SockMerchant(n, socks);
+	}
+
+	//24. Counting Valley
+	{
+		int steps = 8;
+		std::string path = "UDDDUDUU";
+
+		int valley = Array::CountingValley::CountValley(steps, path);
+	}
+
 	return 0;
 }
