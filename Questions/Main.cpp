@@ -25,8 +25,120 @@
 #include "SockPairMatch.h"
 #include "CountingValley.h"
 
+
+long howManySwaps(std::vector<int> arr)
+{
+	int result = 0;
+	int size = arr.size();
+
+	if (size < 3)
+	{
+		if (arr[0] < arr[1])
+			return 0;
+		else
+			return 1;
+	}
+
+	std::pair<int, int> arrayPosition[4];
+
+	for (int i = 0; i < size; i++)
+	{
+		arrayPosition[i].first = arr[i];
+		arrayPosition[i].second = i;
+	}
+
+	std::sort(arrayPosition, arrayPosition + size);
+
+	std::vector<bool> bVisited(size, false);
+
+	for (int i = 0; i < size; i++)
+	{
+		if (bVisited[i] || arrayPosition[i].second == i)
+			continue;
+
+		int cycle = 0;
+		int j = i;
+		while (!bVisited[j])
+		{
+			bVisited[j] = true;
+			j = arrayPosition[j].second;
+			cycle++;
+		}
+
+		if (cycle > 0)
+			result = result + cycle - 1;
+	}
+	return result;
+}
+
+long storage(int n, int m, std::vector<int> h, std::vector<int> v)
+{
+	long result = 1;
+
+	int hSize = h.size();
+	int vSize = v.size();
+
+	std::vector<bool>b_hVisited(n, false);
+	std::vector<bool>b_vVisited(m, false);
+
+	std::sort(h.begin(), h.begin() + hSize);
+	std::sort(v.begin(), v.begin() + vSize);
+
+	int hVol = 1;
+	int vVol = 1;
+	b_hVisited[h[0]] = true;
+	b_vVisited[v[0]] = true;
+
+	for (int i = 1; i < hSize; i++)
+	{
+		int currentVol = 1;
+		if (b_hVisited[h[i] - 1])
+		{
+			currentVol++;
+			//b_hVisited[h[i]] = true;
+		}
+		else
+		{
+			if (currentVol > hVol)
+				hVol = currentVol;
+
+			currentVol = 1;
+		}
+		b_hVisited[h[i]] = true;
+	}
+
+	for (int i = 1; i < vSize; i++)
+	{
+		int currentVol = 1;
+		if (b_vVisited[v[i] - 1])
+		{
+			currentVol++;
+			//b_hVisited[h[i]] = true;
+		}
+		else
+		{
+			if (currentVol > vVol)
+				vVol = currentVol;
+
+			currentVol = 1;
+		}
+		b_vVisited[v[i]] = true;
+	}
+
+	result = (hVol + 1) * (vVol + 1);
+	return result;
+
+}
+
+
 int main()
 {
+	
+	std::vector<int> h = {8,3,2,4};
+	int rep = howManySwaps(h);
+	std::vector<int> v = { 3,4 };
+	int r = storage(6, 6, h, v);
+
 	//1. Encode "aaabbcddddd" to "a3b2cd5" in place, can only use constant extra memory.
 	{
 		std::string str = "aaabbcdddd";
