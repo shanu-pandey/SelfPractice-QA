@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Problems">
       <UniqueIdentifier>{ea167e2d-4df7-4050-ac69-be2fa3ed6b89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Monthly Goal_May">
+      <UniqueIdentifier>{9943d295-8851-4abe-b3fc-47c0da79aa13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="CountingValley.h">
       <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="SortPlaylist.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

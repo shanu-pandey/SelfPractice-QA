@@ -24,7 +24,7 @@
 #include "CelebrityProblem.h"
 #include "SockPairMatch.h"
 #include "CountingValley.h"
-
+#include "SortPlaylist.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -132,13 +132,7 @@ long storage(int n, int m, std::vector<int> h, std::vector<int> v)
 
 
 int main()
-{
-	
-	std::vector<int> h = {8,3,2,4};
-	int rep = howManySwaps(h);
-	std::vector<int> v = { 3,4 };
-	int r = storage(6, 6, h, v);
-
+{		
 	//1. Encode "aaabbcddddd" to "a3b2cd5" in place, can only use constant extra memory.
 	{
 		std::string str = "aaabbcdddd";
@@ -296,6 +290,13 @@ int main()
 		std::string path = "UDDDUDUU";
 
 		int valley = Array::CountingValley::CountValley(steps, path);
+	}
+
+	//25. Sort Playlist
+	{
+		std::vector<std::vector<int>> input = { {1, 7, 3, 8}, {4, 2, 1, 6, 7, 9}, {0, 3, 9, 5} };
+		Graph::SortPlaylist* p_sortPlaylist = new Graph::SortPlaylist(input);
+		std::vector<int> result = p_sortPlaylist->GetSortedPlaylist(input);
 	}
 
 	return 0;
