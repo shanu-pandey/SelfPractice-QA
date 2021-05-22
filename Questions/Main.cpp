@@ -27,6 +27,7 @@
 #include "SortPlaylist.h"
 #include "StringReverseInPlace.h"
 #include "DuplicateCharacterInString.h"
+#include "AnagramStrings.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -314,6 +315,14 @@ int main()
 	{
 		std::string str = "what is the duplicate count";
 		std::map<char, int> result = StringManipulation::DuplicateCharacterInString::DuplicateWithCount(str);
+	}
+
+
+	//26. Anagram Strings
+	{
+		std::string str1 = "asda";
+		std::string str2 = "asds";
+		bool result = StringManipulation::AnagramString::IfAnagram(str1, str2);
 	}
 
 	return 0;
