@@ -107,5 +107,8 @@
     <ClInclude Include="SortPlaylist.h">
       <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
+    <ClInclude Include="StringReverseInPlace.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

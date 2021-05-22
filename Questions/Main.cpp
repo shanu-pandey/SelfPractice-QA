@@ -25,6 +25,7 @@
 #include "SockPairMatch.h"
 #include "CountingValley.h"
 #include "SortPlaylist.h"
+#include "StringReverseInPlace.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -131,10 +132,12 @@ long storage(int n, int m, std::vector<int> h, std::vector<int> v)
 }
 
 
+
 int main()
 {		
 	//1. Encode "aaabbcddddd" to "a3b2cd5" in place, can only use constant extra memory.
 	{
+		
 		std::string str = "aaabbcdddd";
 		std::string result = StringManipulation::EncodeInPlace::Encode(str);
 	}
@@ -297,6 +300,13 @@ int main()
 		std::vector<std::vector<int>> input = { {1, 7, 3, 8}, {4, 2, 1, 6, 7, 9}, {0, 3, 9, 5} };
 		Graph::SortPlaylist* p_sortPlaylist = new Graph::SortPlaylist(input);
 		std::vector<int> result = p_sortPlaylist->GetSortedPlaylist(input);
+	}
+
+	//26. Reverse String in Place
+	{
+		std::string str = "reversethis";
+		StringManipulation::ReverseInPLace::ReverseInPlace(str);
+		StringManipulation::ReverseInPLace::ReverseInPlace(str);
 	}
 
 	return 0;
