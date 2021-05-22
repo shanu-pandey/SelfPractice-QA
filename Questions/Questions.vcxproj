@@ -121,6 +121,7 @@
     <ClInclude Include="CountingValley.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DFS_BFS.h" />
+    <ClInclude Include="DuplicateCharacterInString.h" />
     <ClInclude Include="EncodeInPlace.h" />
     <ClInclude Include="KLargestBST.h" />
     <ClInclude Include="KMostFrequentWords.h" />

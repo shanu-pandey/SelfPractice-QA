@@ -26,6 +26,7 @@
 #include "CountingValley.h"
 #include "SortPlaylist.h"
 #include "StringReverseInPlace.h"
+#include "DuplicateCharacterInString.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -307,6 +308,12 @@ int main()
 		std::string str = "reversethis";
 		StringManipulation::ReverseInPLace::ReverseInPlace(str);
 		StringManipulation::ReverseInPLace::ReverseInPlace(str);
+	}
+
+	//26. Duplicate character in String with Count
+	{
+		std::string str = "what is the duplicate count";
+		std::map<char, int> result = StringManipulation::DuplicateCharacterInString::DuplicateWithCount(str);
 	}
 
 	return 0;

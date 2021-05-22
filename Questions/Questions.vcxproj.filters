@@ -110,5 +110,8 @@
     <ClInclude Include="StringReverseInPlace.h">
       <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
+    <ClInclude Include="DuplicateCharacterInString.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
