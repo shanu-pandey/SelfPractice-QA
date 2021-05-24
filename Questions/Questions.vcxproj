@@ -138,6 +138,7 @@
     <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="SortPlaylist.h" />
     <ClInclude Include="StringReverseInPlace.h" />
+    <ClInclude Include="StringSwapMakeEqual.h" />
     <ClInclude Include="StrStr.h" />
     <ClInclude Include="TextJustification.h" />
     <ClInclude Include="TopologicalSort.h" />

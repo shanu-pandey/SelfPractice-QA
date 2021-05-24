@@ -29,6 +29,7 @@
 #include "DuplicateCharacterInString.h"
 #include "AnagramStrings.h"
 #include "BalancedStringSplit.h"
+#include "StringSwapMakeEqual.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -331,6 +332,12 @@ int main()
 		int result = StringManipulation::BalancedStringSplit::SplitBalancedString(str);
 	}
 
+	//27. Single Swap to Make String Equal
+	{
+		std::string str1 = "bank";
+		std::string str2 = "knab";
+		bool result = StringManipulation::StringSwapMakeEqual::AreAlmostEqual(str1, str2);
+	}
 
 	return 0;
 }
