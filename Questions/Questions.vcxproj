@@ -135,6 +135,7 @@
     <ClInclude Include="PostorderFromInorderPreorder.h" />
     <ClInclude Include="Power.h" />
     <ClInclude Include="ReorderData.h" />
+    <ClInclude Include="ShuffleString.h" />
     <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="SortPlaylist.h" />
     <ClInclude Include="StringReverseInPlace.h" />

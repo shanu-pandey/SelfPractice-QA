@@ -30,6 +30,7 @@
 #include "AnagramStrings.h"
 #include "BalancedStringSplit.h"
 #include "StringSwapMakeEqual.h"
+#include "ShuffleString.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -332,12 +333,20 @@ int main()
 		int result = StringManipulation::BalancedStringSplit::SplitBalancedString(str);
 	}
 
-	//27. Single Swap to Make String Equal
+	//28. Single Swap to Make String Equal
 	{
 		std::string str1 = "bank";
 		std::string str2 = "knab";
 		bool result = StringManipulation::StringSwapMakeEqual::AreAlmostEqual(str1, str2);
 	}
+
+	//29. Shuffle String
+	{
+		std::string str1 = "codeleet";
+		std::vector<int> indices = { 4,5,6,7,0,2,1,3 };
+		std::string result = StringManipulation::ShuffleString::RestoreString(str1, indices);
+	}
+
 
 	return 0;
 }
