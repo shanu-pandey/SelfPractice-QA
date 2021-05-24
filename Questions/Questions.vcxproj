@@ -116,6 +116,7 @@
     <ClInclude Include="132Pattern.h" />
     <ClInclude Include="AnagramStrings.h" />
     <ClInclude Include="AutoComplete.h" />
+    <ClInclude Include="BalancedStringSplit.h" />
     <ClInclude Include="BattleshipsInABoard.h" />
     <ClInclude Include="BoundaryOfBinaryTree.h" />
     <ClInclude Include="CelebrityProblem.h" />

@@ -28,6 +28,7 @@
 #include "StringReverseInPlace.h"
 #include "DuplicateCharacterInString.h"
 #include "AnagramStrings.h"
+#include "BalancedStringSplit.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -317,13 +318,19 @@ int main()
 		std::map<char, int> result = StringManipulation::DuplicateCharacterInString::DuplicateWithCount(str);
 	}
 
-
 	//26. Anagram Strings
 	{
 		std::string str1 = "asda";
 		std::string str2 = "asds";
 		bool result = StringManipulation::AnagramString::IfAnagram(str1, str2);
 	}
+
+	//27. Balanced String Split
+	{
+		std::string str = "RLLLLRRRLR";
+		int result = StringManipulation::BalancedStringSplit::SplitBalancedString(str);
+	}
+
 
 	return 0;
 }
