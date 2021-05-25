@@ -78,6 +78,9 @@ struct Node
 {
 	Node* m_pNext;
 	int val;	
+
+	Node(int i_val) : val(i_val), m_pNext(nullptr)
+	{}
 };
 
 class LinkedList
