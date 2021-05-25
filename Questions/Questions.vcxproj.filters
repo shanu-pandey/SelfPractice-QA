@@ -125,5 +125,8 @@
     <ClInclude Include="ShuffleString.h">
       <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
+    <ClInclude Include="ReverseLinkedListInPlace.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

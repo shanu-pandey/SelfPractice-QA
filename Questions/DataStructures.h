@@ -72,3 +72,58 @@ struct BinaryTree
 		return root;
 	}
 };
+
+
+struct Node
+{
+	Node* m_pNext;
+	int val;	
+};
+
+class LinkedList
+{
+public:
+	LinkedList()
+	{
+		m_pHead = nullptr;
+		m_pTail = nullptr;
+	}
+
+	void Add(int i_val)
+	{
+		Node* pNewNode = new Node();
+		pNewNode->val = i_val;
+
+		if (m_pHead == nullptr)
+		{
+			m_pHead = pNewNode;
+			m_pTail = pNewNode;
+		}
+		else
+		{
+			m_pTail->m_pNext = pNewNode;
+			m_pTail = m_pTail->m_pNext;
+		}
+	}
+
+	bool IfExists(int i_val)
+	{
+		if (m_pHead == nullptr)
+			return false;
+
+		while (m_pHead != nullptr)
+		{
+			if (m_pHead->val == i_val)
+				return true;
+
+			m_pHead = m_pHead->m_pNext;
+		}
+
+		return false;
+	}
+
+private :
+	Node* m_pHead;
+	Node* m_pTail;
+
+};
