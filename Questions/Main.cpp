@@ -32,6 +32,8 @@
 #include "StringSwapMakeEqual.h"
 #include "ShuffleString.h"
 #include "ReverseLinkedListInPlace.h"
+#include "RemoveZeroSumConsecutiveNode.h"
+#include "LinkedListCycle.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -362,6 +364,36 @@ int main()
 
 		DS_LinkedList::ReverseLinkedListInPlace::ReverseInPlace(n1);	
 	}
+
+	//31. Remove Zero Sum Consecutive Nodes
+	{
+		Node* n1 = new Node(1);
+		Node* n2 = new Node(2);
+		Node* n3 = new Node(3);
+		Node* n4 = new Node(-3);
+		Node* n5 = new Node(5);
+		n1->m_pNext = n2;
+		n2->m_pNext = n3;
+		n3->m_pNext = n4;
+		n4->m_pNext = n5;
+
+		Node* result = DS_LinkedList::RemoveZeroSumConsecutiveNode::RemoveZeroSumSublists(n1);
+	}
+
+	//32. Linked List Cycle
+	{
+		Node* n1 = new Node(3);
+		Node* n2 = new Node(2);
+		Node* n3 = new Node(0);
+		Node* n4 = new Node(-4);		
+		n1->m_pNext = n2;
+		n2->m_pNext = n3;
+		n3->m_pNext = n4;
+		n4->m_pNext = n2;
+
+		Node* result = DS_LinkedList::LinkedListCycle::DetectCycle(n1);
+	}
+
 
 	return 0;
 }

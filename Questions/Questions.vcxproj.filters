@@ -131,5 +131,8 @@
     <ClInclude Include="RemoveZeroSumConsecutiveNode.h">
       <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedListCycle.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
