@@ -31,6 +31,7 @@
 #include "BalancedStringSplit.h"
 #include "StringSwapMakeEqual.h"
 #include "ShuffleString.h"
+#include "ReverseLinkedListInPlace.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -345,6 +346,21 @@ int main()
 		std::string str1 = "codeleet";
 		std::vector<int> indices = { 4,5,6,7,0,2,1,3 };
 		std::string result = StringManipulation::ShuffleString::RestoreString(str1, indices);
+	}
+
+	//30. Reverse Linked List in Place
+	{
+		Node* n1 = new Node(1);
+		Node* n2 = new Node(2);
+		Node* n3 = new Node(3);
+		Node* n4 = new Node(4);
+		Node* n5 = new Node(5);
+		n1->m_pNext = n2;
+		n2->m_pNext = n3;
+		n3->m_pNext = n4;
+		n4->m_pNext = n5;		
+
+		DS_LinkedList::ReverseLinkedListInPlace::ReverseInPlace(n1);	
 	}
 
 

@@ -79,6 +79,9 @@ struct Node
 	Node* m_pNext;
 	int val;	
 
+	Node() : val(0), m_pNext(nullptr)
+	{}
+
 	Node(int i_val) : val(i_val), m_pNext(nullptr)
 	{}
 };
