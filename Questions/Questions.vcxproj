@@ -134,6 +134,7 @@
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="PostorderFromInorderPreorder.h" />
     <ClInclude Include="Power.h" />
+    <ClInclude Include="RemoveZeroSumConsecutiveNode.h" />
     <ClInclude Include="ReorderData.h" />
     <ClInclude Include="ReverseLinkedListInPlace.h" />
     <ClInclude Include="ShuffleString.h" />
