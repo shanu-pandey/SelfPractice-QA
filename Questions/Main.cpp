@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "EncodeInPlace.h"
 #include "KLargestBST.h"
 #include "PairEqualSum.h"
@@ -34,6 +35,7 @@
 #include "ReverseLinkedListInPlace.h"
 #include "RemoveZeroSumConsecutiveNode.h"
 #include "LinkedListCycle.h"
+#include "RotateMatrix.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -394,6 +396,22 @@ int main()
 		Node* result = DS_LinkedList::LinkedListCycle::DetectCycle(n1);
 	}
 
+	//10. Rotate Matrix
+	{
+		std::vector<std::vector<int>> board = { {5,1,9,11},{2,4,8,10},{13,3,6,7},{15,14,12,16} };
+		std::cout << "-----------Original----------------" << std::endl;
+		Array_2D::RotateMatrix::Print(board);
 
+		std::cout << "-----------Clockwise----------------" << std::endl;
+		Array_2D::RotateMatrix::RotateClockwise(board);
+		Array_2D::RotateMatrix::Print(board);
+
+		board = { {5,1,9,11},{2,4,8,10},{13,3,6,7},{15,14,12,16} };
+
+
+		std::cout << "-----------Counter Clockwise----------------" << std::endl;
+		Array_2D::RotateMatrix::RotateCounterClockwise(board);
+		Array_2D::RotateMatrix::Print(board);
+	}
 	return 0;
 }

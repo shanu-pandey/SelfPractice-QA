@@ -138,6 +138,7 @@
     <ClInclude Include="RemoveZeroSumConsecutiveNode.h" />
     <ClInclude Include="ReorderData.h" />
     <ClInclude Include="ReverseLinkedListInPlace.h" />
+    <ClInclude Include="RotateMatrix.h" />
     <ClInclude Include="ShuffleString.h" />
     <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="SortPlaylist.h" />

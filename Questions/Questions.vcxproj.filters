@@ -134,5 +134,8 @@
     <ClInclude Include="LinkedListCycle.h">
       <Filter>Source Files\Monthly Goal_May</Filter>
     </ClInclude>
+    <ClInclude Include="RotateMatrix.h">
+      <Filter>Source Files\Monthly Goal_May</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
