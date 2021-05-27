@@ -42,24 +42,14 @@ namespace DS_LinkedList
 
 Node* DS_LinkedList::LinkedListCycle::DetectCycle(Node* i_head)
 {
-	if (i_head == nullptr || i_head->m_pNext == nullptr)
-		return nullptr;
-
-	Node* result;
-	Node* pCurr = i_head;
-	std::vector<Node*> traversed;
-	
-	while (pCurr)
-	{
-		for (auto it : traversed)
-		{
-			if (pCurr->m_pNext == it)
-				return it;
-		}
-		traversed.push_back(pCurr);
-		pCurr = pCurr->m_pNext;
-	}
-
-	return nullptr;
-
+    if (i_head == NULL || !i_head->m_pNext)
+        return NULL;
+   
+    Node* ptr = i_head->m_pNext;
+    while (ptr - i_head > 0)
+    {
+        ptr = ptr->m_pNext;
+        i_head = i_head->m_pNext;
+    }
+    return ptr;
 }
