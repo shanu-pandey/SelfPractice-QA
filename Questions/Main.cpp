@@ -396,7 +396,7 @@ int main()
 		Node* result = DS_LinkedList::LinkedListCycle::DetectCycle(n1);
 	}
 
-	//10. Rotate Matrix
+	//33. Rotate Matrix
 	{
 		std::vector<std::vector<int>> board = { {5,1,9,11},{2,4,8,10},{13,3,6,7},{15,14,12,16} };
 		std::cout << "-----------Original----------------" << std::endl;
