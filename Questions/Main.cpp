@@ -36,6 +36,8 @@
 #include "RemoveZeroSumConsecutiveNode.h"
 #include "LinkedListCycle.h"
 #include "RotateMatrix.h"
+#include "MinJumps.h"
+#include "ToeplitzMatrix.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -412,6 +414,22 @@ int main()
 		std::cout << "-----------Counter Clockwise----------------" << std::endl;
 		Array_2D::RotateMatrix::RotateCounterClockwise(board);
 		Array_2D::RotateMatrix::Print(board);
+	}
+
+	//33. Min Jumps
+	{
+		int arr[] = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
+		int n = 11;
+		int result = Array::MinJumps::MinJumpsToEnd(arr, n);
+
+	}
+
+	//33. Toeplitz Matrix
+	{
+		std::vector<std::vector<int>> matrix = { {11,74,7,93},{40,11,74,7} };
+		int n = 11;
+		int result = Array_2D::ToeplitzMatrix::IsToeplitzMatrix(matrix);
+
 	}
 	return 0;
 }

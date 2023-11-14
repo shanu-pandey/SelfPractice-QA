@@ -130,6 +130,7 @@
     <ClInclude Include="LargestPairWithSum.h" />
     <ClInclude Include="LinkedListCycle.h" />
     <ClInclude Include="LRUCache.h" />
+    <ClInclude Include="MinJumps.h" />
     <ClInclude Include="MRUCache.h" />
     <ClInclude Include="NumberOfIslands.h" />
     <ClInclude Include="PairEqualSum.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="StringSwapMakeEqual.h" />
     <ClInclude Include="StrStr.h" />
     <ClInclude Include="TextJustification.h" />
+    <ClInclude Include="ToeplitzMatrix.h" />
     <ClInclude Include="TopologicalSort.h" />
     <ClInclude Include="TreeFromInorderPreorder.h" />
     <ClInclude Include="ValidParentheses.h" />
