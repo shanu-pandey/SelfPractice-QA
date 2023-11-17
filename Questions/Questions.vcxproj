@@ -125,6 +125,7 @@
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="DuplicateCharacterInString.h" />
     <ClInclude Include="EncodeInPlace.h" />
+    <ClInclude Include="GameOfLife.h" />
     <ClInclude Include="KLargestBST.h" />
     <ClInclude Include="KMostFrequentWords.h" />
     <ClInclude Include="LargestPairWithSum.h" />

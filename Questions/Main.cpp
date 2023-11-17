@@ -38,6 +38,7 @@
 #include "RotateMatrix.h"
 #include "MinJumps.h"
 #include "ToeplitzMatrix.h"
+#include "GameOfLife.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -430,6 +431,12 @@ int main()
 		int n = 11;
 		int result = Array_2D::ToeplitzMatrix::IsToeplitzMatrix(matrix);
 
+	}
+
+	//33. Game of Life
+	{
+		std::vector<std::vector<int>> matrix = { {0,1,0},{0,0,1},{1,1,1},{0,0,0} };
+		Array_2D::GameOfLife::GameOfLIfeInPlace(matrix);
 	}
 	return 0;
 }
