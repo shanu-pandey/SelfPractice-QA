@@ -39,6 +39,7 @@
 #include "MinJumps.h"
 #include "ToeplitzMatrix.h"
 #include "GameOfLife.h"
+#include "WiggleSort.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -437,6 +438,12 @@ int main()
 	{
 		std::vector<std::vector<int>> matrix = { {0,1,0},{0,0,1},{1,1,1},{0,0,0} };
 		Array_2D::GameOfLife::GameOfLIfeInPlace(matrix);
+	}
+
+	//33. Wiggle Sort
+	{
+		std::vector<int> arr = { 1, 3, 2, 2, 3, 1 };
+		Array::WiggleSort::DoWiggleSort(arr);
 	}
 	return 0;
 }

@@ -146,5 +146,8 @@
     <ClInclude Include="GameOfLife.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="WiggleSort.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -152,6 +152,7 @@
     <ClInclude Include="TopologicalSort.h" />
     <ClInclude Include="TreeFromInorderPreorder.h" />
     <ClInclude Include="ValidParentheses.h" />
+    <ClInclude Include="WiggleSort.h" />
     <ClInclude Include="WordPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
