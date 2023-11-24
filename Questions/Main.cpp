@@ -42,6 +42,7 @@
 #include "WiggleSort.h"
 #include "WordSearch.h"
 #include "SmallestSet.h"
+#include "NonOverlappingIntervals.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -458,6 +459,12 @@ int main()
 	{
 		std::vector<std::vector<int>> matrix = { {0,3},{3,4},{6,9}, {2,6}, {6,7} };
 		Array_2D::SmallestSet::GetSmallestSet(matrix);
+	}
+
+	//35. Non overlapping intervals
+	{
+		std::vector<std::vector<int>> matrix = { {1,100},{11,22}, {1,11}, {2,12}  };
+		Array_2D::NonOverlappingIntervals::EraseOverlapIntervals(matrix);
 	}
 	
 

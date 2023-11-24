@@ -133,6 +133,7 @@
     <ClInclude Include="LRUCache.h" />
     <ClInclude Include="MinJumps.h" />
     <ClInclude Include="MRUCache.h" />
+    <ClInclude Include="NonOverlappingIntervals.h" />
     <ClInclude Include="NumberOfIslands.h" />
     <ClInclude Include="PairEqualSum.h" />
     <ClInclude Include="PostorderFromInorderPreorder.h" />
