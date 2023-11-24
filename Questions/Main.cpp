@@ -40,6 +40,7 @@
 #include "ToeplitzMatrix.h"
 #include "GameOfLife.h"
 #include "WiggleSort.h"
+#include "WordSearch.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -442,8 +443,17 @@ int main()
 
 	//33. Wiggle Sort
 	{
-		std::vector<int> arr = { 1, 3, 2, 2, 3, 1 };
-		Array::WiggleSort::DoWiggleSort(arr);
+		/*std::vector<int> arr = { 1, 3, 2, 2, 3, 1 };
+		Array::WiggleSort::DoWiggleSort(arr);*/
 	}
+	
+	
+	//33. Word Existst
+	{
+		std::vector<std::vector<char>> board = {{ 'A','B','C','E' }, { 'S','F','C','S' }, { 'A','D','E','E' } };
+		bool result = Array_2D::WordSearch::Exist(board, "ABCCED");
+	}
+	
+
 	return 0;
 }

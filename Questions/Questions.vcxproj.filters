@@ -149,5 +149,8 @@
     <ClInclude Include="WiggleSort.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="WordSearch.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
