@@ -41,6 +41,7 @@
 #include "GameOfLife.h"
 #include "WiggleSort.h"
 #include "WordSearch.h"
+#include "SmallestSet.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -421,9 +422,8 @@ int main()
 
 	//33. Min Jumps
 	{
-		int arr[] = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
-		int n = 11;
-		int result = Array::MinJumps::MinJumpsToEnd(arr, n);
+		std::vector<int> arr = { 1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
+		int result = Array::MinJumps::MinJumpsToEnd(arr);
 
 	}
 
@@ -441,17 +441,23 @@ int main()
 		Array_2D::GameOfLife::GameOfLIfeInPlace(matrix);
 	}
 
-	//33. Wiggle Sort
+	//34. Wiggle Sort
 	{
 		/*std::vector<int> arr = { 1, 3, 2, 2, 3, 1 };
 		Array::WiggleSort::DoWiggleSort(arr);*/
 	}
 	
 	
-	//33. Word Existst
+	//35. Word Existst
 	{
 		std::vector<std::vector<char>> board = {{ 'A','B','C','E' }, { 'S','F','C','S' }, { 'A','D','E','E' } };
 		bool result = Array_2D::WordSearch::Exist(board, "ABCCED");
+	}
+
+	//35. Smallest Set
+	{
+		std::vector<std::vector<int>> matrix = { {0,3},{3,4},{6,9}, {2,6}, {6,7} };
+		Array_2D::SmallestSet::GetSmallestSet(matrix);
 	}
 	
 

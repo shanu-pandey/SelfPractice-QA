@@ -1,21 +1,20 @@
 /*
-Given a sequence of n integers a1, a2, ..., an, a 132 pattern is a subsequence ai, aj, ak such that i < j < k and ai < ak < aj.
-Design an algorithm that takes a list of n numbers as input and checks whether there is a 132 pattern in the list.
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+Each element nums[i] represents the maximum length of a forward jump from index i. 
+
+In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+0 <= j <= nums[i] and
+i + j < n
+Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
 
 Example 1:
-Input: [1, 2, 3, 4]
-Output: False
-Explanation: There is no 132 pattern in the sequence.
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
 Example 2:
-Input: [3, 1, 4, 2]
-Output: True
-Explanation: There is a 132 pattern in the sequence: [1, 4, 2].
-
-Example 3:
-Input: [-1, 3, 2, 0]
-Output: True
-Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+Input: nums = [2,3,0,1,4]
+Output: 2
 */
 
 #pragma once
@@ -28,35 +27,34 @@ namespace Array
 	class MinJumps
 	{
 	public:
-		static int MinJumpsToEnd(int arr[], int n);
+		static int MinJumpsToEnd(std::vector<int>& nums);
 	};
 }
 
 
-int Array::MinJumps::MinJumpsToEnd(int arr[], int n)
+int Array::MinJumps::MinJumpsToEnd(std::vector<int>& nums)
 {
+    int n = nums.size();
     if (n == 1)
+        return 0;
+    if (n == 2)
         return 1;
 
     int jumps = 0;
+    int maxJump = 0;
+    int end = 0;
     for (int i = 0; i < n; i++)
     {
-        if (arr[i] + 1 + i >= n)
+        if (nums[i] + i >= n - 1)
             return ++jumps;
 
-        int currJumpVal = arr[i];
-        int max = arr[i];
-        int maxIndex = i + max;
-        for (int j = i + 1; j <= currJumpVal + i; j++)
+        maxJump = std::max(maxJump, i + nums[i]);
+
+        if (i == end)
         {
-            if (arr[j] > max)
-            {
-                max = arr[j];
-                maxIndex = j;
-            }
+            jumps++;
+            end = maxJump;
         }
-        jumps++;
-        i = maxIndex;
     }
     return -1;
 }

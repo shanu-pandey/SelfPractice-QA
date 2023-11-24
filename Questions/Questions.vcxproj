@@ -142,6 +142,7 @@
     <ClInclude Include="ReverseLinkedListInPlace.h" />
     <ClInclude Include="RotateMatrix.h" />
     <ClInclude Include="ShuffleString.h" />
+    <ClInclude Include="SmallestSet.h" />
     <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="SortPlaylist.h" />
     <ClInclude Include="StringReverseInPlace.h" />
