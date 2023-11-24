@@ -158,5 +158,8 @@
     <ClInclude Include="NonOverlappingIntervals.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="AllAnagrams.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

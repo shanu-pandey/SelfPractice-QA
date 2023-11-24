@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="132Pattern.h" />
+    <ClInclude Include="AllAnagrams.h" />
     <ClInclude Include="AnagramStrings.h" />
     <ClInclude Include="AutoComplete.h" />
     <ClInclude Include="BalancedStringSplit.h" />

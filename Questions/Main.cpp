@@ -43,6 +43,7 @@
 #include "WordSearch.h"
 #include "SmallestSet.h"
 #include "NonOverlappingIntervals.h"
+#include "AllAnagrams.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -465,6 +466,15 @@ int main()
 	{
 		std::vector<std::vector<int>> matrix = { {1,100},{11,22}, {1,11}, {2,12}  };
 		Array_2D::NonOverlappingIntervals::EraseOverlapIntervals(matrix);
+	}
+
+	//35. All Anagrams
+	{
+		std::string s = "cbaebabacd";
+		std::string p = "abc";
+
+		std::vector<int> res = StringManipulation::AllAnagrams::FindAnagrams(s, p);
+
 	}
 	
 
