@@ -161,7 +161,12 @@ int AoC::Year2023::GetNumber(std::string word, int index)
             for (int j=0; j<3; j++)
             {
                 if (word.substr(index, sz) == numbers[i][j])
+                {
+                   // word[index] = '0' + intMap[i][j];
+                   // memset(&word[index+1], 'x', 4);
                     return intMap[i][j];
+
+                }
                     
             }
             sz++;
@@ -175,7 +180,11 @@ int AoC::Year2023::GetNumber(std::string word, int index)
             for (int j = 0; j < 3; j++)
             {
                 if (word.substr(index, sz) == numbers[i][j])
+                {
+                  //  word[index] =  '0'+ intMap[i][j];
+                   // memset(&word[index+1], 'x', 3);
                     return intMap[i][j];
+                }
 
             }
             sz++;
@@ -186,7 +195,11 @@ int AoC::Year2023::GetNumber(std::string word, int index)
         for (int j = 0; j < 3; j++)
         {
             if (word.substr(index, 3) == numbers[0][j])
+            {
+              //  word[index] = '0'+ intMap[0][j];
+              //  memset(&word[index+1], 'x', 2);
                 return intMap[0][j];
+            }
         }
     }
     return -1;
@@ -197,39 +210,39 @@ int AoC::Year2023::GetNumberFromBack(std::string word, int index)
     std::vector<std::vector<std::string>> numbers = { { "one", "two", "six" }, {"four", "five", "nine" }, { "three", "seven", "eight" } };
     std::vector<std::vector<int>> intMap = { { 1,2,6 }, { 4,5,9 }, { 3,7,8 } };
 
-    if (index - 5 >= 0 )
+    if (index - 4 >= 0 )
     {
         int sz = 3;
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                if (word.substr(index, sz) == numbers[i][j])
+                if (word.substr(index+1-sz, sz) == numbers[i][j])
                     return intMap[i][j];
 
             }
             sz++;
         }
     }
-    else if (index - 4  >= 0)
+    else if (index - 3  >= 0)
     {
         int sz = 3;
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                if (word.substr(index, sz) == numbers[i][j])
+                if (word.substr(index+1-sz, sz) == numbers[i][j])
                     return intMap[i][j];
 
             }
             sz++;
         }
     }
-    else if (index - 3 >= 0)
+    else if (index - 2 >= 0)
     {
         for (int j = 0; j < 3; j++)
         {
-            if (word.substr(index, 3) == numbers[0][j])
+            if (word.substr(index+1-3, 3) == numbers[0][j])
                 return intMap[0][j];
         }
     }
