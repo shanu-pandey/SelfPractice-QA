@@ -38,7 +38,6 @@ namespace AoC
     class Year2023
     {
     public:
-        static void ReadFile(std::list<std::string>& lines);
         static int GetSumCalibrationValue_Part1(std::list<std::string> doc);
         static int GetSumCalibrationValue_Part2(std::list<std::string> doc);
     private:
@@ -47,18 +46,6 @@ namespace AoC
 
     };
 }
-
-
-void  AoC::Year2023::ReadFile(std::list<std::string>& lines)
-{
-    std::string ip = "C:\\Users\\shant\\Desktop\\input.txt";
-    lines.clear();
-    std::ifstream file(ip);
-    std::string s;
-    while (getline(file, s))
-        lines.push_back(s);
-}
-
 
 int AoC::Year2023::GetSumCalibrationValue_Part1(std::list<std::string> doc)
 {
