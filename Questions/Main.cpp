@@ -35,7 +35,7 @@ int main()
 			list<string> lines;
 			ReadFile("Input\\inputD2.txt", lines);
 			int sum = AoC::Day2::GetSumGameIds(lines);
-
+			int powSum = AoC::Day2::GetSumGameIds_Part2(lines);
 			cout << "Sum2: " << sum << endl;
 		}
 
