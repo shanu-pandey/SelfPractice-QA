@@ -26,10 +26,8 @@
     <ClInclude Include="Day1.h">
       <Filter>DailyProblems</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="C:\Users\shant\Desktop\input.txt">
+    <ClInclude Include="Day2.h">
       <Filter>DailyProblems</Filter>
-    </Text>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,7 +35,7 @@ What is the sum of all of the calibration values?
 
 namespace AoC
 {
-    class Year2023
+    class Day1
     {
     public:
         static int GetSumCalibrationValue_Part1(std::list<std::string> doc);
@@ -47,7 +47,7 @@ namespace AoC
     };
 }
 
-int AoC::Year2023::GetSumCalibrationValue_Part1(std::list<std::string> doc)
+int AoC::Day1::GetSumCalibrationValue_Part1(std::list<std::string> doc)
 {
     int sum = 0;
 
@@ -81,7 +81,7 @@ int AoC::Year2023::GetSumCalibrationValue_Part1(std::list<std::string> doc)
 }
 
 
-int AoC::Year2023::GetSumCalibrationValue_Part2(std::list<std::string> doc)
+int AoC::Day1::GetSumCalibrationValue_Part2(std::list<std::string> doc)
 {
     int sum = 0;
 
@@ -135,7 +135,7 @@ int AoC::Year2023::GetSumCalibrationValue_Part2(std::list<std::string> doc)
 }
 
 
-int AoC::Year2023::GetNumber(std::string word, int index)
+int AoC::Day1::GetNumber(std::string word, int index)
 {
     std::vector<std::vector<std::string>> numbers = { { "one", "two", "six" }, {"four", "five", "nine" }, { "three", "seven", "eight" } };
     std::vector<std::vector<int>> intMap = { { 1,2,6 }, { 4,5,9 }, { 3,7,8 } };
@@ -192,7 +192,7 @@ int AoC::Year2023::GetNumber(std::string word, int index)
     return -1;
 }
 
-int AoC::Year2023::GetNumberFromBack(std::string word, int index)
+int AoC::Day1::GetNumberFromBack(std::string word, int index)
 {
     std::vector<std::vector<std::string>> numbers = { { "one", "two", "six" }, {"four", "five", "nine" }, { "three", "seven", "eight" } };
     std::vector<std::vector<int>> intMap = { { 1,2,6 }, { 4,5,9 }, { 3,7,8 } };

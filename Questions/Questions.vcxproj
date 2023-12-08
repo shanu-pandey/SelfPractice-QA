@@ -114,9 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Day1.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="C:\Users\shant\Desktop\input.txt" />
+    <ClInclude Include="Day2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
