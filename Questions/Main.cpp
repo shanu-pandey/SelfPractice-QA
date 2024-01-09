@@ -2,6 +2,7 @@
 #include <list>
 #include "Day1.h"
 #include "Day2.h"
+#include "Day3.h"
 
 
 using namespace std;
@@ -32,11 +33,23 @@ int main()
 
 		//day 2
 		{
-			list<string> lines;
+			/*list<string> lines;
 			ReadFile("Input\\inputD2.txt", lines);
 			int sum = AoC::Day2::GetSumGameIds(lines);
 			int powSum = AoC::Day2::GetSumGameIds_Part2(lines);
-			cout << "Sum2: " << sum << endl;
+			cout << "Sum2: " << sum << endl;*/
+		}
+
+		//day 3
+		{
+			vector<string> input = { "467..114..","...*......", "..35..633.", "......#...", "617*......", ".....+.58.", "..592.....", "......755.", "...$.*....", ".664.598.." };
+			list<string> lines;
+			ReadFile("Input\\inputD3.txt", lines);
+			vector<string>ip(lines.begin(), lines.end());
+			int sum = AoC::Day3::GetSum(ip);
+			//int sum2 = AoC::Day1::GetSumCalibrationValue_Part2(lines);
+			cout << "Sum: " << sum << endl;
+
 		}
 
 		return 0;
