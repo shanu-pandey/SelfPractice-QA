@@ -161,5 +161,8 @@
     <ClInclude Include="AllAnagrams.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="CourseSchedule2.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -122,6 +122,7 @@
     <ClInclude Include="BoundaryOfBinaryTree.h" />
     <ClInclude Include="CelebrityProblem.h" />
     <ClInclude Include="CountingValley.h" />
+    <ClInclude Include="CourseSchedule2.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="DuplicateCharacterInString.h" />

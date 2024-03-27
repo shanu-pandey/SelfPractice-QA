@@ -44,6 +44,7 @@
 #include "SmallestSet.h"
 #include "NonOverlappingIntervals.h"
 #include "AllAnagrams.h"
+#include "CourseSchedule2.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -474,6 +475,17 @@ int main()
 		std::string p = "abc";
 
 		std::vector<int> res = StringManipulation::AllAnagrams::FindAnagrams(s, p);
+
+	}
+
+	//35. Course Schedule II
+	{
+		std::string s = "cbaebabacd";
+		std::string p = "abc";
+		std::vector<int> a = { 1,0 };
+		std::vector<std::vector<int>> input;
+		input.push_back(a);
+		std::vector<int> res = Graph::CourseSchedule2::findOrder(2, input);
 
 	}
 	
