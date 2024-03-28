@@ -63,7 +63,7 @@ int Graph::FindJudge::FindJudgeCount(int n, std::vector<std::vector<int>>& trust
         trusts[it[0]].push_back(it[1]);
     }
 
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         int sz = trustedBy[i].size();
         if (sz == n - 1)
