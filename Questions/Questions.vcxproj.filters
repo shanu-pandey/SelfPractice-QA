@@ -164,5 +164,11 @@
     <ClInclude Include="CourseSchedule2.h">
       <Filter>Source Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="StarGraph.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
+    <ClInclude Include="FindJudge.h">
+      <Filter>Source Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

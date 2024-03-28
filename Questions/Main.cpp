@@ -45,6 +45,8 @@
 #include "NonOverlappingIntervals.h"
 #include "AllAnagrams.h"
 #include "CourseSchedule2.h"
+#include "StarGraph.h"
+#include "FindJudge.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -489,6 +491,18 @@ int main()
 
 	}
 	
+	//35. Star Graph
+	{
+		std::vector<std::vector<int>> input = { {1,2}, {5,1}, {1,3}, {1,4} };
+		int res = Graph::StarGraph::FindCenter(input);
+	}
+
+	//35. Find Judge
+	{
+		std::vector<std::vector<int>> input = { {1,2} };
+		int res = Graph::FindJudge::FindJudgeCount(2, input);
+	}
+
 
 	return 0;
 }

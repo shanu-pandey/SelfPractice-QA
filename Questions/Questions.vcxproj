@@ -127,6 +127,7 @@
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="DuplicateCharacterInString.h" />
     <ClInclude Include="EncodeInPlace.h" />
+    <ClInclude Include="FindJudge.h" />
     <ClInclude Include="GameOfLife.h" />
     <ClInclude Include="KLargestBST.h" />
     <ClInclude Include="KMostFrequentWords.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="SmallestSet.h" />
     <ClInclude Include="SockPairMatch.h" />
     <ClInclude Include="SortPlaylist.h" />
+    <ClInclude Include="StarGraph.h" />
     <ClInclude Include="StringReverseInPlace.h" />
     <ClInclude Include="StringSwapMakeEqual.h" />
     <ClInclude Include="StrStr.h" />
