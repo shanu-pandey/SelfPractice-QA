@@ -44,6 +44,7 @@ namespace Graph
 	{
 	public:
         static std::vector<int> findOrder(int numCourses, std::vector<std::vector<int>>& prerequisites);
+        static bool canFinish(int n, std::vector<std::vector<int>>& prerequisites);
     private:
         static void dfs(std::vector<int>* graph, std::stack<int>& s, std::vector<bool>& visited, int n);
         static  std::vector<int> TopoWithCycle(std::vector<int>* graph, std::stack<int>& s, int n);
@@ -110,4 +111,44 @@ std::vector<int> Graph::CourseSchedule2::findOrder(int numCourses, std::vector<s
 
     return (TopoWithCycle(graph, s, numCourses));
         
+}
+
+
+bool Graph::CourseSchedule2::canFinish(int numCourses, std::vector<std::vector<int>>& prerequisites)
+{
+    int N = numCourses;
+    std::unordered_map<int, std::vector<int>> adj;
+    std::vector<int> indegree(N, 0);
+
+    for (auto& it : prerequisites)
+    {
+        adj[it[1]].push_back(it[0]);
+        indegree[it[0]]++;
+    }
+    std::queue<int>q;
+    int count = 0;
+    for (int i = 0; i < N; i++)
+    {
+        if (indegree[i] == 0)
+        {
+            count++;
+            q.push(i);
+        }
+    }
+    while (!q.empty())
+    {
+        int node = q.front();
+        q.pop();
+        for (auto it : adj[node])
+        {
+            indegree[it]--;
+            if (indegree[it] == 0)
+            {
+                q.push(it);
+                count++;
+            }
+
+        }
+    }
+    return (count == N);
 }

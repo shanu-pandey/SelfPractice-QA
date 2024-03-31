@@ -484,10 +484,10 @@ int main()
 	{
 		std::string s = "cbaebabacd";
 		std::string p = "abc";
-		std::vector<int> a = { 1,0 };
+		std::vector<int> a = { 0,1 };
 		std::vector<std::vector<int>> input;
 		input.push_back(a);
-		std::vector<int> res = Graph::CourseSchedule2::findOrder(2, input);
+		auto res = Graph::CourseSchedule2::canFinish(2, input);
 
 	}
 	
