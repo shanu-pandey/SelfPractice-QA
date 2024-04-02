@@ -121,6 +121,7 @@
     <ClInclude Include="BattleshipsInABoard.h" />
     <ClInclude Include="BoundaryOfBinaryTree.h" />
     <ClInclude Include="CelebrityProblem.h" />
+    <ClInclude Include="CompleteComponents.h" />
     <ClInclude Include="CountingValley.h" />
     <ClInclude Include="CourseSchedule2.h" />
     <ClInclude Include="DataStructures.h" />

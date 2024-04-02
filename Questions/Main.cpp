@@ -47,6 +47,7 @@
 #include "CourseSchedule2.h"
 #include "StarGraph.h"
 #include "FindJudge.h"
+#include "CompleteComponents.h"
 
 long howManySwaps(std::vector<int> arr)
 {
@@ -459,19 +460,19 @@ int main()
 		bool result = Array_2D::WordSearch::Exist(board, "ABCCED");
 	}
 
-	//35. Smallest Set
+	//36. Smallest Set
 	{
 		std::vector<std::vector<int>> matrix = { {0,3},{3,4},{6,9}, {2,6}, {6,7} };
 		Array_2D::SmallestSet::GetSmallestSet(matrix);
 	}
 
-	//35. Non overlapping intervals
+	//37. Non overlapping intervals
 	{
 		std::vector<std::vector<int>> matrix = { {1,100},{11,22}, {1,11}, {2,12}  };
 		Array_2D::NonOverlappingIntervals::EraseOverlapIntervals(matrix);
 	}
 
-	//35. All Anagrams
+	//38. All Anagrams
 	{
 		std::string s = "cbaebabacd";
 		std::string p = "abc";
@@ -480,7 +481,7 @@ int main()
 
 	}
 
-	//35. Course Schedule II
+	//39. Course Schedule II
 	{
 		std::string s = "cbaebabacd";
 		std::string p = "abc";
@@ -491,18 +492,23 @@ int main()
 
 	}
 	
-	//35. Star Graph
+	//40. Star Graph
 	{
 		std::vector<std::vector<int>> input = { {1,2}, {5,1}, {1,3}, {1,4} };
 		int res = Graph::StarGraph::FindCenter(input);
 	}
 
-	//35. Find Judge
+	//41. Find Judge
 	{
 		std::vector<std::vector<int>> input = { {1,2} };
 		int res = Graph::FindJudge::FindJudgeCount(2, input);
 	}
 
+	//42. Complete Component
+	{
+		std::vector<std::vector<int>> input = { {0,1}, {0,2}, {1,2}, {3,4}, {3,5} };
+		int res = Graph::CompleteComponents::CountCompleteComponents(input, 6);
+	}
 
 	return 0;
 }
